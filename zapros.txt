@@ -1,0 +1,5 @@
+SELECT (SELECT sum(`Прочность_МПа`)/(SELECT count(`Прочность_МПа`) FROM `excel2mysql0` WHERE `Наименование_изделия` like '%лотки22,5%') FROM `excel2mysql0` WHERE `Наименование_изделия` like '%лотки22,5%'), `ID_TAB` FROM `excel2mysql0` WHERE 1
+SELECT e.`Наименование`, (select count(e2.`Наименование`) FROM `excel2mysql0` e2 where e2.`Наименование` = e.`Наименование`) FROM `excel2mysql0` e GROUP BY e.`Наименование` ASC
+UPDATE `excel2mysql0` SET `KOEF`=1
+ALTER TABLE `excel2mysql0` ADD `KOEF` INT(2) NOT NULL ;
+SELECT e. `Класс`,`Дата`, (select count(e2.`Класс`) FROM `excel2mysql0_t` e2 where e2.`Класс` = e.`Класс`) FROM `excel2mysql0_t` e GROUP BY e.`Класс` ASC
