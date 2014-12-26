@@ -11,12 +11,13 @@
 		</style>
     </head>
     <body>
-<p  align=center>  <a  href="http://localhost/var/">  <font  size="20" color="red" face="Arial">  ;-) </font></a></p>
+<p  align=center>  <a  href="http://192.168.100.140/var/">  <font  size="20" color="red" face="Arial">  ;-) </font></a></p>
 <p><a href="xls.php">Преобразовать таблицу exel в базу данных</a></p>
 ﻿<?php
 include ('config.php');
 	$data1=isset($_GET['data1']) ? $_GET['data1'] : date("Y-m-d",strtotime("first day of -2 month"));
 	$data2=isset($_GET['data2']) ? $_GET['data2'] : date("Y-m-d",strtotime("last day of -2 month"));
+	$koef_var=isset($_GET['koef_var']) ? $_GET['koef_var'] : 8.7;
 function interpol ($x){
 
     if ($x < 6) {
@@ -55,6 +56,7 @@ function alfa ($a){$k=1;
 <form name="authForm" method="GET" action="<?=$_SERVER['PHP_SELF']?>">
 Начало периода:<input type="DATE" name="data1" value="<?=$data1?>">
 Конец периода:<input type="DATE" name="data2" value="<?=$data2?>">
+Коэффициент вариации:<input type="text" name="koef_var" value="<?=$koef_var?>">
 <input type="submit">
 </form>
 <p>
@@ -92,7 +94,7 @@ while($row = mysql_fetch_array($result)){
 <p>Официальный коэффициент вариации</p>
   
   <?php // Выводим таблицу для расчета коэффициента вариации для каждого изделия
-  $result = mysql_query("SELECT `Наименование_изделия`,`Класс_бетона`,`Дата` FROM `excel2mysql0_k` where DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2' GROUP BY `Наименование_изделия` ORDER BY `Класс_бетона`ASC");
+  $result = mysql_query("SELECT `Наименование_изделия`,`Класс_бетона`,`Дата` FROM `excel2mysql0_k` where `KOEF` like '1' and DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2' GROUP BY `Наименование_изделия` ORDER BY `Класс_бетона`ASC");
   
   while($row = mysql_fetch_array($result)){           // Список всех наименований изделий
    extract ($row);
@@ -130,10 +132,10 @@ while($row = mysql_fetch_array($result)){
  //  echo '<br/>';
    $Vm=$Sm*100/$mid_s;
  //  echo $Vm.' -Коэффициент вариации';
-   if ($Vm > 8.7) {
+   if ($Vm > $koef_var) {
   mysql_query ("update `base`.`excel2mysql0_k` set `KOEF` = 0  WHERE DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2' and `Прочность_МПа` = $DFP and `Наименование_изделия` like '$Наименование_изделия' ");
   }
-  } while ($Vm > 8.7);
+  } while ($Vm > $koef_var);
    ?>
  
   <table border="1px" align=center bgcolor=#eaeae cellpadding="0px" cellspacing="0px" id="table2">
@@ -223,73 +225,20 @@ B˂Rmini≥Rmin			<?=$Класс_бетона?>˂<?=$P_min?>˃<?=$Rt-4?>			<br/>
    
  </tr>			
  <? $l=0;
- $result = mysql_query("SELECT `Наименование_изделия`,`Класс_бетона`,`Дата` FROM `excel2mysql0_k` where DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2' GROUP BY `Наименование_изделия` ORDER BY `excel2mysql0_k`.`Класс_бетона` ASC");				// Запрос основной таблицы
+ $result = mysql_query("SELECT `Наименование_изделия`,`Класс_бетона`,`Дата` FROM `excel2mysql0_k` where `KOEF` like '1' and DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2' GROUP BY `Наименование_изделия` ORDER BY `excel2mysql0_k`.`Класс_бетона` ASC");				// Запрос основной таблицы
 while($row = mysql_fetch_array($result)){
- extract ($row);
-
- ?>
+ extract ($row);?>
  		<tr>
    <td align="center"><?=$l+1?></td>
    <td align="center"><?=$Наименование_изделия?></td>
    <td align="center"><?echo str_replace('.',',',(rtrim(rtrim($Класс_бетона,'0'), '.')))?></td>
    <td align="center"><?=str_replace('.',',',(number_format(round($Mas_Var[$l],1), 1, '.', '')))?> </td>
    <td align="center"><?=str_replace('.',',',(number_format(round($Mas_Rt[$l],1), 1, '.', '')))?></td>
-  
  </tr>			
-			
-<?$l=$l+1;	
-	
-					}?>
+<?$l=$l+1;	}?>
+<?php 
+mysql_query ("UPDATE `excel2mysql0_k` SET `KOEF`=1");                      // записать единицу в KOEF   
+?>
 </table>
-  
-  <!--
-  
-<p>Третий абзац.</p>
-<table border="1px" align=center bgcolor=#eaeaea cellpadding="4px" cellspacing="0px" id="table3">
-  <tr>
-   <td align="center">Дата изготовления</td>
-   <td align="center">Наименование изделия</td>
-   <td align="center">Класс бетона</td>
-   <td align="center">Прочность, МПа</td>
-   <td align="center">Требуемая прочность, МПа</td>
-   <td align="center">Прочность, %</td>
-   <td align="center">Добавка, %</td>
-  </tr>
-  
-<?php
-  $res=mysql_query("SELECT * FROM excel2mysql0_k");
-  while($q=mysql_fetch_array($res)){
-  extract ($q);?>
- <tr id="pol<?=$ID_TAB?>">
-   <td contenteditable="true" onblur="save('Дата',$(this).text(),'<?=$Дата?>');"><?=$Дата?></td>
-   <td contenteditable="true" onblur="save('DOP_GR',$(this).text(),'<?=$ID_GR?>');"><?=$Наименование_изделия?></td>
-   <td contenteditable="true" onblur="save('DOP_GR',$(this).text(),'<?=$ID_GR?>');"><?=$Класс_бетона?></td>
-   <td contenteditable="true" onblur="save('DOP_GR',$(this).text(),'<?=$ID_GR?>');"><?=$Прочность_МПа?></td>
-   <td contenteditable="true" onblur="save('DOP_GR',$(this).text(),'<?=$ID_GR?>');"><?=$Требуемая_прочность_МПа?></td>
-   <td contenteditable="true" onblur="save('DOP_GR',$(this).text(),'<?=$ID_GR?>');"><?=$Прочность_проценты?></td>
-   <td contenteditable="true" onblur="save('DOP_GR',$(this).text(),'<?=$ID_GR?>');"><?=$Добавка?></td>
- </tr>
-  <?php }?>
- </table>
-
-
-<script type="text/javascript">
-	function formula(){
-		$('#suda').val($('#otsuda').val*22);
-	}
-</script>
-<input type="Edit" id="otsuda" onchange="formula();" value="1" />
-<input type="Edit" id="suda" value="1" />
-
-
--->
-
-
-
-
     </body>
 </html>
-
-
-
-

@@ -11,7 +11,7 @@
         </style>
     </head>
     <body>
- <p  align=center>  <a  href="http://localhost/var/">  <font  size="20" color="red" face="Arial">  ;-) </font>  </a>    </p>
+ <p  align=center>  <a  href="http://192.168.100.140/var/">  <font  size="20" color="red" face="Arial">  ;-) </font>  </a>    </p>
 <p><a href="xls.php">Преобразовать таблицу exel в базу данных</a></p>
 <p><a href="ofsl_TT.php">Посчитать официальный коэффициент вариации</a></p>
  ﻿<p>
@@ -171,7 +171,7 @@ while($row = mysql_fetch_array($result)){
    <td align="center"><?php if ($b>6) {echo number_format(round($Sm=sqrt($sumR/($b-1)),1), 1, '.', '') ;} else {echo number_format(round($Sm=($P_max-$P_min)/alfa($b),1), 1, '.', '');}?></td>  
    <td align="center"><?php  echo  number_format(round($Vm=$Sm*100/$mid_s,1), 1, '.', '') ;$Mas_Var[]=$Vm;?> </td>  
    <td align="center"><?php echo $Kt=number_format(round(interpol($Vm),2), 2, '.', '') ?></td>  
-   <td align="center"><?php echo preg_replace("/В(.*?)П/",  "\${1}\$", str_replace(',','.',$row['Класс']))  *  $Kt   ?> </td>  
+   <td align="center"><?php echo preg_replace("/В(.*?)(П|С|\s)/",  "\${1}\$", str_replace(',','.',$row['Класс']))  *  $Kt   ?> </td>  
   </tr>
   </table>
  <br/>
@@ -202,7 +202,7 @@ while($row = mysql_fetch_array($result)){
    <td align="center"><?=$Класс?></td>
    <td align="center"><?=str_replace('.',',',(number_format(round($Mas_Var[$l],1), 1, '.', '')))?> </td>
    <td align="center"><?=str_replace('.',',',(number_format(round($Mas_Mid[$l],1), 1, '.', '')))?></td>
-   <td align="center"><? preg_match("/В(.*?)П/", $Класс, $matches);    echo str_replace('.',',',(number_format(round($matches[1]*1.31,1), 1, '.', '')))?></td>
+   <td align="center"><? preg_match("/В(.*?)(П|С|\s)/", $Класс, $matches);    echo str_replace('.',',',(number_format(round($matches[1]*1.31,1), 1, '.', '')))?></td>
  </tr>						
 <?$l=$l+1;	}?>
 					

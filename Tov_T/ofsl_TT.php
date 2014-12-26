@@ -11,12 +11,13 @@
         </style>
     </head>
     <body>
-<p  align=center>  <a  href="http://localhost/var/">  <font  size="20" color="red" face="Arial">  ;-) </font>  </a>    </p>
+<p  align=center>  <a  href="http://192.168.100.140/var/">  <font  size="20" color="red" face="Arial">  ;-) </font>  </a>    </p>
 ﻿<p><a href="xls.php">Преобразовать таблицу exel в базу данных</a></p>
 <?php
 include ('config.php');
 	$data1=isset($_GET['data1']) ? $_GET['data1'] : date("Y-m-d",strtotime("first day of -2 month"));
 	$data2=isset($_GET['data2']) ? $_GET['data2'] : date("Y-m-d",strtotime("last day of -2 month"));
+	$koef_var=isset($_GET['koef_var']) ? $_GET['koef_var'] : 8.7;
 function interpol ($x){
 
     if ($x < 6) {
@@ -55,6 +56,7 @@ function alfa ($a){$k=1;
 <form name="authForm" method="GET" action="<?=$_SERVER['PHP_SELF']?>">
 Начало периода:<input type="DATE" name="data1" value="<?=$data1?>">
 Конец периода:<input type="DATE" name="data2" value="<?=$data2?>">
+Коэффициент вариации:<input type="text" name="koef_var" value="<?=$koef_var?>">
 <input type="submit">
 </form>
 <p>
@@ -137,10 +139,10 @@ while($row = mysql_fetch_array($result)){
   // echo '<br/>';
    $Vm=$Sm*100/$mid_s;
    //echo $Vm.' -Коэффициент вариации';
-   if ($Vm > 8.7) {
+   if ($Vm > $koef_var) {
   mysql_query ("update `base`.`excel2mysql0_tt` set `KOEF` = 0  WHERE `excel2mysql0_tt`.`Прочность28` = $DFP and `Класс` like '$Класс' ");
   }
-  } while ($Vm > 8.7);?>
+  } while ($Vm > $koef_var);?>
    
   <table border="1px" align=center bgcolor=#eaeae cellpadding="0px" cellspacing="0px" id="table2">
 	<caption><?php echo ' Класс ';  echo$row['Класс'] ;  ?></caption>
@@ -192,7 +194,7 @@ while($row = mysql_fetch_array($result)){
    <td align="center"><?php if ($b>6) {echo number_format(round($Sm=sqrt($sumR/($b-1)),1), 1, '.', '') ;} else {echo number_format(round($Sm=($P_max-$P_min)/alfa($b),1), 1, '.', '');}?></td>  
    <td align="center"><?php  echo  number_format(round($Vm=$Sm*100/$mid_s,1), 1, '.', '') ;$Mas_Var[]=$Vm ?> </td>  
    <td align="center"><?php echo $Kt=number_format(round(interpol($Vm),2), 2, '.', '') ?></td>  
-   <td align="center"><?php  preg_match("/В(.*?)П/", str_replace(',','.',$Класс), $matches);  echo $Rt=$matches[1]*$Kt; $Mas_Rt[]=$Rt ?> </td>  
+   <td align="center"><?php  preg_match("/В(.*?)(П|С|\s)/", str_replace(',','.',$Класс), $matches);  echo $Rt=$matches[1]*$Kt; $Mas_Rt[]=$Rt ?> </td>  
   </tr>
   </table>
   <br/>
@@ -235,7 +237,10 @@ while($row = mysql_fetch_array($result)){
    <td align="center"><?=str_replace('.',',',(number_format(round($Mas_Var[$l],1), 1, '.', '')))?> </td>
    <td align="center"><?=str_replace('.',',',(number_format(round($Mas_Rt[$l],1), 1, '.', '')))?></td>
    </tr>						
-<?$l=$l+1;	}?>				
+<?$l=$l+1;	}?>		
+<?php 
+mysql_query ("UPDATE `excel2mysql0_tt` SET `KOEF`=1");                      // записать единицу в KOEF   
+?>
 </table>
     </body>
 </html>

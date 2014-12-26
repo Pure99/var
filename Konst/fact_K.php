@@ -11,7 +11,7 @@
         </style>
     </head>
     <body>
-<p align=center>  <a  href="http://localhost/var/">  <font  size="20" color="red" face="Arial">  ;-) </font>  </a>    </p>
+<p align=center>  <a  href="http://192.168.100.140/var/">  <font  size="20" color="red" face="Arial">  ;-) </font>  </a>    </p>
 <p><a href="xls.php">Преобразовать таблицу exel в базу данных</a></p>
 <p><a href="ofsl_K.php">Посчитать официальный коэффициент вариации</a></p>
 <p>
@@ -207,7 +207,7 @@ while($row = mysql_fetch_array($result)){
 </table>	
   
   
-<p>Третий абзац.</p>
+
 <!--
 <table border="1px" align=center bgcolor=#eaeaea cellpadding="4px" cellspacing="0px" id="table3">
   <tr>

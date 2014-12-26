@@ -26,14 +26,18 @@
 //echo $matches[1]*2;
 //$time_m = date("Y-m-d",strtotime("first day of -2 month"));
 //$time_m = date("Y-m-d",strtotime("last day of -2 month"));
-?>
 
-<script type="text/javascript">
-
-$("<div><p>Ба-бах!</p></div>").appendTo("#content");
-
-</script>
-
+/*
+echo $text= "БСМВ22.5 СF300W8";
+echo "<br/>";
+$pattern = "/В(.*?)(П|С|\s)/";
+preg_match($pattern, $text, $matches);
+echo $matches[0]; //выводит В22.5П
+echo "<br/>";
+echo $matches[1]; //выводит 22.5
+echo "<br/>";
+echo $matches[1]*2; // выводит 45 Всем спасибо)
+*/?>
 
 </body>
 </html>

@@ -10,8 +10,9 @@
         </style>
     </head>
     <body>
-<p  align=center>  <a  href="http://localhost/var/">  <font  size="20" color="red" face="Arial">  ;-) </font>  </a>    </p>
+<p  align=center>  <a  href="http://192.168.100.140/var/">  <font  size="20" color="red" face="Arial">  ;-) </font>  </a>    </p>
 <p><a href="fact_K.php">Открыть таблицу</a></p>
+<h3>Конструкционный бетон</h3>
 	<!-- Тип кодирования данных, enctype, ДОЛЖЕН БЫТЬ указан ИМЕННО так -->
 <form enctype="multipart/form-data" action="<?=$_SERVER['PHP_SELF']?>" method="POST">
     <!-- Поле MAX_FILE_SIZE должно быть указано до поля загрузки файла -->

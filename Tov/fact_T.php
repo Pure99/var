@@ -11,7 +11,7 @@
         </style>
     </head>
     <body>
- <p  align=center>  <a  href="http://localhost/var/">  <font  size="20" color="red" face="Arial">  ;-) </font>  </a>    </p>
+ <p  align=center>  <a  href="http://192.168.100.140/var/">  <font  size="20" color="red" face="Arial">  ;-) </font>  </a>    </p>
 ﻿<p><a href="xls.php">Преобразовать таблицу exel в базу данных</a></p>
 <p><a href="ofsl_T.php">Посчитать официальный коэффициент вариации</a></p>
 <p>
