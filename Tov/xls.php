@@ -10,7 +10,7 @@
         </style>
     </head>
     <body>
-<p  align=center>  <a  href="http://192.168.100.140/var/">  <font  size="20" color="red" face="Arial">  ;-) </font>  </a>    </p>
+<p  align=center>  <a  href="/../var/">  <font  size="20" color="red" face="Arial">  ;-) </font>  </a>    </p>
 <h3>Товарный бетон</h3>
 <p><a href="fact_T.php">Открыть таблицу</a></p>
 <!-- Тип кодирования данных, enctype, ДОЛЖЕН БЫТЬ указан ИМЕННО так -->

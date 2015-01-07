@@ -11,7 +11,7 @@
         </style>
     </head>
     <body>
-<p align=center>  <a  href="http://192.168.100.140/var/">  <font  size="20" color="red" face="Arial">  ;-) </font>  </a>    </p>
+<p align=center>  <a  href="/../var/">  <font  size="20" color="red" face="Arial">  ;-) </font>  </a>    </p>
 <p><a href="xls.php">Преобразовать таблицу exel в базу данных</a></p>
 <p><a href="ofsl_K.php">Посчитать официальный коэффициент вариации</a></p>
 <p>
@@ -178,7 +178,7 @@ Rmin = 		<?echo $Rt-4?>			<br/>
    <?php } ?>
    
  <table border="1px" align=center bgcolor=#eaeaea cellpadding="4px" cellspacing="0px" id="table3">
-	<caption contenteditable="true">Результаты статистического метода контроля прочности конструкционного бетона на 28 суток по ГОСТ 18105-2010 за октябрь  2014  года фактический	</caption>
+	<caption contenteditable="true">Результаты статистического метода контроля прочности конструкционного бетона на 28 суток по ГОСТ 18105-2010 фактический	</caption>
   <tr>
    <td align="center">N</td>
    <td align="center">Наименование изделия</td>
