@@ -16,7 +16,7 @@
 <p><a href="ofsl_K.php">Посчитать официальный коэффициент вариации</a></p>
 <p>
 ﻿<?php
-include ('config.php');
+include ('/../config.php');
 	$data1=isset($_GET['data1']) ? $_GET['data1'] : date("Y-m-d",strtotime("first day of -2 month"));
 	$data2=isset($_GET['data2']) ? $_GET['data2'] : date("Y-m-d",strtotime("last day of -2 month"));
 function interpol ($x){				// функция интерполяции коэффициента вариации пригодится ниже
@@ -68,7 +68,7 @@ function alfa ($a){$k=1;
    <td align="center">Добавка</td>  								
   </tr>
 <?php
- $result = mysql_query("SELECT * FROM excel2mysql0_k where DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2'");				// Запрос основной таблицы
+ $result = mysql_query("SELECT * FROM excel2mysql0_k where DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2'");// Запрос основной таблицы
 while($row = mysql_fetch_array($result)){
  extract ($row);?>
   <tr >

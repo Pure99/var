@@ -17,6 +17,7 @@
 <p><a href="Tov_T/fact_TT.php">Посчитать коэффициент вариации на товарный бетон "ТЕКА" (БОРОК)</a></p>
 
 <?
+include ('config.php');
 //echo $text= "В22.5ПF300W8";
 //echo "<br/>";
 //$pattern = "/В(.*?)П/";
