@@ -16,7 +16,7 @@
 <p><a href="ofsl_K.php">Посчитать официальный коэффициент вариации</a></p>
 <p>
 ﻿<?php
-include ('/../config.php');
+include ('../config.php');
 	$data1=isset($_GET['data1']) ? $_GET['data1'] : date("Y-m-d",strtotime("first day of -2 month"));
 	$data2=isset($_GET['data2']) ? $_GET['data2'] : date("Y-m-d",strtotime("last day of -2 month"));
 function interpol ($x){				// функция интерполяции коэффициента вариации пригодится ниже
@@ -68,11 +68,11 @@ function alfa ($a){$k=1;
    <td align="center">Добавка</td>  								
   </tr>
 <?php
- $result = mysql_query("SELECT * FROM excel2mysql0_k where DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2'");// Запрос основной таблицы
-while($row = mysql_fetch_array($result)){
+$result = $connection->query("SELECT * FROM excel2mysql0_k where DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2'");// Запрос исходной таблицы с данными
+while($row = $result->fetch_array()){
  extract ($row);?>
   <tr >
-<td ><input type="date" name="Date" onchange="alert (this.value);" value="<?php echo $row['Дата']?>" style="width:140px; height:20px; border:2px;" /></td>
+<td><input type="date" name="Date" onchange="alert (this.value);" value="<?php echo $row['Дата']?>" style="width:140px; height:20px; border:2px;" /></td>
 <td><input type="text" name="Name" value="<?=$row['Наименование_изделия']?>" style="width:120px; height:20px; border:2px"  /></td>
 <td><input type="text" name="Class" value="<?=$row['Класс_бетона']?>" style="width:50px; height:20px; border:2px; text-align:center;" /></td>
 <td><input type="text" name="Strong_MPa" value="<?=$row['Прочность_МПа']?>" style="width:120px; height:20px; border:2px;text-align:center"   /></td>
@@ -89,15 +89,17 @@ while($row = mysql_fetch_array($result)){
 <p>Фактический коэффициент вариации</p>
   
   <?php // Выводим таблицу для расчета коэффициента вариации для каждого изделия
-  $result = mysql_query("SELECT `Наименование_изделия`,`Класс_бетона`,`Дата` FROM `excel2mysql0_k` where DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2' GROUP BY `Наименование_изделия` ORDER BY `excel2mysql0_k`.`Класс_бетона` ASC");
-  while($row = mysql_fetch_array($result)){           // Список всех наименований изделий
+  $result = $connection->query("SELECT `Наименование_изделия`,`Класс_бетона`,`Дата` FROM `excel2mysql0_k` where DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2' GROUP BY `Наименование_изделия` ORDER BY `excel2mysql0_k`.`Класс_бетона` ASC");
+  
+  while($row = $result->fetch_array()){           // Список всех наименований изделий
    extract ($row);
    $b=0;          // количество значений прочностей 
    $sum=0;         //сумма прочностей
    $P_max=0;         //максимальная прочность
    $P_min=100;      //минимальная прочность
-   $result_1 = mysql_query("SELECT `Дата`, `Наименование_изделия`,  `Прочность_МПа` FROM `excel2mysql0_k` WHERE DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2' and `Наименование_изделия` like '$Наименование_изделия'");  
-  while($row_1 = mysql_fetch_array($result_1)){ // Этот цикл вычисляет сумму прочностей, минимальное и максимальное значение прочности
+   $result_1 = $connection->query("SELECT `Дата`, `Наименование_изделия`,  `Прочность_МПа` FROM `excel2mysql0_k` WHERE DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2' and `Наименование_изделия` like '$Наименование_изделия'");  
+ 
+ while($row_1 = $result_1->fetch_array()){ // Этот цикл вычисляет сумму прочностей, минимальное и максимальное значение прочности
    extract ($row_1);
    $sum = $sum+$Прочность_МПа;
   if   ($Прочность_МПа > $P_max) $P_max=$Прочность_МПа;        // определение максимального значения
@@ -105,12 +107,11 @@ while($row = mysql_fetch_array($result)){
    $b=$b+1;
   } 
    $mid_s=$sum/$b;               // средняя фактическая прочность
-   $sumR=0;
-   
-   $result_2 = mysql_query("SELECT `Дата`, `Наименование_изделия`,  `Прочность_МПа` FROM `excel2mysql0_k` WHERE DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2' and  `Наименование_изделия` like '$Наименование_изделия'"); 
-  while($row_2 = mysql_fetch_array($result_2)){ //этот цикл вычисляет сумму квадратов 
+   $sumR=0; 
+   $result_2 = $connection->query("SELECT `Дата`, `Наименование_изделия`,  `Прочность_МПа` FROM `excel2mysql0_k` WHERE DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2' and  `Наименование_изделия` like '$Наименование_изделия'"); 
+  while($row_2 = $result_2->fetch_array()){ //этот цикл вычисляет сумму квадратов 
    extract ($row_2);
-   $sumR=$sumR +  ($Прочность_МПа-$mid_s)*($Прочность_МПа-$mid_s);
+   $sumR=$sumR + ($Прочность_МПа-$mid_s)*($Прочность_МПа-$mid_s);
   
    } ?>
  
@@ -132,8 +133,8 @@ while($row = mysql_fetch_array($result)){
   
   <?php 	
   $n=0 ; //Начало вложенного цикла  
-  $result_3 = mysql_query("SELECT `Дата`, `Наименование_изделия`,  `Прочность_МПа` FROM `excel2mysql0_k` WHERE DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2' and  `Наименование_изделия` like '$Наименование_изделия'"); 
-  while($row_3 = mysql_fetch_array($result_3)){ 
+  $result_3 = $connection->query("SELECT `Дата`, `Наименование_изделия`,  `Прочность_МПа` FROM `excel2mysql0_k` WHERE DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2' and  `Наименование_изделия` like '$Наименование_изделия'"); 
+  while($row_3 = $result_3->fetch_array()){  // Вывод результатов расчета в таблицу
   extract ($row_3);
   $n=$n+1;
   ?>
@@ -188,12 +189,11 @@ Rmin = 		<?echo $Rt-4?>			<br/>
    <td align="center">Прочность по ГОСТ, МПа</td>
  </tr>			
  <? $l=0;
- $result = mysql_query("SELECT `Наименование_изделия`,`Класс_бетона`,`Дата` FROM `excel2mysql0_k` where DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2' GROUP BY `Наименование_изделия` ORDER BY `excel2mysql0_k`.`Класс_бетона` ASC");				// Запрос основной таблицы
-while($row = mysql_fetch_array($result)){
+ $result = $connection->query("SELECT `Наименование_изделия`,`Класс_бетона`,`Дата` FROM `excel2mysql0_k` where DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2' GROUP BY `Наименование_изделия` ORDER BY `excel2mysql0_k`.`Класс_бетона` ASC");				// Запрос основной таблицы
+while($row = $result->fetch_array()){ // Сводная таблица
  extract ($row);
-
  ?>
- 		<tr>
+ <tr>
    <td align="center"><?=$l+1?></td>
    <td align="center"><?=$Наименование_изделия?></td>
    <td align="center"><?echo str_replace('.',',',(rtrim(rtrim($Класс_бетона,'0'), '.')))?></td>
@@ -203,55 +203,9 @@ while($row = mysql_fetch_array($result)){
  </tr>			
 			
 <?$l=$l+1;	
-					}?>
+}?>
 </table>	
   
-  
-
-<!--
-<table border="1px" align=center bgcolor=#eaeaea cellpadding="4px" cellspacing="0px" id="table3">
-  <tr>
-   <td align="center">Дата изготовления</td>
-   <td align="center">Наименование изделия</td>
-   <td align="center">Класс бетона</td>
-   <td align="center">Прочность, МПа</td>
-   <td align="center">Требуемая прочность, МПа</td>
-   <td align="center">Прочность, %</td>
-   <td align="center">Добавка, %</td>
-  </tr>
-  
-  
-  
-  
-<?php
-
-
-
-
-
-
-  $res=mysql_query("SELECT * FROM excel2mysql0_k WHERE DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2' ");
-  while($q=mysql_fetch_array($res)){
-  extract ($q);?>
- <tr id="pol<?=$ID_TAB?>">
-   <td contenteditable="true" onblur="save('Дата',$(this).text(),'<?=$Дата?>');"><?=$Дата?></td>
-   <td contenteditable="true" onblur="save('DOP_GR',$(this).text(),'<?=$ID_GR?>');"><?=$Наименование_изделия?></td>
-   <td contenteditable="true" onblur="save('DOP_GR',$(this).text(),'<?=$ID_GR?>');"><?=$Класс_бетона?></td>
-   <td contenteditable="true" onblur="save('DOP_GR',$(this).text(),'<?=$ID_GR?>');"><?=$Прочность_МПа?></td>
-   <td contenteditable="true" onblur="save('DOP_GR',$(this).text(),'<?=$ID_GR?>');"><?=$Требуемая_прочность_МПа?></td>
-   <td contenteditable="true" onblur="save('DOP_GR',$(this).text(),'<?=$ID_GR?>');"><?=$Прочность_проценты?></td>
-   <td contenteditable="true" onblur="save('DOP_GR',$(this).text(),'<?=$ID_GR?>');"><?=$Добавка?></td>
- </tr>
-  <?php }?>
- </table>
-
-
-
--->
-
-
-
-
     </body>
 </html>
 

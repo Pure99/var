@@ -3,3 +3,5 @@ SELECT e.`Наименование`, (select count(e2.`Наименование`) FROM `excel2mysql0` e2
 UPDATE `excel2mysql0` SET `KOEF`=1
 ALTER TABLE `excel2mysql0` ADD `KOEF` INT(2) NOT NULL ;
 SELECT e. `Класс`,`Дата`, (select count(e2.`Класс`) FROM `excel2mysql0_t` e2 where e2.`Класс` = e.`Класс`) FROM `excel2mysql0_t` e GROUP BY e.`Класс` ASC
+SELECT  e.`ip`, (select count(e2.`ip`) from count e2 where e2.`ip`=e.`ip`) FROM `count` e  group by e.`ip` ASC
+SELECT * FROM count where `date` like '2015-01-13' group by `ip` order by `id`

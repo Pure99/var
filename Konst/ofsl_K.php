@@ -61,7 +61,7 @@ function alfa ($a){$k=1;
 </form>
 <p>
 <table border="1px" align=center bgcolor=#eaeae cellpadding="0px" cellspacing="0px" id="table1">
-    <tr>
+   <tr>
    <td align="center">Дата <br/>изготовления</td>					
    <td align="center">Наименование <br/>изделия</td>				
    <td align="center">Класс <br/>бетона</td>						
@@ -71,12 +71,12 @@ function alfa ($a){$k=1;
    <td align="center">Добавка</td>  								
   </tr>
 <?php
-mysql_query("update `base`.`excel2mysql0_k` set `KOEF` = 0 WHERE DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2' and `excel2mysql0_k`.`Прочность_проценты` < 100"); 
+$connection->query("update `base`.`excel2mysql0_k` set `KOEF` = 0 WHERE DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2' and `excel2mysql0_k`.`Прочность_проценты` < 100"); // Пометить строки, где прочность меньше ста процентов
 
- $result = mysql_query("SELECT * FROM excel2mysql0_k WHERE DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2' and`excel2mysql0_k`.`KOEF` = 1");				// Запрос основной таблицы
-while($row = mysql_fetch_array($result)){
+$result = $connection->query("SELECT * FROM excel2mysql0_k WHERE DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2' and`excel2mysql0_k`.`KOEF` = 1");				// Запрос основной таблицы
+while($row = $result->fetch_array()){
  extract ($row);?>
-  <tr >
+  <tr>
 <td ><input type="date" name="Date" onchange="alert (this.value);" value="<?php echo $row['Дата']?>" style="width:140px; height:20px; border:2px;" /></td>
 <td><input type="text" name="Name" value="<?=$row['Наименование_изделия']?>" style="width:120px; height:20px; border:2px"  /></td>
 <td><input type="text" name="Class" value="<?=$row['Класс_бетона']?>" style="width:50px; height:20px; border:2px; text-align:center;" /></td>
@@ -94,18 +94,18 @@ while($row = mysql_fetch_array($result)){
 <p>Официальный коэффициент вариации</p>
   
   <?php // Выводим таблицу для расчета коэффициента вариации для каждого изделия
-  $result = mysql_query("SELECT `Наименование_изделия`,`Класс_бетона`,`Дата` FROM `excel2mysql0_k` where `KOEF` like '1' and DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2' GROUP BY `Наименование_изделия` ORDER BY `Класс_бетона`ASC");
+  $result = $connection->query("SELECT `Наименование_изделия`,`Класс_бетона`,`Дата` FROM `excel2mysql0_k` where `KOEF` like '1' and DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2' GROUP BY `Наименование_изделия` ORDER BY `Класс_бетона`ASC");
   
-  while($row = mysql_fetch_array($result)){           // Список всех наименований изделий
+  while($row = $result->fetch_array()){           // Список всех наименований изделий
    extract ($row);
    do {
    $b=0;          // количество значений прочностей 
    $sum=0;         //сумма прочностей
    $P_max=0;         //максимальная прочность
    $P_min=100;      //минимальная прочность
-   $result_1 = mysql_query("SELECT `Дата`, `Наименование_изделия`,  `Прочность_МПа`,`Прочность_проценты` FROM `excel2mysql0_k` where DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2' and `Наименование_изделия` like '$Наименование_изделия' and `KOEF` like '1'");  
+   $result_1 = $connection->query("SELECT `Дата`, `Наименование_изделия`,  `Прочность_МПа`,`Прочность_проценты` FROM `excel2mysql0_k` where DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2' and `Наименование_изделия` like '$Наименование_изделия' and `KOEF` like '1'");  
   
-  while($row_1 = mysql_fetch_array($result_1)){ // Этот цикл вычисляет сумму прочностей, минимальное и максимальное значение прочности
+  while($row_1 = $result_1->fetch_array()){ // Этот цикл вычисляет сумму прочностей, минимальное и максимальное значение прочности
    extract ($row_1);
    $sum = $sum+$Прочность_МПа;
   if   ($Прочность_МПа > $P_max) $P_max=$Прочность_МПа;        // определение максимального значения
@@ -116,9 +116,9 @@ while($row = mysql_fetch_array($result)){
    $sumR=0;
    $DFR=0;       // Максимальная разность квадратов
    $DFP=0;
-   $result_2 = mysql_query("SELECT `Дата`, `Наименование_изделия`,  `Прочность_МПа` ,`Прочность_проценты` FROM `excel2mysql0_k` WHERE DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2' and `Наименование_изделия` like '$Наименование_изделия' and `KOEF` like '1'"); 
+   $result_2 = $connection->query("SELECT `Дата`, `Наименование_изделия`,  `Прочность_МПа` ,`Прочность_проценты` FROM `excel2mysql0_k` WHERE DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2' and `Наименование_изделия` like '$Наименование_изделия' and `KOEF` like '1'"); 
    
- while($row_2 = mysql_fetch_array($result_2)){ //этот цикл вычисляет сумму квадратов 
+ while($row_2 = $result_2->fetch_array()){ //этот цикл вычисляет сумму квадратов 
    extract ($row_2);
    $sumR=$sumR +  ($Прочность_МПа-$mid_s)*($Прочность_МПа-$mid_s);
    if   (($Прочность_МПа-$mid_s)*($Прочность_МПа-$mid_s) > $DFR) {$DFR=($Прочность_МПа-$mid_s)*($Прочность_МПа-$mid_s); $DFP=$Прочность_МПа; }
@@ -133,7 +133,7 @@ while($row = mysql_fetch_array($result)){
    $Vm=$Sm*100/$mid_s;
  //  echo $Vm.' -Коэффициент вариации';
    if ($Vm > $koef_var) {
-  mysql_query ("update `base`.`excel2mysql0_k` set `KOEF` = 0  WHERE DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2' and `Прочность_МПа` = $DFP and `Наименование_изделия` like '$Наименование_изделия' ");
+  $connection->query ("update `base`.`excel2mysql0_k` set `KOEF` = 0  WHERE DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2' and `Прочность_МПа` = $DFP and `Наименование_изделия` like '$Наименование_изделия' ");
   }
   } while ($Vm > $koef_var);
    ?>
@@ -156,8 +156,8 @@ while($row = mysql_fetch_array($result)){
   
   <?php 	
   $n=0 ; //Начало вложенного цикла  
-  $result_3 = mysql_query("SELECT `Дата`, `Наименование_изделия`,  `Прочность_МПа` FROM `excel2mysql0_k` WHERE DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2' and `Наименование_изделия` like '$Наименование_изделия' and `KOEF` like '1' "); 
-  while($row_3 = mysql_fetch_array($result_3)){ 
+  $result_3 = $connection->query("SELECT `Дата`, `Наименование_изделия`,  `Прочность_МПа` FROM `excel2mysql0_k` WHERE DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2' and `Наименование_изделия` like '$Наименование_изделия' and `KOEF` like '1' "); 
+  while($row_3 = $result_3->fetch_array()){ 
   extract ($row_3);
   $n=$n+1;
   ?>
@@ -193,10 +193,9 @@ while($row = mysql_fetch_array($result)){
   </table>
   <br/>
    <table border="1px" align=center bgcolor=#eaeae cellpadding="0px" cellspacing="0px" id="table2">
- <?php $result_4 = mysql_query("SELECT `Дата`, `Прочность_МПа` FROM `excel2mysql0_k` WHERE DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2' and `Наименование_изделия` like '$Наименование_изделия' and `KOEF` like '0' "); 
-  while($row_4 = mysql_fetch_array($result_4)){ 
+ <?php $result_4 = $connection->query("SELECT `Дата`, `Прочность_МПа` FROM `excel2mysql0_k` WHERE DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2' and `Наименование_изделия` like '$Наименование_изделия' and `KOEF` like '0' "); 
+  while($row_4 = $result_4->fetch_array()){ 
   extract ($row_4);?>
- 
   <tr>
    <td align="center"><?echo$Дата?></td>
    <td align="center"><?echo$Прочность_МПа?></td>
@@ -205,7 +204,7 @@ while($row = mysql_fetch_array($result)){
    </table>
  <br/>
  <p>
-  Rm ≥ Rт		<?=$mid_s;?> МПа > <?=$Rt;?>	<br/>		
+  Rm ≥ Rт		<?=$mid_s;?> МПа > <?=$Rt;?>	<br/>
 Rmin = <?=$Rt-4?> МПа						<br/>
 B˂Rmini≥Rmin			<?=$Класс_бетона?>˂<?=$P_min?>˃<?=$Rt-4?>			<br/>
 Заключение: Партия бетона подлежит приемке в соответствии с требованиями		<br/>				
@@ -225,8 +224,8 @@ B˂Rmini≥Rmin			<?=$Класс_бетона?>˂<?=$P_min?>˃<?=$Rt-4?>			<br/>
    
  </tr>			
  <? $l=0;
- $result = mysql_query("SELECT `Наименование_изделия`,`Класс_бетона`,`Дата` FROM `excel2mysql0_k` where `KOEF` like '1' and DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2' GROUP BY `Наименование_изделия` ORDER BY `excel2mysql0_k`.`Класс_бетона` ASC");				// Запрос основной таблицы
-while($row = mysql_fetch_array($result)){
+ $result = $connection->query("SELECT `Наименование_изделия`,`Класс_бетона`,`Дата` FROM `excel2mysql0_k` where `KOEF` like '1' and DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2' GROUP BY `Наименование_изделия` ORDER BY `excel2mysql0_k`.`Класс_бетона` ASC");				// Запрос основной таблицы
+while($row = $result->fetch_array()){
  extract ($row);?>
  		<tr>
    <td align="center"><?=$l+1?></td>
@@ -237,7 +236,7 @@ while($row = mysql_fetch_array($result)){
  </tr>			
 <?$l=$l+1;	}?>
 <?php 
-mysql_query ("UPDATE `excel2mysql0_k` SET `KOEF`=1");                      // записать единицу в KOEF   
+$connection->query ("UPDATE `excel2mysql0_k` SET `KOEF`=1");                      // записать единицу в KOEF   
 ?>
 </table>
     </body>

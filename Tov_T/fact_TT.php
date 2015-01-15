@@ -71,8 +71,8 @@ function alfa ($a){$k=1;
    <td align="center">Добавка</td>							
   </tr>
 <?php
- $result = mysql_query("SELECT * FROM excel2mysql0_tt where DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2'");				// Запрос основной таблицы
-while($row = mysql_fetch_array($result)){
+ $result = $connection->query("SELECT * FROM excel2mysql0_tt where DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2'");				// Запрос основной таблицы
+while($row = $result->fetch_array()){
  extract ($row);?>
   <tr >
 <td ><input type="date" name="Date" onchange="alert (this.value);" value="<?php echo $row['Дата']?>" style="width:140px; height:20px; border:2px;" /></td>
@@ -81,7 +81,7 @@ while($row = mysql_fetch_array($result)){
 <td><input type="text" name="Strong_MPa_Tr" value="<?=$row['Прочность28']?>" style="width:120px; height:20px; border:2px;text-align:center"   /></td>
 <td><input type="text" name="Strong_MPa_P" value="<?=$row['Требуемая_прочность_МПа']?>" style="width:120px; height:20px; border:2px;text-align:center"   /></td>
 <td><input type="text" name="Dobavka" value="<?=$row['Прочность_7_проценты']?>" style="width:110px; height:20px; border:2px"   /></td>
-<td><input type="text" name="Dobavka" value="<?=$row['Прочность_28_проценты']?>" style="width:110px; height:20px; border:2px"   /></td>
+<td><input type="text" name="Dobavka" value="<?=$row['Прочность_28_проценты']?>" style="width:110px; height:20px; border:2px; text-align:center"   /></td>
 <td><input type="text" name="Dobavka" value="<?=$row['Прирост']?>" style="width:110px; height:20px; border:2px"   /></td>
 <td><input type="text" name="Dobavka" value="<?=$row['Место_отгрузки_БС']?>" style="width:110px; height:20px; border:2px"   /></td>
 <td><input type="text" name="Dobavka" value="<?=$row['Добавка']?>" style="width:110px; height:20px; border:2px"   /></td>
@@ -96,15 +96,15 @@ while($row = mysql_fetch_array($result)){
 <p>Фактический коэффициент вариации</p>
   
   <?php // Выводим таблицу для расчета коэффициента вариации для каждого изделия
-  $result = mysql_query("SELECT  `Класс`,`Дата` FROM `excel2mysql0_tt` where DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2' GROUP BY `Класс` ASC");
-  while($row = mysql_fetch_array($result)){           // Список всех наименований изделий
+  $result = $connection->query("SELECT  `Класс`,`Дата` FROM `excel2mysql0_tt` where DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2' GROUP BY `Класс` ASC");
+  while($row = $result->fetch_array()){           // Список всех наименований изделий
    extract ($row);
    $b=0;          // количество значений прочностей 
    $sum=0;         //сумма прочностей
    $P_max=0;         //максимальная прочность
    $P_min=100;      //минимальная прочность
-   $result_1 = mysql_query("SELECT `Дата`,`Прочность28` FROM `excel2mysql0_tt` WHERE DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2' and `Класс` like '$Класс'");  
-  while($row_1 = mysql_fetch_array($result_1)){ // Этот цикл вычисляет сумму прочностей, минимальное и максимальное значение прочности
+   $result_1 = $connection->query("SELECT `Дата`,`Прочность28` FROM `excel2mysql0_tt` WHERE DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2' and `Класс` like '$Класс'");  
+  while($row_1 = $result_1->fetch_array()){ // Этот цикл вычисляет сумму прочностей, минимальное и максимальное значение прочности
    extract ($row_1);
    $sum = $sum+$Прочность28;
   if   ($Прочность28 > $P_max) $P_max=$Прочность28;        // определение максимального значения
@@ -114,8 +114,8 @@ while($row = mysql_fetch_array($result)){
    $mid_s=$sum/$b;               // средняя фактическая прочность
    $sumR=0;
    
-   $result_2 = mysql_query("SELECT `Дата`,`Прочность28` FROM `excel2mysql0_tt` WHERE DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2' and `Класс` like '$Класс'"); 
-  while($row_2 = mysql_fetch_array($result_2)){ //этот цикл вычисляет сумму квадратов 
+   $result_2 = $connection->query("SELECT `Дата`,`Прочность28` FROM `excel2mysql0_tt` WHERE DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2' and `Класс` like '$Класс'"); 
+  while($row_2 = $result_2->fetch_array()){ //этот цикл вычисляет сумму квадратов 
    extract ($row_2);
    $sumR=$sumR +  ($Прочность28-$mid_s)*($Прочность28-$mid_s);
   
@@ -139,8 +139,8 @@ while($row = mysql_fetch_array($result)){
   
   <?php 	
   $n=0 ; //Начало вложенного цикла  
-  $result_3 = mysql_query("SELECT `Дата`,   `Прочность28` FROM `excel2mysql0_tt` WHERE DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2' and `Класс` like '$Класс'"); 
-  while($row_3 = mysql_fetch_array($result_3)){ 
+  $result_3 = $connection->query("SELECT `Дата`,   `Прочность28` FROM `excel2mysql0_tt` WHERE DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2' and `Класс` like '$Класс'"); 
+  while($row_3 = $result_3->fetch_array()){ 
   extract ($row_3);
   $n=$n+1;
   ?>
@@ -169,7 +169,7 @@ while($row = mysql_fetch_array($result)){
    <td align="center"><?php echo round($sumR,1)  ?> </td>
    <td align="center"><?php echo $P_max-$P_min     ?></td>   
    <td align="center"><?php if ($b>6) {echo number_format(round($Sm=sqrt($sumR/($b-1)),1), 1, '.', '') ;} else {echo number_format(round($Sm=($P_max-$P_min)/alfa($b),1), 1, '.', '');}?></td>  
-   <td align="center"><?php  echo  number_format(round($Vm=$Sm*100/$mid_s,1), 1, '.', '') ;$Mas_Var[]=$Vm;?> </td>  
+   <td align="center"><?php echo  number_format(round($Vm=$Sm*100/$mid_s,1), 1, '.', '') ;$Mas_Var[]=$Vm;?> </td>  
    <td align="center"><?php echo $Kt=number_format(round(interpol($Vm),2), 2, '.', '') ?></td>  
    <td align="center"><?php echo preg_replace("/В(.*?)(П|С|\s)/",  "\${1}\$", str_replace(',','.',$row['Класс']))  *  $Kt   ?> </td>  
   </tr>
@@ -194,8 +194,8 @@ Rmin = <br/>
    <td align="center">Прочность по ГОСТ, МПа</td>
  </tr>			
  <? $l=0;
- $result = mysql_query("SELECT `Класс` FROM `excel2mysql0_tt` where DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2' GROUP BY `Класс`");				// Запрос основной таблицы
-while($row = mysql_fetch_array($result)){
+ $result = $connection->query("SELECT `Класс` FROM `excel2mysql0_tt` where DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2' GROUP BY `Класс`");				// Запрос основной таблицы
+while($row = $result->fetch_array()){
  extract ($row);?>
  		<tr>
    <td align="center"><?=$l+1?></td>
