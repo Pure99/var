@@ -16,7 +16,7 @@
 <p><a href="ofsl_TT.php">Посчитать официальный коэффициент вариации</a></p>
  ﻿<p>
  <?php
-include ('/../config.php');
+include ('../config.php');
 	$data1=isset($_GET['data1']) ? $_GET['data1'] : date("Y-m-d",strtotime("first day of -2 month"));
 	$data2=isset($_GET['data2']) ? $_GET['data2'] : date("Y-m-d",strtotime("last day of -2 month"));
 function interpol ($x){

@@ -35,7 +35,7 @@ echo "<p><b>Временное имя файла: ".@$_FILES['userfile']['tmp_na
 
 // Подключаем библиотеку
 require_once "PHPExcel.php";
-include ('/../config.php');
+include ('../config.php');
 // Функция преобразования листа Excel в таблицу MySQL, с учетом объединенных строк и столбцов.
 // Значения берутся уже вычисленными. Параметры:
 //     $worksheet - лист Excel

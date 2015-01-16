@@ -14,7 +14,7 @@
 <p  align=center>  <a  href="/../var/">  <font  size="20" color="red" face="Arial">  ;-) </font></a></p>
 <p><a href="xls.php">Преобразовать таблицу exel в базу данных</a></p>
 ﻿<?php
-include ('/../config.php');
+include ('../config.php');
 	$data1=isset($_GET['data1']) ? $_GET['data1'] : date("Y-m-d",strtotime("first day of -2 month"));
 	$data2=isset($_GET['data2']) ? $_GET['data2'] : date("Y-m-d",strtotime("last day of -2 month"));
 	$koef_var=isset($_GET['koef_var']) ? $_GET['koef_var'] : 8.7;
