@@ -19,38 +19,6 @@
 include ('../config.php');
 	$data1=isset($_GET['data1']) ? $_GET['data1'] : date("Y-m-d",strtotime("first day of -2 month"));
 	$data2=isset($_GET['data2']) ? $_GET['data2'] : date("Y-m-d",strtotime("last day of -2 month"));
-function interpol ($x){				// функция интерполяции коэффициента вариации пригодится ниже
-
-    if ($x < 6) {
-        $z = 1.07;
-    }
-    if (6 <= $x) {
-        $z = 0.01 * $x + 1.01;
-    }
-    if (8 <= $x) {
-        $z = 0.02 * $x + 0.93;
-    }
-    if (9 <= $x) {
-        $z = 0.03 * $x + 0.84;
-    }     							
-    if (10 <= $x) {
-        $z = 0.04 * $x + 0.74;
-    }
-    if (11 <= $x) {
-        $z = 0.05 * $x + 0.63;
-    }
-    if (16 < $x) {
-        $z = 'недопустимо';
-    }
-	if (0==$x){ $z='недопустимо';}
-    return $z;}
-function alfa ($a){$k=1;
-    if ($a==2)  $k=1.13;    // определение коэффициента альфа
-	if ($a==3)  $k=1.69;
-    if ($a==4)  $k=2.06;
-    if ($a==5)  $k=2.33;
-	if ($a==6)  $k=2.5;
-	return $k;}
 ?>
 <form name="authForm" method="GET" action="<?=$_SERVER['PHP_SELF']?>">
 Начало периода:<input type="DATE" name="data1" value="<?=$data1?>">
