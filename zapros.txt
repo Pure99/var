@@ -1,7 +1,8 @@
-SELECT (SELECT sum(`Прочность_МПа`)/(SELECT count(`Прочность_МПа`) FROM `excel2mysql0` WHERE `Наименование_изделия` like '%лотки22,5%') FROM `excel2mysql0` WHERE `Наименование_изделия` like '%лотки22,5%'), `ID_TAB` FROM `excel2mysql0` WHERE 1
-SELECT e.`Наименование`, (select count(e2.`Наименование`) FROM `excel2mysql0` e2 where e2.`Наименование` = e.`Наименование`) FROM `excel2mysql0` e GROUP BY e.`Наименование` ASC
+п»їSELECT (SELECT sum(`РџСЂРѕС‡РЅРѕСЃС‚СЊ_РњРџР°`)/(SELECT count(`РџСЂРѕС‡РЅРѕСЃС‚СЊ_РњРџР°`) FROM `excel2mysql0` WHERE `РќР°РёРјРµРЅРѕРІР°РЅРёРµ_РёР·РґРµР»РёСЏ` like '%Р»РѕС‚РєРё22,5%') FROM `excel2mysql0` WHERE `РќР°РёРјРµРЅРѕРІР°РЅРёРµ_РёР·РґРµР»РёСЏ` like '%Р»РѕС‚РєРё22,5%'), `ID_TAB` FROM `excel2mysql0` WHERE 1
+SELECT e.`РќР°РёРјРµРЅРѕРІР°РЅРёРµ`, (select count(e2.`РќР°РёРјРµРЅРѕРІР°РЅРёРµ`) FROM `excel2mysql0` e2 where e2.`РќР°РёРјРµРЅРѕРІР°РЅРёРµ` = e.`РќР°РёРјРµРЅРѕРІР°РЅРёРµ`) FROM `excel2mysql0` e GROUP BY e.`РќР°РёРјРµРЅРѕРІР°РЅРёРµ` ASC
 UPDATE `excel2mysql0` SET `KOEF`=1
 ALTER TABLE `excel2mysql0` ADD `KOEF` INT(2) NOT NULL ;
-SELECT e. `Класс`,`Дата`, (select count(e2.`Класс`) FROM `excel2mysql0_t` e2 where e2.`Класс` = e.`Класс`) FROM `excel2mysql0_t` e GROUP BY e.`Класс` ASC
+SELECT e. `РљР»Р°СЃСЃ`,`Р”Р°С‚Р°`, (select count(e2.`РљР»Р°СЃСЃ`) FROM `excel2mysql0_t` e2 where e2.`РљР»Р°СЃСЃ` = e.`РљР»Р°СЃСЃ`) FROM `excel2mysql0_t` e GROUP BY e.`РљР»Р°СЃСЃ` ASC
 SELECT  e.`ip`, (select count(e2.`ip`) from count e2 where e2.`ip`=e.`ip`) FROM `count` e  group by e.`ip` ASC
 SELECT * FROM count where `date` like '2015-01-13' group by `ip` order by `id`
+INSERT INTO `base`.`excel2mysql0_k` (`ID_TAB`, `Р”Р°С‚Р°`, `РќР°РёРјРµРЅРѕРІР°РЅРёРµ_РёР·РґРµР»РёСЏ`, `РљР»Р°СЃСЃ_Р±РµС‚РѕРЅР°`, `РџСЂРѕС‡РЅРѕСЃС‚СЊ_РњРџР°`, `РўСЂРµР±СѓРµРјР°СЏ_РїСЂРѕС‡РЅРѕСЃС‚СЊ_РњРџР°`, `РџСЂРѕС‡РЅРѕСЃС‚СЊ_РїСЂРѕС†РµРЅС‚С‹`, `Р”РѕР±Р°РІРєР°`, `KOEF`) VALUES (NULL, '2015-02-04', 'dfbdfbdf', '25', '28', '27', '100', '', '1');
