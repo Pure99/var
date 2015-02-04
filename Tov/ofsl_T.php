@@ -161,7 +161,7 @@ while($row = $result->fetch_array()){
    <td align="center"><?php if ($b>6) {echo number_format(round($Sm=sqrt($sumR/($b-1)),1), 1, '.', '') ;} else {echo number_format(round($Sm=($P_max-$P_min)/alfa($b),1), 1, '.', '');}?></td>  
    <td align="center"><?php  echo  number_format(round($Vm=$Sm*100/$mid_s,1), 1, '.', '') ; $Mas_Var[]=$Vm ?> </td>  
    <td align="center"><?php echo $Kt=number_format(round(interpol($Vm),2), 2, '.', '') ?></td>  
-   <td align="center"><?php  preg_match("/В(.*?)П/", str_replace(',','.',$Класс), $matches);  echo $Rt=$matches[1]*$Kt; $Mas_Rt[]=$Rt  ?> </td>  
+   <td align="center"><?php  preg_match("/В(.*?)(П|С|\s)/", str_replace(',','.',$Класс), $matches);  echo $Rt=$matches[1]*$Kt; $Mas_Rt[]=$Rt ?> </td>  
   </tr>
   </table>
   <br/>

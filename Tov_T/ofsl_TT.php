@@ -186,7 +186,7 @@ Rmin = <?=$Rt-4?> МПа<br/>
    <?php } ?>
  
  <table border="1px" align=center bgcolor=#eaeaea cellpadding="4px" cellspacing="0px" id="table3">
-	<caption>Результаты статистического метода контроля прочности товарного бетона "Teka" по ГОСТ 18105-2010  </caption>
+	<caption contenteditable="true">Результаты статистического метода контроля прочности товарного бетона "Teka" по ГОСТ 18105-2010  </caption>
   <tr>
    <td align="center">N</td>
    <td align="center">Класс бетона</td>
