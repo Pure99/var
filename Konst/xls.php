@@ -17,6 +17,7 @@
     <input type="submit" value="Send File" />
 </form>
 <?php
+include ('../config.php');
 if (@copy($_FILES['userfile']['tmp_name'], "file.xlsx")) {   // загружаемый файл всегда будет сохраняться под одним именем
     echo "Файл корректен и был успешно загружен.\n";
 	echo "<h3>Информация о загруженном на сервер файле: </h3>";
@@ -25,7 +26,7 @@ if (@copy($_FILES['userfile']['tmp_name'], "file.xlsx")) {   // загружае
 	echo "<p><b>Размер загруженного файла в байтах: ".@$_FILES['userfile']['size']."</b></p>";
 	echo "<p><b>Временное имя файла: ".@$_FILES['userfile']['tmp_name']."</b></p>";
 require_once "PHPExcel.php";   // Подключаем библиотеку
-include ('../config.php');
+
 $PHPExcel_file = PHPExcel_IOFactory::load("./file.xlsx"); // Загружаем файл Excel
 $PHPExcel_file->setActiveSheetIndex(0);    // Преобразуем первый лист Excel в таблицу MySQL
 echo excel2mysql($PHPExcel_file->getActiveSheet(), $connection, "excel2mysql0_k", 2) ? "Таблица EXCEL успешно преобразована в базу данных.\n" : "Таблица в файле не соответствует требуемому формату.\n";
@@ -47,5 +48,35 @@ $connection->query("ALTER TABLE `excel2mysql0_k` CHANGE `Класс_бетона
 $connection->query("ALTER TABLE `excel2mysql0_k` CHANGE `Дата` `Дата` DATE NOT NULL");          //преобразуем текст в дату
 	} else {   echo "Файл не загружен.\n</br>"; }
 ?>
+<table border="1px" align=center bgcolor=#eaeae cellpadding="0px" cellspacing="0px" id="table1">
+    <tr>
+   <td align="center">Дата <br/>изготовления</td>					
+   <td align="center">Наименование <br/>изделия</td>				
+   <td align="center">Класс <br/>бетона</td>						
+   <td align="center">Прочность, МПа</td>							
+   <td align="center">Требуемая <br/>прочность, МПа</td>			
+   <td align="center">Прочность, %</td>   							
+   <td align="center">Добавка</td>  								
+  </tr>
+<?php
+$result = $connection->query("SELECT * FROM excel2mysql0_k ");// Запрос исходной таблицы с данными
+while($row = $result->fetch_array()){
+ extract ($row);?>
+  <tr >
+<td><input type="date" name="Date" onchange="alert (this.value);" value="<?php echo $row['Дата']?>" style="width:140px; height:20px; border:2px;" /></td>
+<td><input type="text" name="Name" value="<?=$row['Наименование_изделия']?>" style="width:120px; height:20px; border:2px"  /></td>
+<td><input type="text" name="Class" value="<?=$row['Класс_бетона']?>" style="width:50px; height:20px; border:2px; text-align:center;" /></td>
+<td><input type="text" name="Strong_MPa" value="<?=$row['Прочность_МПа']?>" style="width:120px; height:20px; border:2px;text-align:center"   /></td>
+<td><input type="text" name="Strong_MPa_Tr" value="<?=$row['Требуемая_прочность_МПа']?>" style="width:120px; height:20px; border:2px;text-align:center"   /></td>
+<td><input type="text" name="Strong_MPa_P" value="<?=$row['Прочность_проценты']?>" style="width:120px; height:20px; border:2px;text-align:center"   /></td>
+<td><input type="text" name="Dobavka" value="<?=$row['Добавка']?>" style="width:120px; height:20px; border:2px"   /></td>
+</tr>
+  <?php
+
+$connection->query("INSERT INTO `base`.`excel2mysql0_k2` ( `Дата`, `Наименование_изделия`, `Класс_бетона`, `Прочность_МПа`, `Требуемая_прочность_МПа`, `Прочность_проценты`, `Добавка`, `KOEF`) VALUES ( '$Дата', '$Наименование_изделия', '$Класс_бетона', '$Прочность_МПа', '$Требуемая_прочность_МПа', '$Прочность_проценты', '$Добавка', '$KOEF')");
+
+
+  }?>
+  </table>
   </body>
 </html>
