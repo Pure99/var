@@ -62,7 +62,7 @@ $connection->query("ALTER TABLE `excel2mysql0_k` CHANGE `Дата` `Дата` DA
 $result = $connection->query("SELECT * FROM excel2mysql0_k ");// Запрос исходной таблицы с данными
 while($row = $result->fetch_array()){
  extract ($row);?>
-  <tr >
+<tr >
 <td><input type="date" name="Date" onchange="alert (this.value);" value="<?php echo $row['Дата']?>" style="width:140px; height:20px; border:2px;" /></td>
 <td><input type="text" name="Name" value="<?=$row['Наименование_изделия']?>" style="width:120px; height:20px; border:2px"  /></td>
 <td><input type="text" name="Class" value="<?=$row['Класс_бетона']?>" style="width:50px; height:20px; border:2px; text-align:center;" /></td>
@@ -73,10 +73,14 @@ while($row = $result->fetch_array()){
 </tr>
   <?php
 
-$connection->query("INSERT INTO `base`.`excel2mysql0_k2` ( `Дата`, `Наименование_изделия`, `Класс_бетона`, `Прочность_МПа`, `Требуемая_прочность_МПа`, `Прочность_проценты`, `Добавка`, `KOEF`) VALUES ( '$Дата', '$Наименование_изделия', '$Класс_бетона', '$Прочность_МПа', '$Требуемая_прочность_МПа', '$Прочность_проценты', '$Добавка', '$KOEF')");
 
 
-  }?>
+
+  }
+// $connection->query( "CREATE TABLE excel2mysql0_k2 LIKE excel2mysql0_k");
+$connection->query("INSERT INTO `excel2mysql0_k2` (`Дата`, `Наименование_изделия`, `Класс_бетона`, `Прочность_МПа`, `Требуемая_прочность_МПа`, `Прочность_проценты`, `Добавка`, `KOEF` ) 
+SELECT `Дата`, `Наименование_изделия`, `Класс_бетона`, `Прочность_МПа`, `Требуемая_прочность_МПа`, `Прочность_проценты`, `Добавка`, `KOEF` FROM `excel2mysql0_k` 
+WHERE DATE(`excel2mysql0_k`.`Дата`) > (select `excel2mysql0_k2`.`Дата` from `excel2mysql0_k2`)");  ?>
   </table>
   </body>
 </html>

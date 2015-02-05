@@ -6,3 +6,4 @@ SELECT e. `Класс`,`Дата`, (select count(e2.`Класс`) FROM `excel2my
 SELECT  e.`ip`, (select count(e2.`ip`) from count e2 where e2.`ip`=e.`ip`) FROM `count` e  group by e.`ip` ASC
 SELECT * FROM count where `date` like '2015-01-13' group by `ip` order by `id`
 INSERT INTO `base`.`excel2mysql0_k` (`ID_TAB`, `Дата`, `Наименование_изделия`, `Класс_бетона`, `Прочность_МПа`, `Требуемая_прочность_МПа`, `Прочность_проценты`, `Добавка`, `KOEF`) VALUES (NULL, '2015-02-04', 'dfbdfbdf', '25', '28', '27', '100', '', '1');
+INSERT new_table_name SELECT * FROM old_table_name;
