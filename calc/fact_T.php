@@ -50,7 +50,7 @@ while($row = $result->fetch_array()){
    <td align="center"><?=$Класс?></td>
    <td align="center"><?=str_replace('.',',',(number_format(round($Mas_Var[$l],1), 1, '.', '')))?> </td>
    <td align="center"><?=str_replace('.',',',(number_format(round($Mas_Mid[$l],1), 1, '.', '')))?></td>
-   <td align="center"><? preg_match("/В(.*?)П/", $Класс, $matches);    echo str_replace('.',',',(number_format(round($matches[1]*1.31,1), 1, '.', '')))?></td>
+    <td align="center"><?preg_match("/В(.*?)(П|С|\s)/", $Класс, $matches); echo str_replace('.',',',(number_format(round($matches[1]*1.31,1), 1, '.', '')))?></td>
  </tr>			
 <?php $l=$l+1; }?>		
 </table>	

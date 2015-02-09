@@ -34,7 +34,7 @@
   } while ($Vm > $koef_var);
      $Mas_Var[]=$Vm ;
      $Kt=number_format(round(interpol($Vm),2), 2, '.', '') ;
-     preg_match("/В(.*?)П/", str_replace(',','.',$Класс), $matches);  $Rt=$matches[1]*$Kt; $Mas_Rt[]=$Rt ; 
+     preg_match("/В(.*?)(П|С|\s)/", str_replace(',','.',$Класс), $matches);  $Rt=$matches[1]*$Kt; $Mas_Rt[]=$Rt ; 
     }?>
  <table border="1px" align=center bgcolor=#eaeaea cellpadding="4px" cellspacing="0px" id="table3">
  <caption>Результаты статистического метода контроля прочности товарного бетона по ГОСТ 18105-2010</caption>

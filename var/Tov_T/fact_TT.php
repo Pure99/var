@@ -4,7 +4,7 @@
 <input type="hidden" name="viewInfo" value="7"/>
 <input type="submit">
 </form>
-
+<div class="print">
 <table border="1px" align=center bgcolor=#eaeae cellpadding="0px" cellspacing="0px" id="table1">
     <tr>
    <td align="center">Дата <br/>изготовления</td>					
@@ -33,13 +33,11 @@ while($row = $result->fetch_array()){
 <td><input type="text" name="Dobavka" value="<?=$row['Прирост']?>" style="width:110px; height:20px; border:2px"   /></td>
 <td><input type="text" name="Dobavka" value="<?=$row['Место_отгрузки_БС']?>" style="width:110px; height:20px; border:2px"   /></td>
 <td><input type="text" name="Dobavka" value="<?=$row['Добавка']?>" style="width:110px; height:20px; border:2px"   /></td>
-
 </tr>
   <?php }?>
   </table>
   <br/>
- 
-</p>
+ </div>
 
 <p>Фактический коэффициент вариации</p>
   
@@ -68,7 +66,7 @@ while($row = $result->fetch_array()){
    $sumR=$sumR +  ($Прочность28-$mid_s)*($Прочность28-$mid_s);
   
    } ?>
- 
+  <div class="print">
   <table border="1px" align=center bgcolor=#eaeae cellpadding="0px" cellspacing="0px" id="table2">
 	<caption><?php echo ' Класс ';  echo$row['Класс'] ;  ?></caption>
   <tr>	
@@ -129,8 +127,9 @@ Rmin = <br/>
 В˂Rmini≥Rmin <br/>
 </p>
 <p align=center >------------------------------------------------------------------------------------------------------------------------</p>
-   <?php } ?>
-  
+  </div>
+  <?php } ?>
+   <div class="print">
  <!-- выводим сводную таблицу-->
  <table border="1px" align=center bgcolor=#eaeaea cellpadding="4px" cellspacing="0px" id="table3">
 	<caption contenteditable="true">Результаты статистического метода контроля прочности товарного бетона "ТЕКА" по ГОСТ 18105-2010  фактический</caption>
@@ -153,10 +152,12 @@ while($row = $result->fetch_array()){
    <td align="center"><? preg_match("/В(.*?)(П|С|\s)/", $Класс, $matches);    echo str_replace('.',',',(number_format(round($matches[1]*1.31,1), 1, '.', '')))?></td>
  </tr>						
 <?$l=$l+1;	}?>
-					
+					<tr>
+<td align="center"> </td>
+<td align="center"> </td>
+<td align="center">Vmср=<?php $count_ziro = 0; foreach($Mas_Var as $key => $value) { if(!$value == 0) $count_ziro++;} echo str_replace('.',',',(number_format(round(array_sum($Mas_Var)/$count_ziro,1), 1, '.', '')));?></td>
+<td align="center"> </td>
+<td align="center"> </td>
+		</tr>
 </table>	
-  
-   
-
-
-
+  </div>

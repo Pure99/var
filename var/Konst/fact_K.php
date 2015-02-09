@@ -157,6 +157,14 @@ while($row = $result->fetch_array()){ // Сводная таблица
 			
 <?$l=$l+1;	
 }?>
+<tr>
+<td align="center"> </td>
+<td align="center"> </td>
+<td align="center"> </td>
+<td align="center">Vmср=<?php $count_ziro = 0; foreach($Mas_Var as $key => $value) { if(!$value == 0) $count_ziro++;} echo str_replace('.',',',(number_format(round(array_sum($Mas_Var)/$count_ziro,1), 1, '.', '')));?></td>
+<td align="center"> </td>
+<td align="center"> </td>
+		</tr>
 </table>	
   
   </div>

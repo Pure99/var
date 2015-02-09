@@ -35,7 +35,6 @@ while($row = $result->fetch_array()){
 <td><input type="text" name="Dobavka" value="<?=$row['Прирост']?>" style="width:110px; height:20px; border:2px"   /></td>
 <td><input type="text" name="Dobavka" value="<?=$row['Место_отгрузки_БС']?>" style="width:110px; height:20px; border:2px"   /></td>
 <td><input type="text" name="Dobavka" value="<?=$row['Добавка']?>" style="width:110px; height:20px; border:2px"   /></td>
-
 </tr>
   <?php }?>
   </table>
@@ -120,7 +119,7 @@ while($row = $result->fetch_array()){
    <td align="center"><?php if ($b>6) {echo number_format(round($Sm=sqrt($sumR/($b-1)),1), 1, '.', '') ;} else {echo number_format(round($Sm=($P_max-$P_min)/alfa($b),1), 1, '.', '');}?></td>  
    <td align="center"><?php echo  number_format(round($Vm=$Sm*100/$mid_s,1), 1, '.', '') ;$Mas_Var[]=$Vm; ?> </td>  
    <td align="center"><?php echo $Kt=number_format(round(interpol($Vm),2), 2, '.', '') ?></td>  
-   <td align="center"><?php preg_match("/В(.*?)П/", $Класс, $matches);  echo number_format(round($matches[1]*$Kt,1), 1, '.', ''); ?> </td>  
+  <td align="center"><?php echo preg_replace("/В(.*?)(П|С|\s)/",  "\${1}\$", str_replace(',','.',$row['Класс']))  *  $Kt  ?> </td>  
   </tr>
   </table>
  <br/>
@@ -152,8 +151,15 @@ while($row = $result->fetch_array()){
    <td align="center"><?=$Класс?></td>
    <td align="center"><?=str_replace('.',',',(number_format(round($Mas_Var[$l],1), 1, '.', '')))?> </td>
    <td align="center"><?=str_replace('.',',',(number_format(round($Mas_Mid[$l],1), 1, '.', '')))?></td>
-   <td align="center"><? preg_match("/В(.*?)П/", $Класс, $matches);    echo str_replace('.',',',(number_format(round($matches[1]*1.31,1), 1, '.', '')))?></td>
+   <td align="center"><?preg_match("/В(.*?)(П|С|\s)/", $Класс, $matches); echo str_replace('.',',',(number_format(round($matches[1]*1.31,1), 1, '.', '')))?></td>
  </tr>			
 <?$l=$l+1;	}?>		
+<tr>
+<td align="center"> </td>
+<td align="center"> </td>
+<td align="center">Vmср=<?php $count_ziro = 0; foreach($Mas_Var as $key => $value) { if(!$value == 0) $count_ziro++;} echo str_replace('.',',',(number_format(round(array_sum($Mas_Var)/$count_ziro,1), 1, '.', '')));?></td>
+<td align="center"> </td>
+<td align="center"> </td>
+		</tr>
 </table>	
 </div>
