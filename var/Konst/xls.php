@@ -49,7 +49,7 @@ $connection->query("ALTER TABLE `excel2mysql0_k` CHANGE `Дата` `Дата` DA
    <td align="center">Прочность, %</td>   							
    <td align="center">Добавка</td>  								
   </tr>
-<?php  $connection->query( "CREATE TABLE excel2mysql0_k2 LIKE excel2mysql0_k");
+<?php  //
 $result = $connection->query("SELECT * FROM excel2mysql0_k ");// Запрос исходной таблицы с данными
 while($row = $result->fetch_array()){
  extract ($row);?>
@@ -66,13 +66,11 @@ while($row = $result->fetch_array()){
  </tbody>
   </table>
 <?php
-//$connection->query("insert `excel2mysql0_k2` (`Дата`, `Наименование_изделия`, `Класс_бетона`, `Прочность_МПа`, `Требуемая_прочность_МПа`, `Прочность_проценты`, `Добавка`, `KOEF` ) 
-//SELECT `Дата`, `Наименование_изделия`, `Класс_бетона`, `Прочность_МПа`, `Требуемая_прочность_МПа`, `Прочность_проценты`, `Добавка`, `KOEF` FROM `excel2mysql0_k` 
-//"); 
-//WHERE DATE(`excel2mysql0_k`.`Дата`) > (select `excel2mysql0_k2`.`Дата` from `excel2mysql0_k2`)
-
+$connection->query( "CREATE TABLE excel2mysql0_k2 LIKE excel2mysql0_k");
+$connection->query("insert into `excel2mysql0_k2` (`Дата`, `Наименование_изделия`, `Класс_бетона`, `Прочность_МПа`, `Требуемая_прочность_МПа`, `Прочность_проценты`, `Добавка`, `KOEF`) SELECT `Дата`, `Наименование_изделия`, `Класс_бетона`, `Прочность_МПа`, `Требуемая_прочность_МПа`, `Прочность_проценты`, `Добавка`, `KOEF` FROM `excel2mysql0_k`
+LEFT JOIN `excel2mysql0_k2`
+using(`Дата`, `Наименование_изделия`, `Класс_бетона`, `Прочность_МПа`, `Требуемая_прочность_МПа`, `Прочность_проценты`, `Добавка`, `KOEF`)
+WHERE `excel2mysql0_k2`.`ID_TAB` IS NULL"); 
 } else {  echo "Файл не загружен.\n</br>"; }
 ?>
 </div>
-
-

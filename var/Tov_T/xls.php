@@ -35,7 +35,47 @@ $connection->query("ALTER TABLE `excel2mysql0_tt` CHANGE `Требуемая_п�
 $connection->query("ALTER TABLE `excel2mysql0_tt` ADD `KOEF` INT(2) NOT NULL ");  //добавить столбец KOEF 
 $connection->query("UPDATE `excel2mysql0_tt` SET `KOEF`=1");                      // записать единицу в KOEF   
 $connection->query("DELETE FROM `base`.`excel2mysql0_tt` WHERE `excel2mysql0_tt`.`Класс` = ''");   //удалить строки с пустыми полями
-$connection->query("ALTER TABLE `excel2mysql0_tt` CHANGE `Дата` `Дата` DATE NOT NULL");  //преобразуем текст в дату
+$connection->query("ALTER TABLE `excel2mysql0_tt` CHANGE `Дата` `Дата` DATE NOT NULL");  //преобразуем текст в дату ?>
+<table border="1px" align=center bgcolor=#eaeae cellpadding="0px" cellspacing="0px" class="table_XLS">
+	<tbody >
+   <tr class="t_head" id="1">
+   <td align="center">Дата <br/>изготовления</td>					
+   <td align="center">Класс <br/>бетона</td>					
+   <td align="center">Прочность <br/>7 суток, МПа</td>							
+   <td align="center">Прочность <br/>28 суток, МПа</td>			
+   <td align="center">Требуемая <br/>Прочность, МПа</td>  
+   <td align="center">Прочность <br/>7 суток, %</td>	
+   <td align="center">Прочность <br/>28 суток, %</td>	
+   <td align="center">Прирост</td>
+   <td align="center">Место <br/>отгрузки <br/>БС</td>
+   <td align="center">Добавка</td>							
+  </tr>
+<?php
+ $result = $connection->query("SELECT * FROM excel2mysql0_tt");				// Запрос основной таблицы
+while($row = $result->fetch_array()){
+ extract ($row);?>
+  <tr >
+<td ><input type="date" name="Date" onchange="alert (this.value);" value="<?php echo $row['Дата']?>" style="width:140px; height:20px; border:2px;" /></td>
+<td><input type="text" name="Name" value="<?=$row['Класс']?>" style="width:130px; height:20px; border:2px"  /></td>
+<td><input type="text" name="Strong_MPa" value="<?=$row['Прочность7']?>" style="width:120px; height:20px; border:2px;text-align:center"/></td>
+<td><input type="text" name="Strong_MPa_Tr" value="<?=$row['Прочность28']?>" style="width:120px; height:20px; border:2px;text-align:center"   /></td>
+<td><input type="text" name="Strong_MPa_P" value="<?=$row['Требуемая_прочность_МПа']?>" style="width:120px; height:20px; border:2px;text-align:center"   /></td>
+<td><input type="text" name="Dobavka" value="<?=$row['Прочность_7_проценты']?>" style="width:110px; height:20px; border:2px"   /></td>
+<td><input type="text" name="Dobavka" value="<?=$row['Прочность_28_проценты']?>" style="width:110px; height:20px; border:2px; text-align:center"   /></td>
+<td><input type="text" name="Dobavka" value="<?=$row['Прирост']?>" style="width:110px; height:20px; border:2px"   /></td>
+<td><input type="text" name="Dobavka" value="<?=$row['Место_отгрузки_БС']?>" style="width:110px; height:20px; border:2px"   /></td>
+<td><input type="text" name="Dobavka" value="<?=$row['Добавка']?>" style="width:110px; height:20px; border:2px"   /></td>
+</tr>
+  <?php }?>
+   </tbody>
+  </table>
+<?php
+$connection->query( "CREATE TABLE excel2mysql0_tt2 LIKE excel2mysql0_t");
+$connection->query("insert into `excel2mysql0_tt2` (`Дата`, `Класс`, `Прочность7`, `Прочность28`, `Требуемая_прочность_МПа`, `Прочность_7_проценты`, `Прочность_28_проценты`, `Прирост`, `Место_отгрузки_БС`, `Добавка`, `KOEF`)
+ SELECT `Дата`, `Класс`, `Прочность7`, `Прочность28`, `Требуемая_прочность_МПа`, `Прочность_7_проценты`, `Прочность_28_проценты`, `Прирост`, `Место_отгрузки_БС`, `Добавка`, `KOEF` FROM `excel2mysql0_tt`
+LEFT JOIN `excel2mysql0_tt2`
+using(`Дата`, `Класс`, `Прочность7`, `Прочность28`, `Требуемая_прочность_МПа`, `Прочность_7_проценты`, `Прочность_28_проценты`, `Прирост`, `Место_отгрузки_БС`, `Добавка`, `KOEF`)
+WHERE `excel2mysql0_tt2`.`ID_TAB` IS NULL"); 
 } else { echo "Файл не загружен.\n</br>"; }
 ?>
 </div>
