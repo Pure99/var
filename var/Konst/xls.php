@@ -1,4 +1,3 @@
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
   <h3>Конструкционный бетон</h3>
 <div align ="left">
 <p><a href="index.php?viewInfo=1">Открыть таблицу</a></p>
@@ -38,33 +37,7 @@ $connection->query("UPDATE `excel2mysql0_k` SET `KOEF`=1");                     
 $connection->query("DELETE FROM `base`.`excel2mysql0_k` WHERE `excel2mysql0_k`.`Наименование_изделия` = ''");   //удалить строки с пустыми полями
 $connection->query("ALTER TABLE `excel2mysql0_k` CHANGE `Класс_бетона` `Класс_бетона` DECIMAL(10,1) NOT NULL");         // класс бетона из текста в дробное число
 $connection->query("ALTER TABLE `excel2mysql0_k` CHANGE `Дата` `Дата` DATE NOT NULL"); //преобразуем текст в дату  ?>       
-<table border="1px" align=center bgcolor=#eaeae cellpadding="0px" cellspacing="0px"  class="table_XLS">
- <tbody>
-  <tr class="t_head" id="1">
-   <td align="center">Дата <br/>изготовления</td>					
-   <td align="center">Наименование <br/>изделия</td>				
-   <td align="center">Класс <br/>бетона</td>						
-   <td align="center">Прочность, МПа</td>							
-   <td align="center">Требуемая <br/>прочность, МПа</td>			
-   <td align="center">Прочность, %</td>   							
-   <td align="center">Добавка</td>  								
-  </tr>
-<?php  //
-$result = $connection->query("SELECT * FROM excel2mysql0_k ");// Запрос исходной таблицы с данными
-while($row = $result->fetch_array()){
- extract ($row);?>
-<tr >
-<td><?php echo $row['Дата']?></td>
-<td><?=$row['Наименование_изделия']?></td>
-<td><?=$row['Класс_бетона']?></td>
-<td><?=$row['Прочность_МПа']?></td>
-<td><?=$row['Требуемая_прочность_МПа']?></td>
-<td><?=$row['Прочность_проценты']?></td>
-<td><?=$row['Добавка']?></td>
-</tr>
-  <?php } ?>
- </tbody>
-  </table>
+
 <?php
 $connection->query( "CREATE TABLE excel2mysql0_k2 LIKE excel2mysql0_k");
 $connection->query("insert into `excel2mysql0_k2` (`Дата`, `Наименование_изделия`, `Класс_бетона`, `Прочность_МПа`, `Требуемая_прочность_МПа`, `Прочность_проценты`, `Добавка`, `KOEF`) SELECT `Дата`, `Наименование_изделия`, `Класс_бетона`, `Прочность_МПа`, `Требуемая_прочность_МПа`, `Прочность_проценты`, `Добавка`, `KOEF` FROM `excel2mysql0_k`
@@ -73,4 +46,50 @@ using(`Дата`, `Наименование_изделия`, `Класс_бет�
 WHERE `excel2mysql0_k2`.`ID_TAB` IS NULL"); 
 } else {  echo "Файл не загружен.\n</br>"; }
 ?>
+<form name="authForm" method="GET" action="<?=$_SERVER['PHP_SELF']?>">
+Начало периода:<input type="DATE" name="data1" value="<?=$data1?>">
+Конец периода:<input type="DATE" name="data2" value="<?=$data2?>">
+<input type="hidden" name="viewInfo" value="3"/>
+<input type="submit">
+</form>
+
+<table align=center bgcolor=#eaeae cellpadding="0px" cellspacing="0px">
+<tbody>
+<tr><td>
+<table border="1px" align=center bgcolor=#eaeae cellpadding="0px" cellspacing="0px"  >
+  <tr>
+   <td align="center" style="width:104px; height:20px;">№</td>	
+   <td align="center" style="width:104px; height:20px;">Дата <br/>изготовления</td>					
+   <td align="center" style="width:139px; height:20px;">Наименование <br/>изделия</td>				
+   <td align="center" style="width:104px; height:20px;">Класс <br/>бетона</td>						
+   <td align="center" style="width:104px; height:20px;">Прочность, МПа</td>							
+   <td align="center" style="width:104px; height:20px;">Требуемая <br/>прочность, МПа</td>			
+   <td align="center" style="width:104px; height:20px;">Прочность, %</td>   							
+   <td align="center" style="width:104px; height:20px;">Добавка</td>  								
+  </tr>
+  </table>
+  </td></tr>
+  <tr><td>
+  <table border="1px" align=center bgcolor=#eaeae cellpadding="0px" cellspacing="0px"  class="table_XLS">
+<?php  $nomer_str=0;
+$result = $connection->query("SELECT * FROM excel2mysql0_k2 where DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2'");// Запрос исходной таблицы с данными
+while($row = $result->fetch_array()){
+ extract ($row);?>
+<tr >
+<td align="center" style="width:40px; height:20px;"><?=++$nomer_str; ?></td>
+<td align="center" style="width:40px; height:20px;"><?=$Дата?></td>
+<td  style="width:139px; height:20px;"><?=$row['Наименование_изделия']?></td>
+<td align="center" style="width:40px; height:20px;"><?=$row['Класс_бетона']?></td>
+<td align="center" style="width:40px; height:20px;"><?=$row['Прочность_МПа']?></td>
+<td align="center" style="width:40px; height:20px;"><?=$row['Требуемая_прочность_МПа']?></td>
+<td align="center" style="width:40px; height:20px;"><?=$row['Прочность_проценты']?></td>
+<td align="center" style="width:40px; height:20px;"><?=$row['Добавка']?></td>
+</tr>
+  <?php } ?>
+  </table>
+</td></tr>
+</tbody>
+</table>
+
+
 </div>

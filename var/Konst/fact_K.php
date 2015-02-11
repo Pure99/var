@@ -5,8 +5,9 @@
 <input type="submit">
 </form>
 <div class="print">
-<table border="1px" align=center bgcolor=#eaeae cellpadding="0px" cellspacing="0px" id="table1">
-    <tr>
+<table border="1px" align=center bgcolor=#eaeae cellpadding="0px" cellspacing="0px" class="table_XLS" id="table1" >
+<tbody>   
+   <tr class="t_head" id="1">
    <td align="center">Дата <br/>изготовления</td>					
    <td align="center">Наименование <br/>изделия</td>				
    <td align="center">Класс <br/>бетона</td>						
@@ -23,12 +24,13 @@ while($row = $result->fetch_array()){
 <td><input type="date" name="Date" onchange="alert (this.value);" value="<?php echo $row['Дата']?>" style="width:140px; height:20px; border:2px;" /></td>
 <td><input type="text" name="Name" value="<?=$row['Наименование_изделия']?>" style="width:120px; height:20px; border:2px"  /></td>
 <td><input type="text" name="Class" value="<?=$row['Класс_бетона']?>" style="width:50px; height:20px; border:2px; text-align:center;" /></td>
-<td><input type="text" name="Strong_MPa" value="<?=$row['Прочность_МПа']?>" style="width:120px; height:20px; border:2px;text-align:center"   /></td>
+<td><input type="text" name="Strong_MPa" value="<?=$row['Прочность_МПа']?>" style="width:120px; height:20px; border:2px;text-align:center"   /><?=$row['Прочность_МПа']?></td>
 <td><input type="text" name="Strong_MPa_Tr" value="<?=$row['Требуемая_прочность_МПа']?>" style="width:120px; height:20px; border:2px;text-align:center"   /></td>
 <td><input type="text" name="Strong_MPa_P" value="<?=$row['Прочность_проценты']?>" style="width:120px; height:20px; border:2px;text-align:center"   /></td>
 <td><input type="text" name="Dobavka" value="<?=$row['Добавка']?>" style="width:120px; height:20px; border:2px"   /></td>
 </tr>
   <?php }?>
+   </tbody>
   </table>
 </div>
   <br/>

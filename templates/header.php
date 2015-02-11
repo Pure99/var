@@ -12,6 +12,8 @@
     <link href="bootstrap/css/bootstrap-theme.css" rel="stylesheet">
     <style> body  { padding-top: 50px;}
 .starter-template { text-align: center;}
+select {width: inherit;
+}
 </style>
   </head>
   <body>
