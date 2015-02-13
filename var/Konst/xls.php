@@ -80,7 +80,17 @@ while($row = $result->fetch_array()){
 <td align="center" style="width:40px; height:20px;"><?=$Дата?></td>
 <td  style="width:139px; height:20px;"><?=$row['Наименование_изделия']?></td>
 <td align="center" style="width:40px; height:20px;"><?=$row['Класс_бетона']?></td>
-<td align="center" style="width:40px; height:20px;"><?=$row['Прочность_МПа']?></td>
+<td align="center" onblur="$('#proch').bind('blur', function(evt) {
+    $.post('/some/url/to/post/to', { 
+            $('#proch').attr('name') : $('#proch').val(), 
+           
+        }, 
+        function(data) {
+            alert('Done');
+            alert(data);
+        }
+    });
+});" style="width:40px; height:20px;" contenteditable="true" id="proch"><?=$row['Прочность_МПа']?></td>
 <td align="center" style="width:40px; height:20px;"><?=$row['Требуемая_прочность_МПа']?></td>
 <td align="center" style="width:40px; height:20px;"><?=$row['Прочность_проценты']?></td>
 <td align="center" style="width:40px; height:20px;"><?=$row['Добавка']?></td>
