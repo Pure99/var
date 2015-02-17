@@ -1,7 +1,7 @@
 ﻿<?php
 $db_host = 'localhost'; //имя MySQL-сервера
 $db_user = 'root'; // имя пользователя
-$db_pass = ''; // пароль
+$db_pass = 'aaaassss'; // пароль
 $db_name = 'base'; // имя БАЗЫ
 // устанавливаем соединение с БД
 
