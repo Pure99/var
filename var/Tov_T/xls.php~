@@ -73,7 +73,7 @@ WHERE `excel2mysql0_tt2`.`ID_TAB` IS NULL");
  $result = $connection->query("SELECT * FROM excel2mysql0_tt2 where DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2'");// Запрос исходной таблицы с данными
 while($row = $result->fetch_array()){
  extract ($row);?>
-  <tr>
+  <tr >
 <td align="center" style="width:103px; height:20px;"><?=++$nomer_str?></td>
 <td><?=$row['Дата']?></td>
 <td><?=$row['Класс']?></td>
