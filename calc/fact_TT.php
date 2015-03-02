@@ -1,13 +1,13 @@
 <?php //товарный тека фактический
 // Выводим таблицу для расчета коэффициента вариации для каждого изделия
-  $result = $connection->query("SELECT  `Класс`,`Дата` FROM `excel2mysql0_tt` where DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2' GROUP BY `Класс` ASC");
+  $result = $connection->query("SELECT  `Класс`,`Дата` FROM `excel2mysql0_tt2` where DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2' GROUP BY `Класс` ASC");
   while($row = $result->fetch_array()){           // Список всех наименований изделий
    extract ($row);
    $b=0;          // количество значений прочностей 
    $sum=0;         //сумма прочностей
    $P_max=0;         //максимальная прочность
    $P_min=100;      //минимальная прочность
-   $result_1 = $connection->query("SELECT `Дата`,`Прочность28` FROM `excel2mysql0_tt` WHERE DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2' and `Класс` like '$Класс'");  
+   $result_1 = $connection->query("SELECT `Дата`,`Прочность28` FROM `excel2mysql0_tt2` WHERE DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2' and `Класс` like '$Класс'");  
   while($row_1 = $result_1->fetch_array()){ // Этот цикл вычисляет сумму прочностей, минимальное и максимальное значение прочности
    extract ($row_1);
    $sum = $sum+$Прочность28;
@@ -17,7 +17,7 @@
   } 
    $mid_s=$sum/$b;               // средняя фактическая прочность
    $sumR=0;
-   $result_2 = $connection->query("SELECT `Дата`,`Прочность28` FROM `excel2mysql0_tt` WHERE DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2' and `Класс` like '$Класс'"); 
+   $result_2 = $connection->query("SELECT `Дата`,`Прочность28` FROM `excel2mysql0_tt2` WHERE DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2' and `Класс` like '$Класс'"); 
   while($row_2 = $result_2->fetch_array()){ //этот цикл вычисляет сумму квадратов 
    extract ($row_2);
    $sumR=$sumR +  ($Прочность28-$mid_s)*($Прочность28-$mid_s);
@@ -40,7 +40,7 @@
    <td align="center">Прочность по ГОСТ, МПа</td>
  </tr>			
  <? $l=0;
- $result = $connection->query("SELECT `Класс` FROM `excel2mysql0_tt` where DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2' GROUP BY `Класс`");				// Запрос основной таблицы
+ $result = $connection->query("SELECT `Класс` FROM `excel2mysql0_tt2` where DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2' GROUP BY `Класс`");				// Запрос основной таблицы
 while($row = $result->fetch_array()){
  extract ($row);?>
  		<tr>

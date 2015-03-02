@@ -1,6 +1,6 @@
  <?php   //товарный официальный
 // Выводим таблицу для расчета коэффициента вариации для каждого изделия
-  $result = $connection->query("SELECT  `Класс`,`Дата` FROM `excel2mysql0_t` where DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2' and `KOEF` like '1' GROUP BY `Класс` ASC");
+  $result = $connection->query("SELECT  `Класс`,`Дата` FROM `excel2mysql0_t2` where DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2' and `KOEF` like '1' GROUP BY `Класс` ASC");
   while($row = $result->fetch_array()){           // Список всех наименований изделий
    extract ($row);
    do {
@@ -8,7 +8,7 @@
    $sum=0;         //сумма прочностей
    $P_max=0;         //максимальная прочность
    $P_min=100;      //минимальная прочность
-   $result_1 = $connection->query("SELECT `Дата`,  `Прочность28` FROM `excel2mysql0_t` WHERE DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2' and `Класс` like '$Класс' and `KOEF` like '1'");  
+   $result_1 = $connection->query("SELECT `Дата`,  `Прочность28` FROM `excel2mysql0_t2` WHERE DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2' and `Класс` like '$Класс' and `KOEF` like '1'");  
   while($row_1 = $result_1->fetch_array()){ // Этот цикл вычисляет сумму прочностей, минимальное и максимальное значение прочности
    extract ($row_1);
    $sum = $sum+$Прочность28;
@@ -20,7 +20,7 @@
    $sumR=0;
    $DFR=0;       // Максимальная разность квадратов
    $DFP=0;
-   $result_2 = $connection->query("SELECT `Дата`,  `Прочность28`,`Прочность_28_проценты` FROM `excel2mysql0_t` WHERE DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2' and `Класс` like '$Класс' and `KOEF` like '1'"); 
+   $result_2 = $connection->query("SELECT `Дата`,  `Прочность28`,`Прочность_28_проценты` FROM `excel2mysql0_t2` WHERE DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2' and `Класс` like '$Класс' and `KOEF` like '1'"); 
  while($row_2 = $result_2->fetch_array()){ //этот цикл вычисляет сумму квадратов 
    extract ($row_2);
    $sumR=$sumR +  ($Прочность28-$mid_s)*($Прочность28-$mid_s);
@@ -29,7 +29,7 @@
    if ($b>6) {$Sm=sqrt($sumR/($b-1)) ;} else {$Sm=($P_max-$P_min)/alfa($b);}
    $Vm=$Sm*100/$mid_s;
    if ($Vm > $koef_var) {
-  $connection->query ("update `base`.`excel2mysql0_t` set `KOEF` = 0  WHERE DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2' and `excel2mysql0_t`.`Прочность28` = $DFP and `Класс` like '$Класс' ");
+  $connection->query ("update `base`.`excel2mysql0_t2` set `KOEF` = 0  WHERE DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2' and `excel2mysql0_t2`.`Прочность28` = $DFP and `Класс` like '$Класс' ");
   }
   } while ($Vm > $koef_var);
      $Mas_Var[]=$Vm ;
@@ -45,7 +45,7 @@
    <td align="center">Требуемая прочность Rt, МПа</td>
  </tr>			
  <? $l=0;
- $result = $connection->query("SELECT `Класс` FROM `excel2mysql0_t` where DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2' and `KOEF` like '1' GROUP BY `Класс` ORDER BY `excel2mysql0_t`.`Класс` ASC");				// Запрос основной таблицы
+ $result = $connection->query("SELECT `Класс` FROM `excel2mysql0_t2` where DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2' and `KOEF` like '1' GROUP BY `Класс` ORDER BY `excel2mysql0_t2`.`Класс` ASC");				// Запрос основной таблицы
 while($row = $result->fetch_array()){
  extract ($row);?>
  	<tr>
@@ -56,7 +56,7 @@ while($row = $result->fetch_array()){
  </tr>			
 <?$l=$l+1;	}?>
 <?php 
-$connection->query ("UPDATE `excel2mysql0_t` SET `KOEF`=1");                      // записать единицу в KOEF   
+$connection->query ("UPDATE `excel2mysql0_t2` SET `KOEF`=1");                      // записать единицу в KOEF   
 ?>
 </table>  
 <?php unset($Mas_Var);

@@ -52,7 +52,6 @@ WHERE `excel2mysql0_k2`.`ID_TAB` IS NULL");
 <input type="hidden" name="viewInfo" value="3"/>
 <input type="submit">
 </form>
-
 <table align=center bgcolor=#eaeae cellpadding="0px" cellspacing="0px">
 <tbody>
 <tr><td>

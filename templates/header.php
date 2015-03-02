@@ -30,7 +30,7 @@ width: inherit;
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="../var/index.php" ><font  уsize="20" color="red" face="Arial">Коэффициент вариации</font></a>
+          <a class="navbar-brand" href="../index.php" ><font  уsize="20" color="red" face="Arial">Коэффициент вариации</font></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">

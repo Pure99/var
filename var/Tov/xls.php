@@ -36,6 +36,11 @@ $connection->query("ALTER TABLE `excel2mysql0_t` ADD `KOEF` INT(2) NOT NULL "); 
 $connection->query("UPDATE `excel2mysql0_t` SET `KOEF`=1");                      // записать единицу в KOEF   
 $connection->query("DELETE FROM `base`.`excel2mysql0_t` WHERE `excel2mysql0_t`.`Класс` = ''");   //удалить строки с пустыми полями
 $connection->query("ALTER TABLE `excel2mysql0_t` CHANGE `Дата` `Дата` DATE NOT NULL");  //преобразуем текст в дату ?>
+
+
+
+
+
 <table align="center" border="1px" align=center bgcolor=#eaeae cellpadding="0px" cellspacing="0px" class="table_XLS"> 
    <tbody >
    <tr class="t_head" id="1">
