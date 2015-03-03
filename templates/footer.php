@@ -15,7 +15,7 @@ $.fn.tablework = function() {
         var $tr = $('<tr/>').prependTo($thead),
             hide = {};
         $("tbody tr:first>", $table).each(function(indx, element) {
-            var range = ['Без выбора'],
+            var range = ['Фильтр'],
                 $td = $("tbody tr :nth-of-type(" + (indx + 1) + ")", $table),
                 temp = {};
             $td.each(function(i, el) {
