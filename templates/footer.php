@@ -16,7 +16,9 @@ $.fn.tablework = function() {
             hide = {};
         $("tbody tr:first>", $table).each(function(indx, element) {
             var range = ['Фильтр'],
+			
                 $td = $("tbody tr :nth-of-type(" + (indx + 1) + ")", $table),
+				
                 temp = {};
             $td.each(function(i, el) {
                 var text = $(this).text()
