@@ -5,17 +5,18 @@
 <input type="submit">
 </form>
 <div class="print">
-<table border="1px" align=center bgcolor=#eaeae cellpadding="0px" cellspacing="0px" class="table_XLS" id="table1" >
-<tbody>   
-   <tr class="t_head" id="1">
-   <td align="center">Дата <br/>изготовления</td>					
-   <td align="center">Наименование <br/>изделия</td>				
-   <td align="center">Класс <br/>бетона</td>						
-   <td align="center">Прочность, МПа</td>							
-   <td align="center">Требуемая <br/>прочность, МПа</td>			
-   <td align="center">Прочность, %</td> 							
-   <td align="center">Добавка</td>  								
-  </tr>
+<table class="example table-autosort table-autofilter table-stripeclass:alternate table-page-number:t1page table-page-count:t1pages table-filtered-rowcount:t1filtercount table-rowcount:t1allcount" align="center" border="1px" align=center bgcolor=#eaeae cellpadding="0px" cellspacing="0px" id="table1" >
+    <thead>
+	<tr>
+   <td class="table-filterable table-sortable:default table-sortable" align="center">Дата изготовления</td>					
+   <td class="table-filterable table-sortable:default table-sortable" align="center">Наименование изделия</td>				
+   <td class="table-filterable table-sortable:default table-sortable" align="center">Класс бетона</td>						
+   <td class="table-filterable table-sortable:default table-sortable" align="center">Прочность, МПа</td>							
+   <td class="table-filterable table-sortable:default table-sortable" align="center">Требуемая прочность, МПа</td>			
+   <td class="table-filterable table-sortable:default table-sortable" align="center">Прочность, %</td> 							
+   <td class="table-filterable table-sortable:default table-sortable" align="center" valign="middle">Добавка</td>  								
+   </tr>
+  </thead>
 <?php
 $result = $connection->query("SELECT * FROM excel2mysql0_k2 where DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2'");// Запрос исходной таблицы с данными
 while($row = $result->fetch_array()){

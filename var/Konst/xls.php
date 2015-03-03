@@ -49,24 +49,19 @@ WHERE `excel2mysql0_k2`.`ID_TAB` IS NULL"); // синхронизировать 
 <input type="hidden" name="viewInfo" value="3"/>
 <input type="submit">
 </form>
-<table align=center bgcolor=#eaeae cellpadding="0px" cellspacing="0px">
-<tbody>
-<tr><td >
-<table border="1px" align=center bgcolor=#eaeae cellpadding="0px" cellspacing="0px"  >
+<table class="example table-autostripe table-rowshade-alternate table-autosort table-autofilter table-stripeclass:alternate table-page-number:t1page table-page-count:t1pages table-filtered-rowcount:t1filtercount table-rowcount:t1allcount" align="center" border="1px" align=center bgcolor=#eaeae cellpadding="0px" cellspacing="0px" id="table1" >
+<thead>
   <tr>
-   <td align="center" style="width:104px; height:20px;">№</td>	
-   <td align="center" style="width:104px; height:20px;">Дата <br/>изготовления</td>					
-   <td align="center" style="width:122px; height:20px;">Наименование <br/>изделия</td>				
-   <td align="center" style="width:104px; height:20px;">Класс <br/>бетона</td>						
-   <td align="center" style="width:104px; height:20px;">Прочность, МПа</td>							
-   <td align="center" style="width:104px; height:20px;">Требуемая <br/>прочность, МПа</td>			
-   <td align="center" style="width:104px; height:20px;">Прочность, %</td>   							
-   <td align="center" style="width:104px; height:20px;">Добавка</td>  								
+   <td class="table-filterable table-sortable:default table-sortable"  align="center" style="width:104px; height:20px;">№</td>	
+   <td class="table-filterable table-sortable:default table-sortable"  align="center" style="width:104px; height:20px;">Дата <br/>изготовления</td>					
+   <td class="table-filterable table-sortable:default table-sortable"  align="center" style="width:122px; height:20px;">Наименование <br/>изделия</td>				
+   <td class="table-filterable table-sortable:default table-sortable"  align="center" style="width:104px; height:20px;">Класс <br/>бетона</td>						
+   <td class="table-filterable table-sortable:default table-sortable"  align="center" style="width:104px; height:20px;">Прочность, МПа</td>							
+   <td class="table-filterable table-sortable:default table-sortable"  align="center" style="width:104px; height:20px;">Требуемая <br/>прочность, МПа</td>			
+   <td class="table-filterable table-sortable:default table-sortable"  align="center" style="width:104px; height:20px;">Прочность, %</td>   							
+   <td class="table-filterable table-sortable:default table-sortable"  align="center" style="width:104px; height:20px;">Добавка</td>  								
   </tr>
-  </table>
-  </td></tr>
-  <tr><td>
-  <table border="1px" align=center bgcolor=#eaeae cellpadding="0px" cellspacing="0px"  class="table_XLS">
+  </thead>
 <?php  $nomer_str=0;
 $result = $connection->query("SELECT * FROM excel2mysql0_k2 where DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2'");// Запрос исходной таблицы с данными
 while($row = $result->fetch_array()){
@@ -92,8 +87,5 @@ while($row = $result->fetch_array()){
 <td align="center" style="width:104px; height:20px;"><?=$row['Добавка']?></td>
 </tr>
   <?php } ?>
-  </table>
-</td></tr>
-</tbody>
 </table>
 </div>

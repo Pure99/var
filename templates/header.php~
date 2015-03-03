@@ -17,7 +17,7 @@ select, option { text-align: left;
 position:relative;
 width: inherit;
 float: center;
-bottom: inherit;
+bottom: 2px;
 }
 </style>
   </head>

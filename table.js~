@@ -236,7 +236,7 @@ var Table = (function(){
 		FilterableClassName:"table-filterable",
 		FilteredRowcountPrefix:"table-filtered-rowcount:",
 		RowcountPrefix:"table-rowcount:",
-		FilterAllLabel:"Фильтр: Все",
+		FilterAllLabel:"Filter: Все",
 
 		AutoPageSizePrefix:"table-autopage:",
 		AutoPageJumpPrefix:"table-page:",
