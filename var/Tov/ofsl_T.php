@@ -1,9 +1,9 @@
-<form name="authForm" method="GET" action="<?=$_SERVER['PHP_SELF']?>">
-Начало периода:<input type="DATE" name="data1" value="<?=$data1?>">
-Конец периода:<input type="DATE" name="data2" value="<?=$data2?>">
-Коэффициент вариации:<input type="text" name="koef_var" value="<?=$koef_var?>">
+<form style="position:relative" name="Form" method="GET" action="<?=$_SERVER['PHP_SELF']?>">
+Начало периода:<input type="DATE" name="data1" class="form-control" value="<?=$data1?>">
+Конец периода:<input type="DATE" name="data2" class="form-control" value="<?=$data2?>">
+Коэффициент вариации:<input type="text" name="koef_var" class="form-control" value="<?=$koef_var?>">
 <input type="hidden" name="viewInfo" value="5"/>
-<input type="submit">
+<input type="submit" class="btn btn-success">
 </form>
 <div class="print">
 <table border="1px" align=center bgcolor=#eaeae cellpadding="0px" cellspacing="0px" id="table1">

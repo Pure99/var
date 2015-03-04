@@ -1,8 +1,8 @@
-<form name="authForm" method="GET" >
-Начало периода:<input type="DATE" name="data1" value="<?=$data1?>">
-Конец периода:<input type="DATE" name="data2" value="<?=$data2?>">
+<form style="position:relative" name="Form" method="GET" action="<?=$_SERVER['PHP_SELF']?>">
+Начало периода:<input type="DATE" name="data1" class="form-control" value="<?=$data1?>">
+Конец периода:<input type="DATE" name="data2" class="form-control" value="<?=$data2?>">
 <input type="hidden" name="viewInfo" value="4"/>
-<input type="submit">
+<input type="submit" class="btn btn-success">
 </form>
 <div class="print">
 <table class="example table-autosort table-autofilter table-stripeclass:alternate table-page-number:t1page table-page-count:t1pages table-filtered-rowcount:t1filtercount table-rowcount:t1allcount" align="center" border="1px" align=center bgcolor=#eaeae cellpadding="0px" cellspacing="0px" id="table1" >
@@ -159,7 +159,7 @@ while($row = $result->fetch_array()){
 <tr>
 <td align="center"> </td>
 <td align="center"> </td>
-<td align="center">Vmср=<?php $count_ziro = 0; foreach($Mas_Var as $key => $value) { if(!$value == 0) $count_ziro++;} echo str_replace('.',',',(number_format(round(array_sum($Mas_Var)/$count_ziro,1), 1, '.', '')));?></td>
+<td align="center">Vmср=<?php $count_ziro = 0; if (isset($Mas_Var)) { foreach($Mas_Var as $key => $value) { if(!$value == 0) $count_ziro++;} echo str_replace('.',',',(number_format(round(array_sum($Mas_Var)/$count_ziro,1), 1, '.', ''))) ;}?></td>
 <td align="center"> </td>
 <td align="center"> </td>
 		</tr>

@@ -38,10 +38,10 @@ if ($viewInfo == '1')
 		require ('var/Tov_T/xls.php');
 else{
 ?>
-<form name="authForm" method="GET" action="<?=$_SERVER['PHP_SELF']?>">
-Начало периода:<input type="DATE" name="data1" value="<?=$data1?>">
-Конец периода:<input type="DATE" name="data2" value="<?=$data2?>">
-<input type="submit"></form>
+<form style="position:absolute" name="Form" method="GET" action="<?=$_SERVER['PHP_SELF']?>">
+Начало периода:<input type="DATE" name="data1" class="form-control" value="<?=$data1?>">
+Конец периода:<input type="DATE" name="data2" class="form-control" value="<?=$data2?>">
+<input type="submit" class="btn btn-success"></form>
 <?php
 require ('calc/fact_K.php');
 require ('calc/ofsl_K.php');
