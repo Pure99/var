@@ -57,7 +57,7 @@ $.fn.tablework = function() {
 
     });
 };
-//$('.t_head').hide()
+
 </script>
  </body>
 </html>

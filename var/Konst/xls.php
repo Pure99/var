@@ -72,7 +72,7 @@ while($row = $result->fetch_array()){
 <td ><?=$row['Наименование_изделия']?></td>
 <td align="center"><?=$row['Класс_бетона']?></td>
 <td align="center" onblur="$('#proch').bind('blur', function(evt) {
-    $.post('/some/url/to/post/to', { 
+    $.post('/edit.php', { 
             $('#proch').attr('name') : $('#proch').val(), 
            
         }, 
