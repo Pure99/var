@@ -10,15 +10,15 @@
 	<tr>
    <td class="table-filterable table-sortable:default table-sortable" align="center">Дата <br/>изготовления</td>					
    <td class="table-filterable table-sortable:default table-sortable" align="center">Класс <br/>бетона</td>				
-   <td class="table-filterable table-sortable:default table-sortable" align="center">БСЦ/РБУ</td>						
+   <td class="table-filterable table-sortable:default table-sortable" align="center">БСЦ/РБУ<br></td>						
    <td class="table-filterable table-sortable:default table-sortable" align="center">Прочность <br/>7 суток, МПа</td>							
    <td class="table-filterable table-sortable:default table-sortable" align="center">Прочность <br/>28 суток, МПа</td>			
    <td class="table-filterable table-sortable:default table-sortable" align="center">Требуемая <br/>Прочность, МПа</td>  
    <td class="table-filterable table-sortable:default table-sortable" align="center">Прочность <br/>7 суток, %</td>	
    <td class="table-filterable table-sortable:default table-sortable" align="center">Прочность <br/>28 суток, %</td>	
-   <td class="table-filterable table-sortable:default table-sortable" align="center">Прирост</td>
-   <td class="table-filterable table-sortable:default table-sortable" align="center">Место <br/>отгрузки <br/>БС</td>
-   <td class="table-filterable table-sortable:default table-sortable" align="center">Добавка</td>							
+   <td class="table-filterable table-sortable:default table-sortable" align="center">Прирост<br></td>
+   <td class="table-filterable table-sortable:default table-sortable" align="center">Место <br/>отгрузки БС</td>
+   <td class="table-filterable table-sortable:default table-sortable" align="center">Добавка<br></td>							
   </tr>
   </thead>
 <?php
