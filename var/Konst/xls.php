@@ -1,23 +1,17 @@
   <h3>Конструкционный бетон</h3>
-<div align ="left">
 	<!-- Тип кодирования данных, enctype, ДОЛЖЕН БЫТЬ указан ИМЕННО так -->
-<div class="pole jumbotron" style="position:relative"><form enctype="multipart/form-data" action="index.php?viewInfo=3" method="POST">
-    <!-- Поле MAX_FILE_SIZE должно быть указано до поля загрузки файла -->
-    <input type="hidden" name="MAX_FILE_SIZE" value="300000" /> 
+<div align="left" class="pole jumbotron" style="position:relative"><form enctype="multipart/form-data" action="index.php?viewInfo=3" method="POST">
+    <input type="hidden" name="MAX_FILE_SIZE" value="300000" /> <!-- Поле MAX_FILE_SIZE должно быть указано до поля загрузки файла -->
     <!-- Название элемента input определяет имя в массиве $_FILES -->
-    Отправить этот файл: <input name="userfile" type="file" style="display:inline"/><div><input type="submit" class="btn btn-primary" value="Send File" /></div></form></div>
+Отправить этот файл:<input name="userfile" type="file" style="display:inline"/><div><input type="submit" class="btn btn-primary" value="Send File"/></div></form></div>
 <?php
 if (@copy($_FILES['userfile']['tmp_name'], "var/Konst/file.xlsx")) {   // загружаемый файл всегда будет сохраняться под одним именем
-    echo "<div class='alert alert-success' role='alert'>Файл был успешно загружен.</div>";
-	echo "<h3>Информация о загруженном на сервер файле: </h3>";
-	echo "<p><b>Оригинальное имя загруженного файла: ".@$_FILES['userfile']['name']."</b></p>";
-	echo "<p><b>Mime-тип загруженного файла: ".@$_FILES['userfile']['type']."</b></p>";
-	echo "<p><b>Размер загруженного файла в байтах: ".@$_FILES['userfile']['size']."</b></p>";
-	echo "<p><b>Временное имя файла: ".@$_FILES['userfile']['tmp_name']."</b></p>";
+echo "<div class='alert alert-success' role='alert'>Файл " .@$_FILES['userfile']['name']. " был успешно загружен. Размер загруженного файла в байтах: ".@$_FILES['userfile']['size']."</div>";
 require_once "PHPExcel.php";// Подключаем библиотеку
-$PHPExcel_file = PHPExcel_IOFactory::load("var/Konst/file.xlsx");// Загружаем файл Excel
+@$PHPExcel_file = PHPExcel_IOFactory::load("var/Konst/file.xlsx"); // Загружаем файл Excel
 $PHPExcel_file->setActiveSheetIndex(0);// Преобразуем первый лист Excel в таблицу MySQL
-if ( excel2mysql($PHPExcel_file->getActiveSheet(), $connection, "excel2mysql0_k", 2)) {  echo "<div class='alert alert-success' role='alert'>Таблица EXCEL успешно преобразована в базу данных.</div>" ; 
+if ( excel2mysql($PHPExcel_file->getActiveSheet(), $connection, "excel2mysql0_k", 2)) {
+  echo "<div class='alert alert-success' role='alert'>Таблица EXCEL успешно преобразована в базу данных.</div>" ; 
 $connection->query("ALTER TABLE excel2mysql0_k ADD ID_TAB INT(10) NOT NULL AUTO_INCREMENT FIRST, ADD PRIMARY KEY (`ID_TAB`)");   // Добавляем в таблицу столбец ID_TAB с автоинкрементом
 $result = $connection->query("SELECT `Дата`,`ID_TAB` FROM excel2mysql0_k");
 while($row = $result->fetch_array()){       //Преобразуем формат даты
@@ -39,7 +33,8 @@ $connection->query("insert into `excel2mysql0_k2` (`Дата`, `Наименов
 LEFT JOIN `excel2mysql0_k2`
 using(`Дата`, `Наименование_изделия`, `Класс_бетона`, `Прочность_МПа`, `Требуемая_прочность_МПа`, `Прочность_проценты`, `Добавка`, `KOEF`)
 WHERE `excel2mysql0_k2`.`ID_TAB` IS NULL"); // синхронизировать таблицы
-} else { echo "Таблица в файле не соответствует требуемому формату.\n";}} else {  echo "Файл не загружен.\n</br>"; } ?>
+} else { echo "<div class='alert alert-danger' role='alert'>Таблица в файле не соответствует требуемому формату.</div>";}
+}  ?>
 <div class="pole jumbotron"><form  name="Form" method="GET" action="<?=$_SERVER['PHP_SELF']?>">
 Начало периода:<input type="DATE" name="data1" class="form-control" value="<?=$data1?>">
 Конец периода:<input type="DATE" name="data2" class="form-control" value="<?=$data2?>">
@@ -66,7 +61,7 @@ while($row = $result->fetch_array()){
 <tr >
 <td align="center" ><?=++$nomer_str; ?></td>
 <td align="center" ><?=$Дата?></td>
-<td ><?=$row['Наименование_изделия']?></td>
+<td align="left"><?=$row['Наименование_изделия']?></td>
 <td align="center"><?=$row['Класс_бетона']?></td>
 <td align="center" onblur="$('#proch').bind('blur', function(evt) {
     $.post('/edit.php', { 
@@ -85,4 +80,3 @@ while($row = $result->fetch_array()){
 </tr>
   <?php } ?>
 </table>
-</div>

@@ -13,12 +13,7 @@
     <style> body  { padding-top: 50px;}
 .starter-template { text-align: center;}
 .alternate {background-color: #eee;}
-select, option { text-align: left;
-position:relative;
-width: inherit;
-float: center;
-bottom: inherit;
-}
+select, option { text-align: left; width: inherit; }
 .pole {position:absolute; padding:6px; padding-left:3px !important; padding-right:3px !important;}
 </style>
   </head>
@@ -32,11 +27,10 @@ bottom: inherit;
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="../index.php" ><font  уsize="20" color="red" face="Arial">Коэффициент вариации</font></a>
+          <a class="navbar-brand" href="../index.php" >Коэффициент вариации</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            
             <li class="dropdown">
 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Конструкционный бетон<span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
