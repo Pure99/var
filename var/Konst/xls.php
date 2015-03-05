@@ -50,7 +50,7 @@ WHERE `excel2mysql0_k2`.`ID_TAB` IS NULL"); // синхронизировать 
    <td class="table-filterable table-sortable:default table-sortable"  align="center" style="width:104px; height:20px;">Класс <br>бетона</td>						
    <td class="table-filterable table-sortable:default table-sortable"  align="center" style="width:104px; height:20px;">Прочность, МПа</td>							
    <td class="table-filterable table-sortable:default table-sortable"  align="center" style="width:114px; height:20px;">Требуемая прочность, МПа</td>			
-   <td class="table-filterable table-sortable:default table-sortable"  align="center" style="width:104px; height:20px;">Прочность, %<br></td>   							
+   <td class="profit table-filterable table-sortable:default table-sortable"  align="center" style="width:104px; height:20px;">Прочность, %<br></td>   							
    <td class="table-filterable table-sortable:default table-sortable"  align="center" style="width:104px; height:20px;">Добавка<br></td>  								
   </tr>
   </thead>
@@ -75,8 +75,22 @@ while($row = $result->fetch_array()){
     });
 });"  contenteditable="true" id="proch"><?=$row['Прочность_МПа']?></td>
 <td align="center"><?=$row['Требуемая_прочность_МПа']?></td>
-<td align="center"><?=$row['Прочность_проценты']?></td>
+<td align="center" ><?=$row['Прочность_проценты']?></td>
 <td align="center"><?=$row['Добавка']?></td>
 </tr>
   <?php } ?>
 </table>
+<script type="text/javascript">
+function process()
+{
+$('td.profit').each(function(){
+    var x = $(this).text();
+    if (x < 100) $(this).css({color: 'red'});
+    });
+}
+</script>
+
+
+
+
+
