@@ -1,17 +1,14 @@
   <h3>Конструкционный бетон</h3>
 <div align ="left">
-<p><a href="index.php?viewInfo=1">Открыть таблицу</a></p>
 	<!-- Тип кодирования данных, enctype, ДОЛЖЕН БЫТЬ указан ИМЕННО так -->
-<form enctype="multipart/form-data" action="index.php?viewInfo=3" method="POST">
+<div class="pole jumbotron" style="position:relative"><form enctype="multipart/form-data" action="index.php?viewInfo=3" method="POST">
     <!-- Поле MAX_FILE_SIZE должно быть указано до поля загрузки файла -->
     <input type="hidden" name="MAX_FILE_SIZE" value="300000" /> 
     <!-- Название элемента input определяет имя в массиве $_FILES -->
-    Отправить этот файл: <input name="userfile" type="file" />
-    <input type="submit"  value="Send File" />
-</form>
+    Отправить этот файл: <input name="userfile" type="file" style="display:inline"/><div><input type="submit" class="btn btn-primary" value="Send File" /></div></form></div>
 <?php
 if (@copy($_FILES['userfile']['tmp_name'], "var/Konst/file.xlsx")) {   // загружаемый файл всегда будет сохраняться под одним именем
-    echo "Файл корректен и был успешно загружен.\n";
+    echo "<div class='alert alert-success' role='alert'>Файл был успешно загружен.</div>";
 	echo "<h3>Информация о загруженном на сервер файле: </h3>";
 	echo "<p><b>Оригинальное имя загруженного файла: ".@$_FILES['userfile']['name']."</b></p>";
 	echo "<p><b>Mime-тип загруженного файла: ".@$_FILES['userfile']['type']."</b></p>";
@@ -20,7 +17,7 @@ if (@copy($_FILES['userfile']['tmp_name'], "var/Konst/file.xlsx")) {   // заг
 require_once "PHPExcel.php";// Подключаем библиотеку
 $PHPExcel_file = PHPExcel_IOFactory::load("var/Konst/file.xlsx");// Загружаем файл Excel
 $PHPExcel_file->setActiveSheetIndex(0);// Преобразуем первый лист Excel в таблицу MySQL
-echo excel2mysql($PHPExcel_file->getActiveSheet(), $connection, "excel2mysql0_k", 2) ? "Таблица EXCEL успешно преобразована в базу данных.\n" : "Таблица в файле не соответствует требуемому формату.\n";
+if ( excel2mysql($PHPExcel_file->getActiveSheet(), $connection, "excel2mysql0_k", 2)) {  echo "<div class='alert alert-success' role='alert'>Таблица EXCEL успешно преобразована в базу данных.</div>" ; 
 $connection->query("ALTER TABLE excel2mysql0_k ADD ID_TAB INT(10) NOT NULL AUTO_INCREMENT FIRST, ADD PRIMARY KEY (`ID_TAB`)");   // Добавляем в таблицу столбец ID_TAB с автоинкрементом
 $result = $connection->query("SELECT `Дата`,`ID_TAB` FROM excel2mysql0_k");
 while($row = $result->fetch_array()){       //Преобразуем формат даты
@@ -42,17 +39,17 @@ $connection->query("insert into `excel2mysql0_k2` (`Дата`, `Наименов
 LEFT JOIN `excel2mysql0_k2`
 using(`Дата`, `Наименование_изделия`, `Класс_бетона`, `Прочность_МПа`, `Требуемая_прочность_МПа`, `Прочность_проценты`, `Добавка`, `KOEF`)
 WHERE `excel2mysql0_k2`.`ID_TAB` IS NULL"); // синхронизировать таблицы
-} else {  echo "Файл не загружен.\n</br>"; } ?>
-<form name="authForm" method="GET" action="<?=$_SERVER['PHP_SELF']?>">
-Начало периода:<input type="DATE" name="data1" value="<?=$data1?>">
-Конец периода:<input type="DATE" name="data2" value="<?=$data2?>">
+} else { echo "Таблица в файле не соответствует требуемому формату.\n";}} else {  echo "Файл не загружен.\n</br>"; } ?>
+<div class="pole jumbotron"><form  name="Form" method="GET" action="<?=$_SERVER['PHP_SELF']?>">
+Начало периода:<input type="DATE" name="data1" class="form-control" value="<?=$data1?>">
+Конец периода:<input type="DATE" name="data2" class="form-control" value="<?=$data2?>">
 <input type="hidden" name="viewInfo" value="3"/>
-<input type="submit">
-</form>
-<table class="example table-autostripe table-rowshade-alternate table-autosort table-autofilter table-stripeclass:alternate table-page-number:t1page table-page-count:t1pages table-filtered-rowcount:t1filtercount table-rowcount:t1allcount" align="center" border="1px" align=center bgcolor=#eaeae cellpadding="0px" cellspacing="0px" id="table1" >
+<br><input type="submit" class="btn btn-primary">
+</form></div>
+<table class="table-autostripe table-rowshade-alternate table-autosort table-autofilter table-stripeclass:alternate table-page-number:t1page table-page-count:t1pages table-filtered-rowcount:t1filtercount table-rowcount:t1allcount" align="center" border="1px" align=center bgcolor=#eaeae cellpadding="0px" cellspacing="0px" id="table1" >
 <thead>
   <tr>
-   <td class="table-filterable table-sortable:default table-sortable"  align="center" style="width:50px; height:20px;">№<br></td>	
+   <td class="table-filterable table-sortable:numeric table-sortable"  align="center" style="width:50px; height:20px;">№<br></td>	
    <td class="table-filterable table-sortable:default table-sortable"  align="center" style="width:104px; height:20px;">Дата <br>изготовления</td>					
    <td class="table-filterable table-sortable:default table-sortable"  align="center" style="width:122px; height:20px;">Наименование <br>изделия</td>				
    <td class="table-filterable table-sortable:default table-sortable"  align="center" style="width:104px; height:20px;">Класс <br>бетона</td>						

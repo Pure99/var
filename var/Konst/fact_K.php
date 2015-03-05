@@ -1,28 +1,29 @@
-<form style="position:absolute" name="Form" method="GET" action="<?=$_SERVER['PHP_SELF']?>">
+<div  class="pole jumbotron" >
+<form  name="Form" method="GET" action="<?=$_SERVER['PHP_SELF']?>">
 Начало периода:<input type="DATE" name="data1" class="form-control" value="<?=$data1?>">
 Конец периода:<input type="DATE" name="data2" class="form-control" value="<?=$data2?>">
 <input type="hidden" name="viewInfo" value="1"/>
-<input type="submit" class="btn btn-success">
-</form>
+<br><input type="submit" class="btn btn-primary">
+</form></div>
 <div class="print">
-<table class="example table-autosort table-autofilter table-stripeclass:alternate table-page-number:t1page table-page-count:t1pages table-filtered-rowcount:t1filtercount table-rowcount:t1allcount" align="center" border="1px" align=center bgcolor=#eaeae cellpadding="0px" cellspacing="0px" id="table1" >
+<table class="table-autostripe table-autosort table-autofilter table-stripeclass:alternate table-page-number:t1page table-page-count:t1pages table-filtered-rowcount:t1filtercount table-rowcount:t1allcount sort01" align="center" border="1px" align=center bgcolor=#eaeae cellpadding="0px" cellspacing="0px" id="table1" >
     <thead>
 	<tr>
-   <td class="table-filterable table-sortable:default table-sortable" align="center">Дата изготовления</td>					
-   <td class="table-filterable table-sortable:default table-sortable" align="center">Наименование изделия</td>				
-   <td class="table-filterable table-sortable:default table-sortable" align="center">Класс бетона</td>						
-   <td class="table-filterable table-sortable:default table-sortable" align="center">Прочность, МПа</td>							
-   <td class="table-filterable table-sortable:default table-sortable" align="center">Требуемая прочность, МПа</td>			
-   <td class="table-filterable table-sortable:default table-sortable" align="center">Прочность, %</td> 							
-   <td class="table-filterable table-sortable:default table-sortable" align="center" valign="middle">Добавка</td>  								
+   <td class="table-filterable table-sortable:numeric table-sortable table-sorted-desc" align="center" style="width:104px; height:20px;">Дата <br>изготовления</td>			
+   <td class="table-filterable table-sortable:default table-sortable" align="center" style="width:122px; height:20px;">Наименование <br>изделия</td>		
+   <td class="table-filterable table-sortable:default table-sortable" align="center" style="width:104px; height:20px;">Класс <br>бетона</td>			
+   <td class="table-filterable table-sortable:default table-sortable" align="center" style="width:104px; height:20px;">Прочность, МПа</td>					
+   <td class="table-filterable table-sortable:default table-sortable" align="center" style="width:114px; height:20px;">Требуемая прочность, МПа</td>
+   <td class="table-filterable table-sortable:default table-sortable" align="center" style="width:104px; height:20px;">Прочность, %<br></td> 					
+   <td class="table-filterable table-sortable:default table-sortable" align="center" style="width:104px; height:20px;">Добавка<br></td>  						
    </tr>
   </thead>
 <?php
 $result = $connection->query("SELECT * FROM excel2mysql0_k2 where DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2'");// Запрос исходной таблицы с данными
 while($row = $result->fetch_array()){
  extract ($row);?>
-  <tr >
-<td contenteditable="true"><?php echo $row['Дата']?></td>
+  <tr>
+<td contenteditable="true" type="date"><?php echo $row['Дата']?></td>
 <td contenteditable="true" align="left"><?=$row['Наименование_изделия']?></td>
 <td contenteditable="true"><?=$row['Класс_бетона']?></td>
 <td contenteditable="true"><?=$row['Прочность_МПа']?></td>
@@ -31,7 +32,6 @@ while($row = $result->fetch_array()){
 <td contenteditable="true"><?=$row['Добавка']?></td>
 </tr>
   <?php }?>
-   </tbody>
   </table>
 </div>
   <br/>

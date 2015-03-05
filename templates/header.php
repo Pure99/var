@@ -12,13 +12,14 @@
     <link href="bootstrap/css/bootstrap-theme.css" rel="stylesheet">
     <style> body  { padding-top: 50px;}
 .starter-template { text-align: center;}
-.alternate {background-color: #E5F6EC;}
+.alternate {background-color: #eee;}
 select, option { text-align: left;
 position:relative;
 width: inherit;
 float: center;
 bottom: inherit;
 }
+.pole {position:absolute; padding:6px; padding-left:3px !important; padding-right:3px !important;}
 </style>
   </head>
   <body>

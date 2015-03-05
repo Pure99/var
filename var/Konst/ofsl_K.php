@@ -1,41 +1,41 @@
-<form name="authForm" method="GET" action="<?=$_SERVER['PHP_SELF']?>">
-Начало периода:<input type="DATE" name="data1" value="<?=$data1?>">
-Конец периода:<input type="DATE" name="data2" value="<?=$data2?>">
-Коэффициент вариации:<input type="text" name="koef_var" value="<?=$koef_var?>">
+<div  class="pole jumbotron" >
+<form  name="Form" method="GET" action="<?=$_SERVER['PHP_SELF']?>">
+Начало периода:<input type="DATE" name="data1" class="form-control" value="<?=$data1?>">
+Конец периода:<input type="DATE" name="data2" class="form-control" value="<?=$data2?>">
 <input type="hidden" name="viewInfo" value="2"/>
-<input type="submit">
-</form>
+<br><input type="submit" class="btn btn-primary">
+</form></div>
 <div class="print">
-<table border="1px" align=center bgcolor=#eaeae cellpadding="0px" cellspacing="0px" id="table1">
-   <tr>
-   <td align="center">Дата <br/>изготовления</td>					
-   <td align="center">Наименование <br/>изделия</td>				
-   <td align="center">Класс <br/>бетона</td>						
-   <td align="center">Прочность, МПа</td>							
-   <td align="center">Требуемая <br/>прочность, МПа</td>			
-   <td align="center">Прочность, %</td>   							
-   <td align="center">Добавка</td>  								
-  </tr>
+<table class="table-autostripe table-autosort table-autofilter table-stripeclass:alternate table-page-number:t1page table-page-count:t1pages table-filtered-rowcount:t1filtercount table-rowcount:t1allcount sort01" align="center" border="1px" align=center bgcolor=#eaeae cellpadding="0px" cellspacing="0px" id="table1" >
+    <thead>
+	<tr>
+   <td class="table-filterable table-sortable:numeric table-sortable table-sorted-desc" align="center" style="width:104px; height:20px;">Дата <br>изготовления</td>			
+   <td class="table-filterable table-sortable:default table-sortable" align="center" style="width:122px; height:20px;">Наименование <br>изделия</td>		
+   <td class="table-filterable table-sortable:default table-sortable" align="center" style="width:104px; height:20px;">Класс <br>бетона</td>			
+   <td class="table-filterable table-sortable:default table-sortable" align="center" style="width:104px; height:20px;">Прочность, МПа</td>					
+   <td class="table-filterable table-sortable:default table-sortable" align="center" style="width:114px; height:20px;">Требуемая прочность, МПа</td>
+   <td class="table-filterable table-sortable:default table-sortable" align="center" style="width:104px; height:20px;">Прочность, %<br></td> 					
+   <td class="table-filterable table-sortable:default table-sortable" align="center" style="width:104px; height:20px;">Добавка<br></td>  						
+   </tr>
+  </thead>
 <?php
 $connection->query("update `base`.`excel2mysql0_k2` set `KOEF` = 0 WHERE DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2' and `excel2mysql0_k2`.`Прочность_проценты` < 100"); // Пометить строки, где прочность меньше ста процентов
-
 $result = $connection->query("SELECT * FROM excel2mysql0_k2 WHERE DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2' and `excel2mysql0_k2`.`KOEF` = 1");				// Запрос основной таблицы
 while($row = $result->fetch_array()){
  extract ($row);?>
-  <tr>
-<td ><input type="date" name="Date" onchange="alert (this.value);" value="<?php echo $row['Дата']?>" style="width:140px; height:20px; border:2px;" /></td>
-<td><input type="text" name="Name" value="<?=$row['Наименование_изделия']?>" style="width:120px; height:20px; border:2px"  /></td>
-<td><input type="text" name="Class" value="<?=$row['Класс_бетона']?>" style="width:50px; height:20px; border:2px; text-align:center;" /></td>
-<td><input type="text" name="Strong_MPa" value="<?=$row['Прочность_МПа']?>" style="width:120px; height:20px; border:2px;text-align:center"   /></td>
-<td><input type="text" name="Strong_MPa_Tr" value="<?=$row['Требуемая_прочность_МПа']?>" style="width:120px; height:20px; border:2px;text-align:center"   /></td>
-<td><input type="text" name="Strong_MPa_P" value="<?=$row['Прочность_проценты']?>" style="width:120px; height:20px; border:2px;text-align:center"   /></td>
-<td><input type="text" name="Dobavka" value="<?=$row['Добавка']?>" style="width:120px; height:20px; border:2px"   /></td>
+ <tr>
+<td contenteditable="true" type="date"><?php echo $row['Дата']?></td>
+<td contenteditable="true" align="left"><?=$row['Наименование_изделия']?></td>
+<td contenteditable="true"><?=$row['Класс_бетона']?></td>
+<td contenteditable="true"><?=$row['Прочность_МПа']?></td>
+<td contenteditable="true"><?=$row['Требуемая_прочность_МПа']?></td>
+<td contenteditable="true"><?=$row['Прочность_проценты']?></td>
+<td contenteditable="true"><?=$row['Добавка']?></td>
 </tr>
   <?php }?>
   </table>
-  <br/>
  </div>
-
+ <br/>
 
 <p>Официальный коэффициент вариации</p>
   
