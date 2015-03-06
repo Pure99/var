@@ -1,24 +1,25 @@
-<form style="position:relative" name="Form" method="GET" action="<?=$_SERVER['PHP_SELF']?>">
+<h3>Товарный бетон</h3><div  class="pole jumbotron">
+<form name="Form" method="GET" action="<?=$_SERVER['PHP_SELF']?>">
 Начало периода:<input type="DATE" name="data1" class="form-control" value="<?=$data1?>">
 Конец периода:<input type="DATE" name="data2" class="form-control" value="<?=$data2?>">
 <input type="hidden" name="viewInfo" value="4"/>
-<input type="submit" class="btn btn-success">
-</form>
+<br><input type="submit" class="btn btn-primary">
+</form></div>
 <div class="print">
-<table class="example table-autosort table-autofilter table-stripeclass:alternate table-page-number:t1page table-page-count:t1pages table-filtered-rowcount:t1filtercount table-rowcount:t1allcount" align="center" border="1px" align=center bgcolor=#eaeae cellpadding="0px" cellspacing="0px" id="table1" >
+<table class="table-autostripe table-autosort table-autofilter table-stripeclass:alternate table-page-number:t1page table-page-count:t1pages table-filtered-rowcount:t1filtercount table-rowcount:t1allcount sort01" align="center" border="1px" cellpadding="0px" cellspacing="0px" id="table1" style="margin-left:200px">
     <thead>
 	<tr>
-   <td class="table-filterable table-sortable:default table-sortable" align="center">Дата <br/>изготовления</td>					
-   <td class="table-filterable table-sortable:default table-sortable" align="center">Класс <br/>бетона</td>				
-   <td class="table-filterable table-sortable:default table-sortable" align="center">БСЦ/РБУ<br></td>						
-   <td class="table-filterable table-sortable:default table-sortable" align="center">Прочность <br/>7 суток, МПа</td>							
-   <td class="table-filterable table-sortable:default table-sortable" align="center">Прочность <br/>28 суток, МПа</td>			
-   <td class="table-filterable table-sortable:default table-sortable" align="center">Требуемая <br/>Прочность, МПа</td>  
-   <td class="table-filterable table-sortable:default table-sortable" align="center">Прочность <br/>7 суток, %</td>	
-   <td class="table-filterable table-sortable:default table-sortable" align="center">Прочность <br/>28 суток, %</td>	
-   <td class="table-filterable table-sortable:default table-sortable" align="center">Прирост<br></td>
-   <td class="table-filterable table-sortable:default table-sortable" align="center">Место <br/>отгрузки БС</td>
-   <td class="table-filterable table-sortable:default table-sortable" align="center">Добавка<br></td>							
+   <td class="table-filterable table-sortable:default table-sortable" align="center" style="width:94px; height:20px;">Дата <br/>изготовления</td>					
+   <td class="table-filterable table-sortable:default table-sortable" align="center" style="width:122px; height:20px;">Класс <br/>бетона</td>				
+   <td class="table-filterable table-sortable:default table-sortable" align="center" style="width:60px; height:20px;">БСЦ/РБУ<br></td>						
+   <td class="table-filterable table-sortable:default table-sortable" align="center" style="width:90px; height:20px;">Прочность <br/>7 суток, МПа</td>							
+   <td class="table-filterable table-sortable:default table-sortable" align="center" style="width:95px; height:20px;">Прочность <br/>28 суток, МПа</td>			
+   <td class="table-filterable table-sortable:default table-sortable" align="center" style="width:110px; height:20px;">Требуемая <br/>Прочность, МПа</td>  
+   <td class="table-filterable table-sortable:default table-sortable" align="center" style="width:80px; height:20px;">Прочность <br/>7 суток, %</td>	
+   <td class="table-filterable table-sortable:default table-sortable" align="center" style="width:80px; height:20px;">Прочность <br/>28 суток, %</td>	
+   <td class="table-filterable table-sortable:default table-sortable" align="center" style="width:80px; height:20px;">Прирост<br></td>
+   <td class="table-filterable table-sortable:default table-sortable" align="center" style="width:80px; height:20px;">Место <br/>отгрузки БС</td>
+   <td class="table-filterable table-sortable:default table-sortable" align="center" style="width:80px; height:20px;">Добавка<br></td>							
   </tr>
   </thead>
 <?php
@@ -26,23 +27,22 @@
 while($row = $result->fetch_array()){
  extract ($row);?>
   <tr >
-<td ><input type="date" name="Date" onchange="alert (this.value);" value="<?php echo $row['Дата']?>" style="width:140px; height:20px; border:2px;" /></td>
-<td><input type="text" name="Name" value="<?=$row['Класс']?>" style="width:130px; height:20px; border:2px"  /></td>
-<td><input type="text" name="Class" value="<?=$row['БСЦ_РБУ']?>" style="width:50px; height:20px; border:2px; text-align:center;" /></td>
-<td><input type="text" name="Strong_MPa" value="<?=$row['Прочность7']?>" style="width:120px; height:20px; border:2px;text-align:center"/></td>
-<td><input type="text" name="Strong_MPa_Tr" value="<?=$row['Прочность28']?>" style="width:120px; height:20px; border:2px;text-align:center"   /></td>
-<td><input type="text" name="Strong_MPa_P" value="<?=$row['Требуемая_прочность_МПа']?>" style="width:120px; height:20px; border:2px;text-align:center"   /></td>
-<td><input type="text" name="Dobavka" value="<?=$row['Прочность_7_проценты']?>" style="width:110px; height:20px; border:2px"   /></td>
-<td><input type="text" name="Dobavka" value="<?=$row['Прочность_28_проценты']?>" style="width:110px; height:20px; border:2px; text-align:center"   /></td>
-<td><input type="text" name="Dobavka" value="<?=$row['Прирост']?>" style="width:110px; height:20px; border:2px"   /></td>
-<td><input type="text" name="Dobavka" value="<?=$row['Место_отгрузки_БС']?>" style="width:110px; height:20px; border:2px"   /></td>
-<td><input type="text" name="Dobavka" value="<?=$row['Добавка']?>" style="width:110px; height:20px; border:2px"   /></td>
+<td contenteditable="true"><?php echo $row['Дата']?></td>
+<td contenteditable="true" align="left"><?=$row['Класс']?></td>
+<td contenteditable="true"><?=$row['БСЦ_РБУ']?></td>
+<td contenteditable="true"><?=$row['Прочность7']?></td>
+<td contenteditable="true"><?=$row['Прочность28']?></td>
+<td contenteditable="true"><?=$row['Требуемая_прочность_МПа']?></td>
+<td contenteditable="true"><?=$row['Прочность_7_проценты']?></td>
+<td contenteditable="true"><?=$row['Прочность_28_проценты']?></td>
+<td contenteditable="true"><?=$row['Прирост']?></td>
+<td contenteditable="true"><?=$row['Место_отгрузки_БС']?></td>
+<td contenteditable="true"><?=$row['Добавка']?></td>
 </tr>
   <?php }?>
   </table>
-  <br/>
  </div>
-
+<br/>
 <p>Фактический коэффициент вариации</p>
   
   <?php // Выводим таблицу для расчета коэффициента вариации для каждого изделия

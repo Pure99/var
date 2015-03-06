@@ -1,7 +1,8 @@
-<h3>Конструкционный бетон</h3><div  class="pole jumbotron" >
+<h3>Конструкционный бетон</h3><div class="pole jumbotron">
 <form  name="Form" method="GET" action="<?=$_SERVER['PHP_SELF']?>">
 Начало периода:<input type="DATE" name="data1" class="form-control" value="<?=$data1?>">
 Конец периода:<input type="DATE" name="data2" class="form-control" value="<?=$data2?>">
+Коэффициент вариации:<input style="width:172px" type="text" name="koef_var" class="form-control" value="<?=$koef_var?>">
 <input type="hidden" name="viewInfo" value="2"/>
 <br><input type="submit" class="btn btn-primary">
 </form></div>
