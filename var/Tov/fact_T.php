@@ -11,7 +11,7 @@
 	<tr>
    <td class="table-filterable table-sortable:default table-sortable" align="center" style="width:94px; height:20px;">Дата <br/>изготовления</td>					
    <td class="table-filterable table-sortable:default table-sortable" align="center" style="width:122px; height:20px;">Класс <br/>бетона</td>				
-   <td class="table-filterable table-sortable:default table-sortable" align="center" style="width:60px; height:20px;">БСЦ/РБУ<br></td>						
+   <td class="table-filterable table-sortable:default table-sortable" align="center" style="width:61px; height:20px;">БСЦ/РБУ<br></td>						
    <td class="table-filterable table-sortable:default table-sortable" align="center" style="width:90px; height:20px;">Прочность <br/>7 суток, МПа</td>							
    <td class="table-filterable table-sortable:default table-sortable" align="center" style="width:95px; height:20px;">Прочность <br/>28 суток, МПа</td>			
    <td class="table-filterable table-sortable:default table-sortable" align="center" style="width:110px; height:20px;">Требуемая <br/>Прочность, МПа</td>  
@@ -34,7 +34,7 @@ while($row = $result->fetch_array()){
 <td contenteditable="true"><?=$row['Прочность28']?></td>
 <td contenteditable="true"><?=$row['Требуемая_прочность_МПа']?></td>
 <td contenteditable="true"><?=$row['Прочность_7_проценты']?></td>
-<td contenteditable="true"><?=$row['Прочность_28_проценты']?></td>
+<td contenteditable="true" <?if ($row['Прочность_28_проценты']<100) echo "style='color:red'";?>><?=$row['Прочность_28_проценты']?></td>
 <td contenteditable="true"><?=$row['Прирост']?></td>
 <td contenteditable="true"><?=$row['Место_отгрузки_БС']?></td>
 <td contenteditable="true"><?=$row['Добавка']?></td>
@@ -163,5 +163,5 @@ while($row = $result->fetch_array()){
 <td align="center"> </td>
 <td align="center"> </td>
 		</tr>
-</table>	
-</div>
+</table>
+</div><?php unset($Mas_Var); unset($Mas_Mid); ?>

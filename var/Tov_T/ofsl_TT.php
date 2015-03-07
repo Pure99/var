@@ -1,50 +1,49 @@
-<form name="authForm" method="GET" action="<?=$_SERVER['PHP_SELF']?>">
-Начало периода:<input type="DATE" name="data1" value="<?=$data1?>">
-Конец периода:<input type="DATE" name="data2" value="<?=$data2?>">
-Коэффициент вариации:<input type="text" name="koef_var" value="<?=$koef_var?>">
+<h3>Товарный бетон</h3><div class="pole jumbotron">
+<form name="Form" method="GET" action="<?=$_SERVER['PHP_SELF']?>">
+Начало периода:<input type="DATE" name="data1" class="form-control" value="<?=$data1?>">
+Конец периода:<input type="DATE" name="data2" class="form-control" value="<?=$data2?>">
+Коэффициет вариации:<input style="width:172px" type="text" name="koef_var" class="form-control" value="<?=$koef_var?>">
 <input type="hidden" name="viewInfo" value="8"/>
-<input type="submit">
-</form>
-<p>
-<table border="1px" align=center bgcolor=#eaeae cellpadding="0px" cellspacing="0px" id="table1">
+<br><input type="submit" class="btn btn-primary">
+</form></div>
+<div class="print">
+<table style="margin-left:200px" class="table-autostripe table-autosort table-autofilter table-stripeclass:alternate table-page-number:t1page table-page-count:t1pages table-filtered-rowcount:t1filtercount table-rowcount:t1allcount sort01" align="center" border="1px" cellpadding="0px" cellspacing="0px" id="table1" >
+    <thead>
     <tr>
-   <td align="center">Дата <br/>изготовления</td>		
-   <td align="center">Класс <br/>бетона</td>	
-   <td align="center">Прочность <br/>7 суток, МПа</td>							
-   <td align="center">Прочность <br/>28 суток, МПа</td>			
-   <td align="center">Требуемая <br/>Прочность, МПа</td>  
-   <td align="center">Прочность <br/>7 суток, %</td>	
-   <td align="center">Прочность <br/>28 суток, %</td>	
-   <td align="center">Прирост</td>
-   <td align="center">Место <br/>отгрузки <br/>БС</td>
-   <td align="center">Добавка</td>							
+   <td class="table-filterable table-sortable:default table-sortable" align="center" style="width:94px; height:20px;">Дата <br/>изготовления</td>					
+   <td class="table-filterable table-sortable:default table-sortable" align="center" style="width:122px; height:20px;">Класс <br/>бетона</td>					
+   <td class="table-filterable table-sortable:default table-sortable" align="center" style="width:90px; height:20px;">Прочность <br/>7 суток, МПа</td>							
+   <td class="table-filterable table-sortable:default table-sortable" align="center" style="width:95px; height:20px;">Прочность <br/>28 суток, МПа</td>			
+   <td class="table-filterable table-sortable:default table-sortable" align="center" style="width:110px; height:20px;">Требуемая <br/>Прочность, МПа</td>  
+   <td class="table-filterable table-sortable:default table-sortable" align="center" style="width:80px; height:20px;">Прочность <br/>7 суток, %</td>	
+   <td class="table-filterable table-sortable:default table-sortable" align="center" style="width:80px; height:20px;">Прочность <br/>28 суток, %</td>	
+   <td class="table-filterable table-sortable:default table-sortable" align="center" style="width:80px; height:20px;">Прирост</td>
+   <td class="table-filterable table-sortable:default table-sortable" align="center" style="width:80px; height:20px;">Место <br/>отгрузки <br/>БС</td>
+   <td class="table-filterable table-sortable:default table-sortable" align="center" style="width:80px; height:20px;">Добавка</td>							
   </tr>
+</thead>
 <?php
-
 $connection->query("update `base`.`excel2mysql0_tt2` set `KOEF` = 0 WHERE DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2' and `excel2mysql0_tt2`.`Прочность_28_проценты` < 100"); 
 
  $result = $connection->query("SELECT * FROM excel2mysql0_tt2 WHERE DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2' and `excel2mysql0_tt2`.`KOEF` = 1");				// Запрос основной таблицы
 while($row = $result->fetch_array()){
  extract ($row);?>
   <tr >
-<td ><input type="date" name="Date" onchange="alert (this.value);" value="<?php echo $row['Дата']?>" style="width:140px; height:20px; border:2px;" /></td>
-<td><input type="text" name="Name" value="<?=$row['Класс']?>" style="width:130px; height:20px; border:2px"  /></td>
-<td><input type="text" name="Strong_MPa" value="<?=$row['Прочность7']?>" style="width:120px; height:20px; border:2px;text-align:center"/></td>
-<td><input type="text" name="Strong_MPa_Tr" value="<?=$row['Прочность28']?>" style="width:120px; height:20px; border:2px;text-align:center"   /></td>
-<td><input type="text" name="Strong_MPa_P" value="<?=$row['Требуемая_прочность_МПа']?>" style="width:120px; height:20px; border:2px;text-align:center"   /></td>
-<td><input type="text" name="Dobavka" value="<?=$row['Прочность_7_проценты']?>" style="width:110px; height:20px; border:2px"   /></td>
-<td><input type="text" name="Dobavka" value="<?=$row['Прочность_28_проценты']?>" style="width:110px; height:20px; border:2px; text-align:center"   /></td>
-<td><input type="text" name="Dobavka" value="<?=$row['Прирост']?>" style="width:110px; height:20px; border:2px"   /></td>
-<td><input type="text" name="Dobavka" value="<?=$row['Место_отгрузки_БС']?>" style="width:110px; height:20px; border:2px"   /></td>
-<td><input type="text" name="Dobavka" value="<?=$row['Добавка']?>" style="width:110px; height:20px; border:2px"   /></td>
-
+<td contenteditable="true"><?php echo $row['Дата']?></td>
+<td contenteditable="true" align="left"><?=$row['Класс']?></td>
+<td contenteditable="true"><?=$row['Прочность7']?></td>
+<td contenteditable="true"><?=$row['Прочность28']?></td>
+<td contenteditable="true"><?=$row['Требуемая_прочность_МПа']?></td>
+<td contenteditable="true"><?=$row['Прочность_7_проценты']?></td>
+<td contenteditable="true" <?if ($row['Прочность_28_проценты']<100) echo "style='color:red'";?>><?=$row['Прочность_28_проценты']?></td>
+<td contenteditable="true"><?=$row['Прирост']?></td>
+<td contenteditable="true"><?=$row['Место_отгрузки_БС']?></td>
+<td contenteditable="true"><?=$row['Добавка']?></td>
 </tr>
   <?php }?>
   </table>
-  <br/>
- 
-</p>
-
+  </div>
+<br/>
 <p>Официальный коэффициент вариации</p>
   
   <?php // Выводим таблицу для расчета коэффициента вариации для каждого изделия
@@ -76,20 +75,13 @@ while($row = $result->fetch_array()){
    $sumR=$sumR +  ($Прочность28-$mid_s)*($Прочность28-$mid_s);
    if   (($Прочность28-$mid_s)*($Прочность28-$mid_s) > $DFR) {$DFR=($Прочность28-$mid_s)*($Прочность28-$mid_s); $DFP=$Прочность28; }
    } 
-  // echo $DFR.' -Максимальная разность квадратов';               
-  // echo '<br/>';
-  // echo $DFP.' -Прочность, которую нужно отсеять, если коэффициент вариации больше 9';                     // Прочность, которую нужно отсеять
-  // echo '<br/>';
    if ($b>6) {$Sm=sqrt($sumR/($b-1)) ;} else {$Sm=($P_max-$P_min)/alfa($b);}
-  // echo $Sm.' -Среднее квадротическое отклонение';
-  // echo '<br/>';
    $Vm=$Sm*100/$mid_s;
-   //echo $Vm.' -Коэффициент вариации';
    if ($Vm > $koef_var) {
   $connection->query ("update `base`.`excel2mysql0_tt2` set `KOEF` = 0  WHERE `excel2mysql0_tt2`.`Прочность28` = $DFP and `Класс` like '$Класс' ");
   }
   } while ($Vm > $koef_var);?>
-   
+    <div class="print">
   <table border="1px" align=center bgcolor=#eaeae cellpadding="0px" cellspacing="0px" id="table2">
 	<caption><?php echo ' Класс ';  echo$row['Класс'] ;  ?></caption>
   <tr>	
@@ -163,8 +155,9 @@ Rmin = <?=$Rt-4?> МПа<br/>
 ГОСТ 18105-2010<br/>
 </p>
   <p align=center >------------------------------------------------------------------------------------------------------------------------</p>
-   <?php } ?>
- 
+</div>   
+<?php } ?>
+ <div class="print">
  <table border="1px" align=center bgcolor=#eaeaea cellpadding="4px" cellspacing="0px" id="table3">
 	<caption>Результаты статистического метода контроля прочности товарного бетона "Teka" по ГОСТ 18105-2010  </caption>
   <tr>
@@ -187,4 +180,4 @@ while($row = $result->fetch_array()){
 <?php 
 $connection->query ("UPDATE `excel2mysql0_tt2` SET `KOEF`=1");                      // записать единицу в KOEF   
 ?>
-</table>
+</table></div><?php unset($Mas_Var); unset($Mas_Mid); ?>

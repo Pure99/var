@@ -3,10 +3,10 @@
 <div align="left" class="pole jumbotron" style="position:relative"><form enctype="multipart/form-data" action="index.php?viewInfo=3" method="POST">
     <input type="hidden" name="MAX_FILE_SIZE" value="300000" /> <!-- Поле MAX_FILE_SIZE должно быть указано до поля загрузки файла -->
     <!-- Название элемента input определяет имя в массиве $_FILES -->
-Отправить этот файл:<input name="userfile" type="file" style="display:inline"/><div><input type="submit" class="btn btn-primary" value="Send File"/></div></form></div>
+Отправить этот файл:<input name="userfile" type="file" style="display:inline"/><input type="submit" class="btn btn-primary" value="Отправить файл"/></form></div>
 <?php
 if (@copy($_FILES['userfile']['tmp_name'], "var/Konst/file.xlsx")) {   // загружаемый файл всегда будет сохраняться под одним именем
-echo "<div class='alert alert-success' role='alert'>Файл " .@$_FILES['userfile']['name']. " был успешно загружен. Размер загруженного файла в байтах: ".@$_FILES['userfile']['size']."</div>";
+echo "<div class='alert alert-success' role='alert'>Файл \"" .@$_FILES['userfile']['name']. "\" был успешно загружен. Размер загруженного файла в байтах: ".@$_FILES['userfile']['size']."</div>";
 require_once "PHPExcel.php";// Подключаем библиотеку
 @$PHPExcel_file = PHPExcel_IOFactory::load("var/Konst/file.xlsx"); // Загружаем файл Excel
 $PHPExcel_file->setActiveSheetIndex(0);// Преобразуем первый лист Excel в таблицу MySQL
@@ -41,10 +41,10 @@ WHERE `excel2mysql0_k2`.`ID_TAB` IS NULL"); // синхронизировать 
 <input type="hidden" name="viewInfo" value="3"/>
 <br><input type="submit" class="btn btn-primary">
 </form></div>
-<table class="table-autostripe table-rowshade-alternate table-autosort table-autofilter table-stripeclass:alternate table-page-number:t1page table-page-count:t1pages table-filtered-rowcount:t1filtercount table-rowcount:t1allcount" align="center" border="1px" align=center bgcolor=#eaeae cellpadding="0px" cellspacing="0px" id="table1" >
+<table class="table-autostripe table-rowshade-alternate table-autosort table-autofilter table-stripeclass:alternate table-page-number:t1page table-page-count:t1pages table-filtered-rowcount:t1filtercount table-rowcount:t1allcount" align="center" bordercolor="black" border="1px" bgcolor="#eaeae" cellpadding="0px" cellspacing="0px" id="table1" >
 <thead>
   <tr>
-   <td class="table-filterable table-sortable:numeric table-sortable"  align="center" style="width:50px; height:20px;">№<br></td>	
+   <td class="table-filterable table-filterable:numeric table-sortable:numeric table-sortable"  align="center" style="width:50px; height:20px;">№<br></td>	
    <td class="table-filterable table-sortable:default table-sortable"  align="center" style="width:104px; height:20px;">Дата <br>изготовления</td>					
    <td class="table-filterable table-sortable:default table-sortable"  align="center" style="width:122px; height:20px;">Наименование <br>изделия</td>				
    <td class="table-filterable table-sortable:default table-sortable"  align="center" style="width:104px; height:20px;">Класс <br>бетона</td>						
@@ -75,7 +75,7 @@ while($row = $result->fetch_array()){
     });
 });"  contenteditable="true" id="proch"><?=$row['Прочность_МПа']?></td>
 <td align="center"><?=$row['Требуемая_прочность_МПа']?></td>
-<td align="center" onblur='process()'><?=$row['Прочность_проценты']?></td>
+<td align="center" <?if ($row['Прочность_проценты']<100) echo "style='color:red'";?>><?=$row['Прочность_проценты']?></td>
 <td align="center"><?=$row['Добавка']?></td>
 </tr>
   <?php } ?>
@@ -89,8 +89,3 @@ $('td.profit').each(function(){
     });
 }
 </script>
-
-
-
-
-

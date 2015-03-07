@@ -1,4 +1,5 @@
 <?php //товарный тека официальный 
+$connection->query("update `base`.`excel2mysql0_tt2` set `KOEF` = 0 WHERE DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2' and `excel2mysql0_tt2`.`Прочность_28_проценты` < 100"); 
 // Выводим таблицу для расчета коэффициента вариации для каждого изделия
   $result = $connection->query("SELECT  `Класс`,`Дата` FROM `excel2mysql0_tt2` where DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2' and `KOEF` like '1' GROUP BY `Класс` ASC");
   while($row = $result->fetch_array()){           // Список всех наименований изделий

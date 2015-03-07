@@ -12,7 +12,7 @@
     <tr>
    <td class="table-filterable table-sortable:numeric table-sortable table-sorted-desc" align="center" style="width:94px; height:20px;">Дата <br/>изготовления</td>					
    <td class="table-filterable table-sortable:default table-sortable" align="center" align="center" style="width:122px; height:20px;">Класс <br/>бетона</td>				
-   <td class="table-filterable table-sortable:default table-sortable" align="center" align="center" style="width:60px; height:20px;">БСЦ/РБУ<br></td>						
+   <td class="table-filterable table-sortable:default table-sortable" align="center" align="center" style="width:61px; height:20px;">БСЦ/РБУ<br></td>						
    <td class="table-filterable table-sortable:default table-sortable" align="center" align="center" style="width:90px; height:20px;">Прочность <br/>7 суток, МПа</td>							
    <td class="table-filterable table-sortable:default table-sortable" align="center" align="center" style="width:95px; height:20px;">Прочность <br/>28 суток, МПа</td>			
    <td class="table-filterable table-sortable:default table-sortable" align="center" align="center" style="width:110px; height:20px;">Требуемая <br/>Прочность, МПа</td>  
@@ -37,7 +37,7 @@ while($row = $result->fetch_array()){
 <td contenteditable="true"><?=$row['Прочность28']?></td>
 <td contenteditable="true"><?=$row['Требуемая_прочность_МПа']?></td>
 <td contenteditable="true"><?=$row['Прочность_7_проценты']?></td>
-<td contenteditable="true"><?=$row['Прочность_28_проценты']?></td>
+<td contenteditable="true" <?if ($row['Прочность_28_проценты']<100) echo "style='color:red'";?>><?=$row['Прочность_28_проценты']?></td>
 <td contenteditable="true"><?=$row['Прирост']?></td>
 <td contenteditable="true"><?=$row['Место_отгрузки_БС']?></td>
 <td contenteditable="true"><?=$row['Добавка']?></td>
@@ -77,15 +77,8 @@ while($row = $result->fetch_array()){
    $sumR=$sumR +  ($Прочность28-$mid_s)*($Прочность28-$mid_s);
    if   (($Прочность28-$mid_s)*($Прочность28-$mid_s) >= $DFR) {$DFR=($Прочность28-$mid_s)*($Прочность28-$mid_s); $DFP=$Прочность28; }
    } 
-  // echo $DFR.' -Максимальная разность квадратов';               
-   //echo '<br/>';
-   //echo $DFP.' -Прочность, которую нужно отсеять, если коэффициент вариации больше 8.7';                     // Прочность, которую нужно отсеять
-  // echo '<br/>';
    if ($b>6) {$Sm=sqrt($sumR/($b-1)) ;} else {$Sm=($P_max-$P_min)/alfa($b);}
-  // echo $Sm.' -Среднее квадротическое отклонение';
-   //echo '<br/>';
    $Vm=$Sm*100/$mid_s;
-  // echo $Vm.' -Коэффициент вариации';
    if ($Vm > $koef_var) {
   $connection->query ("update `base`.`excel2mysql0_t2` set `KOEF` = 0  WHERE DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2' and `excel2mysql0_t2`.`Прочность28` = $DFP and `Класс` like '$Класс' ");
   }
@@ -190,4 +183,4 @@ while($row = $result->fetch_array()){
 $connection->query ("UPDATE `excel2mysql0_t2` SET `KOEF`=1");                      // записать единицу в KOEF   
 ?>
 </table>
- </div>
+ </div><?php unset($Mas_Var); unset($Mas_Mid); ?>

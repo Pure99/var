@@ -41,10 +41,10 @@ WHERE `excel2mysql0_k2`.`ID_TAB` IS NULL"); // синхронизировать 
 <input type="hidden" name="viewInfo" value="3"/>
 <br><input type="submit" class="btn btn-primary">
 </form></div>
-<table class="table-autostripe table-rowshade-alternate table-autosort table-autofilter table-stripeclass:alternate table-page-number:t1page table-page-count:t1pages table-filtered-rowcount:t1filtercount table-rowcount:t1allcount" align="center" border="1px" align=center bgcolor=#eaeae cellpadding="0px" cellspacing="0px" id="table1" >
+<table class="table-autostripe table-rowshade-alternate table-autosort table-autofilter table-stripeclass:alternate table-page-number:t1page table-page-count:t1pages table-filtered-rowcount:t1filtercount table-rowcount:t1allcount" align="center" bordercolor="black" border="1px" bgcolor="#eaeae" cellpadding="0px" cellspacing="0px" id="table1" >
 <thead>
   <tr>
-   <td class="table-filterable table-sortable:numeric table-sortable"  align="center" style="width:50px; height:20px;">№<br></td>	
+   <td class="table-filterable table-sortable:numeric "  align="center" style="width:50px; height:20px;">№<br></td>	
    <td class="table-filterable table-sortable:default table-sortable"  align="center" style="width:104px; height:20px;">Дата <br>изготовления</td>					
    <td class="table-filterable table-sortable:default table-sortable"  align="center" style="width:122px; height:20px;">Наименование <br>изделия</td>				
    <td class="table-filterable table-sortable:default table-sortable"  align="center" style="width:104px; height:20px;">Класс <br>бетона</td>						
@@ -75,7 +75,7 @@ while($row = $result->fetch_array()){
     });
 });"  contenteditable="true" id="proch"><?=$row['Прочность_МПа']?></td>
 <td align="center"><?=$row['Требуемая_прочность_МПа']?></td>
-<td align="center" ><?=$row['Прочность_проценты']?></td>
+<td align="center" <?if ($row['Прочность_проценты']<100) echo "style='color:red'";?>><?=$row['Прочность_проценты']?></td>
 <td align="center"><?=$row['Добавка']?></td>
 </tr>
   <?php } ?>

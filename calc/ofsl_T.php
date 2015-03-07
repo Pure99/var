@@ -1,4 +1,5 @@
  <?php   //товарный официальный
+$connection->query("update `base`.`excel2mysql0_t2` set `KOEF` = 0 WHERE DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2' and `excel2mysql0_t2`.`Прочность_28_проценты` < 100");
 // Выводим таблицу для расчета коэффициента вариации для каждого изделия
   $result = $connection->query("SELECT  `Класс`,`Дата` FROM `excel2mysql0_t2` where DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2' and `KOEF` like '1' GROUP BY `Класс` ASC");
   while($row = $result->fetch_array()){           // Список всех наименований изделий
@@ -59,6 +60,4 @@ while($row = $result->fetch_array()){
 $connection->query ("UPDATE `excel2mysql0_t2` SET `KOEF`=1");                      // записать единицу в KOEF   
 ?>
 </table>  
-<?php unset($Mas_Var);
-unset($Mas_Mid); 
-unset($Mas_Rt); ?>
+<?php unset($Mas_Var); unset($Mas_Mid); unset($Mas_Rt); ?>

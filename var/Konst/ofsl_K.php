@@ -30,7 +30,7 @@ while($row = $result->fetch_array()){
 <td contenteditable="true"><?=$row['Класс_бетона']?></td>
 <td contenteditable="true"><?=$row['Прочность_МПа']?></td>
 <td contenteditable="true"><?=$row['Требуемая_прочность_МПа']?></td>
-<td contenteditable="true"><?=$row['Прочность_проценты']?></td>
+<td contenteditable="true" <?if ($row['Прочность_проценты']<100) echo "style='color:red'";?>><?=$row['Прочность_проценты']?></td>
 <td contenteditable="true"><?=$row['Добавка']?></td>
 </tr>
   <?php }?>
