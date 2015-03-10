@@ -43,7 +43,7 @@ WHERE `excel2mysql0_k2`.`ID_TAB` IS NULL"); // синхронизировать 
 </form></div>
 <table class="table-autostripe table-rowshade-alternate table-autosort table-autofilter table-stripeclass:alternate table-page-number:t1page table-page-count:t1pages table-filtered-rowcount:t1filtercount table-rowcount:t1allcount" align="center" bordercolor="black" border="1px" bgcolor="#eaeae" cellpadding="0px" cellspacing="0px" id="table1" >
 <thead>
-  <tr>
+ 
    <td class="table-filterable table-sortable:numeric "  align="center" style="width:50px; height:20px;">№<br></td>	
    <td class="table-filterable table-sortable:default table-sortable"  align="center" style="width:104px; height:20px;">Дата <br>изготовления</td>					
    <td class="table-filterable table-sortable:default table-sortable"  align="center" style="width:122px; height:20px;">Наименование <br>изделия</td>				
@@ -52,7 +52,7 @@ WHERE `excel2mysql0_k2`.`ID_TAB` IS NULL"); // синхронизировать 
    <td class="table-filterable table-sortable:default table-sortable"  align="center" style="width:114px; height:20px;">Требуемая прочность, МПа</td>			
    <td class="profit table-filterable table-sortable:default table-sortable"  align="center" style="width:104px; height:20px;">Прочность, %<br></td>   							
    <td class="table-filterable table-sortable:default table-sortable"  align="center" style="width:104px; height:20px;">Добавка<br></td>  								
-  </tr>
+  
   </thead>
 <?php  $nomer_str=0;
 $result = $connection->query("SELECT * FROM excel2mysql0_k2 where DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2'");// Запрос исходной таблицы с данными
@@ -61,7 +61,7 @@ while($row = $result->fetch_array()){
 <tr >
 <td align="center" ><?=++$nomer_str; ?></td>
 <td align="center" ><?=$Дата?></td>
-<td align="left"><?=$row['Наименование_изделия']?></td>
+<td align="left"><a href="#" id="username" data-type="text" data-placement="right" data-title="Enter username"><?=$row['Наименование_изделия']?></a></td>
 <td align="center"><?=$row['Класс_бетона']?></td>
 <td align="center" onblur="$('#proch').bind('blur', function(evt) {
     $.post('/edit.php', { 
@@ -89,3 +89,7 @@ $('td.profit').each(function(){
     });
 }
 </script>
+
+     
+
+
