@@ -61,7 +61,7 @@ while($row = $result->fetch_array()){
 <tr >
 <td align="center" ><?=++$nomer_str; ?></td>
 <td align="center" ><?=$Дата?></td>
-<td align="left"><a href="#" id="username" data-type="text" data-placement="right" data-title="Enter username"><?=$row['Наименование_изделия']?></a></td>
+<td align="left"><a href="#"  data-type="text" data-placement="right" data-title="Enter username"><?=$row['Наименование_изделия']?></a></td>
 <td align="center"><?=$row['Класс_бетона']?></td>
 <td align="center" onblur="$('#proch').bind('blur', function(evt) {
     $.post('/edit.php', { 
@@ -80,16 +80,7 @@ while($row = $result->fetch_array()){
 </tr>
   <?php } ?>
 </table>
-<script type="text/javascript">
-function process()
-{
-$('td.profit').each(function(){
-    var x = $(this).text();
-    if (x < 100) $(this).css({color: 'red'});
-    });
-}
-</script>
-<a href="#" id="username" data-type="text" data-placement="right" data-title="Enter username">superuser</a>
+
      
 
 

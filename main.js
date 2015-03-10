@@ -3,7 +3,7 @@ $(document).ready(function() {
     $.fn.editable.defaults.mode = 'inline';     
     
     //make username editable
-    $('#username').editable();
+    $('.izdelie').editable();
     
     //make status editable
     $('#status').editable({
@@ -16,10 +16,10 @@ $(document).ready(function() {
             {value: 2, text: 'status 2'},
             {value: 3, text: 'status 3'}
         ]
-        /*
+       
         //uncomment these lines to send data on server
         ,pk: 1
         ,url: '/post'
-        */
+    
     });
 });
