@@ -61,19 +61,9 @@ while($row = $result->fetch_array()){
 <tr >
 <td align="center" ><?=++$nomer_str; ?></td>
 <td align="center" ><?=$Дата?></td>
-<td align="left"><a href="#" id="username" class="izdelie" data-type="text" data-placement="right" data-title="Enter username"><?=$row['Наименование_изделия']?></a></td>
+<td align="left" id="<?=$row['ID_TAB']?>"><a href="#" id="<?=$row['ID_TAB']?>" class="izdelie" data-type="text" data-placement="right" data-title="Наименование изделия"><?=$row['Наименование_изделия']?></a></td>
 <td align="center"><?=$row['Класс_бетона']?></td>
-<td align="center" onblur="$('#proch').bind('blur', function(evt) {
-    $.post('/edit.php', { 
-            $('#proch').attr('name') : $('#proch').val(), 
-           
-        }, 
-        function(data) {
-            alert('Done');
-            alert(data);
-        }
-    });
-});"  contenteditable="true" id="proch"><?=$row['Прочность_МПа']?></td>
+<td align="center" id="proch"><?=$row['Прочность_МПа']?></td>
 <td align="center"><?=$row['Требуемая_прочность_МПа']?></td>
 <td align="center" <?if ($row['Прочность_проценты']<100) echo "style='color:red'";?>><?=$row['Прочность_проценты']?></td>
 <td align="center"><?=$row['Добавка']?></td>

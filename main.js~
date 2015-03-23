@@ -1,25 +1,26 @@
 $(document).ready(function() {
     //toggle `popup` / `inline` mode
-    $.fn.editable.defaults.mode = 'inline';     
+    $.fn.editable.defaults.mode = 'popup';     
     
     //make username editable
     $('.izdelie').editable();
+    $(document).on('click','.editable-submit',function(){
+			var x = $(this).closest('td').children('span').attr('id');
+			var y = $('.input-sm').val();
+			var z = $(this).closest('td').children('span');
+			$.ajax({
+				url: "../var/process.php?id="+x+"&data="+y,
+				type: 'GET',
+				success: function(s){
+					if(s == 'status'){
+					$(z).html(y);}
+					if(s == 'error') {
+					alert('Error Processing your Request!');}
+				},
+				error: function(e){
+					alert('Error Processing your Request!!');
+				}
+			});
+		});
     
-    //make status editable
-    $('#status').editable({
-        type: 'select',
-        title: 'Select status',
-        placement: 'right',
-        value: 2,
-        source: [
-            {value: 1, text: 'status 1'},
-            {value: 2, text: 'status 2'},
-            {value: 3, text: 'status 3'}
-        ]
-        /*
-        //uncomment these lines to send data on server
-        ,pk: 1
-        ,url: '/post'
-        */
-    });
 });

@@ -23,13 +23,13 @@ $result = $connection->query("SELECT * FROM excel2mysql0_k2 where DATE(`Дата
 while($row = $result->fetch_array()){
  extract ($row);?>
   <tr>
-<td contenteditable="true" type="date"><?php echo $row['Дата']?></td>
-<td contenteditable="true" align="left"><?=$row['Наименование_изделия']?></td>
-<td contenteditable="true"><?=$row['Класс_бетона']?></td>
-<td contenteditable="true"><?=$row['Прочность_МПа']?></td>
-<td contenteditable="true"><?=$row['Требуемая_прочность_МПа']?></td>
-<td contenteditable="true" <?if ($row['Прочность_проценты']<100) echo "style='color:red'";?>><?=$row['Прочность_проценты']?></td>
-<td contenteditable="true"><?=$row['Добавка']?></td>
+<td type="date"><?php echo $row['Дата']?></td>
+<td align="left"><?=$row['Наименование_изделия']?></td>
+<td ><?=$row['Класс_бетона']?></td>
+<td ><?=$row['Прочность_МПа']?></td>
+<td ><?=$row['Требуемая_прочность_МПа']?></td>
+<td  align="center" <?if ($row['Прочность_проценты']<100) echo "style='color:red'";?>><?=$row['Прочность_проценты']?></td>
+<td ><?=$row['Добавка']?></td>
 </tr>
   <?php }?>
   </table>
