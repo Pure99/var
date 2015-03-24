@@ -4,12 +4,14 @@ $(document).ready(function() {
     
     //make username editable
     $('.izdelie').editable();
+	$('.klass_betona').editable();
     $(document).on('click','.editable-submit',function(){
-			var x = $(this).closest('td').children('a').attr('id');
-			var y = $('.input-sm').val();
+			var a = $(this).closest('td').children('span').attr('id');
+			var b = $('.input-sm').val();
+		//	var c = $('.input-sm').closest('.klass_betona').val();
 			var z = $(this).closest('td').children('span');
 			$.ajax({
-				url: "../var/process.php?id="+x+"&data="+y,
+				url: "../var/process.php?id="+a+"&izdelie="+b+"&klass_betona="+c,
 				type: 'GET',
 				success: function(s){
 					if(s == 'status'){
