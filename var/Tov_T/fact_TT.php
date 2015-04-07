@@ -1,4 +1,4 @@
-<h3>Товарный бетон</h3><div  class="pole jumbotron">
+<h3>Товарный бетон</h3><div  class="pole jumbotron" style="position:fixed">
 <form name="Form" method="GET" action="<?=$_SERVER['PHP_SELF']?>">
 Начало периода:<input type="DATE" name="data1" class="form-control" value="<?=$data1?>">
 Конец периода:<input type="DATE" name="data2" class="form-control" value="<?=$data2?>">
@@ -16,9 +16,9 @@
    <td class="table-filterable table-sortable:default table-sortable" align="center" style="width:110px; height:20px;">Требуемая <br/>Прочность, МПа</td>  
    <td class="table-filterable table-sortable:default table-sortable" align="center" style="width:80px; height:20px;">Прочность <br/>7 суток, %</td>	
    <td class="table-filterable table-sortable:default table-sortable" align="center" style="width:80px; height:20px;">Прочность <br/>28 суток, %</td>	
-   <td class="table-filterable table-sortable:default table-sortable" align="center" style="width:80px; height:20px;">Прирост</td>
-   <td class="table-filterable table-sortable:default table-sortable" align="center" style="width:80px; height:20px;">Место <br/>отгрузки <br/>БС</td>
-   <td class="table-filterable table-sortable:default table-sortable" align="center" style="width:80px; height:20px;">Добавка</td>							
+   <td class="table-filterable table-sortable:default table-sortable" align="center" style="width:80px; height:20px;">Прирост<br></td>
+   <td class="table-filterable table-sortable:default table-sortable" align="center" style="width:80px; height:20px;">Место <br/>отгрузки БС</td>
+   <td class="table-filterable table-sortable:default table-sortable" align="center" style="width:80px; height:20px;">Добавка<br></td>							
   </tr>
   </thead>
 <?php

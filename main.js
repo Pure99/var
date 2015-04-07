@@ -4,14 +4,21 @@ $(document).ready(function() {
     
     //make username editable
     $('.izdelie').editable();
-	$('.klass_betona').editable();
+    $('.klass_betona').editable();
+    $('.prochnost').editable();
+    $('.tr_prochnost').editable();
+    $('.class').editable();
     $(document).on('click','.editable-submit',function(){
-			var a = $(this).closest('td').children('span').attr('id');
-			var b = $('.input-sm').val();
-		//	var c = $('.input-sm').closest('.klass_betona').val();
+    			var AReplaceText =''; 
+    			var VRegExp = new RegExp(/\s.*/);
+    			var a = $(this).closest('td').children('span').attr('class').replace(VRegExp, AReplaceText);
+			var b = $(this).closest('td').children('span').attr('id');
+			var c = $('.input-sm').val();
+			var VRegExp = new RegExp(/\s.*?\s/);
+			var x = $.trim($(this).closest('td').children('span').attr('class').match(VRegExp));
 			var z = $(this).closest('td').children('span');
 			$.ajax({
-				url: "../var/process.php?id="+a+"&izdelie="+b+"&klass_betona="+c,
+				url: "../var/process.php?table="+a+"&id="+b+"&"+x+"="+c,
 				type: 'GET',
 				success: function(s){
 					if(s == 'status'){
@@ -24,5 +31,11 @@ $(document).ready(function() {
 				}
 			});
 		});
-    
+    $(document).on('onmouseover',function(){
+       
+var b = $(this).closest('td').children('input').attr('id');
+alert (b);
+
+});
+
 });

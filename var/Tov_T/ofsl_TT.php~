@@ -1,4 +1,4 @@
-<h3>Товарный бетон</h3><div class="pole jumbotron">
+<h3>Товарный бетон</h3><div class="pole jumbotron" style="position:fixed">
 <form name="Form" method="GET" action="<?=$_SERVER['PHP_SELF']?>">
 Начало периода:<input type="DATE" name="data1" class="form-control" value="<?=$data1?>">
 Конец периода:<input type="DATE" name="data2" class="form-control" value="<?=$data2?>">
@@ -35,7 +35,7 @@ while($row = $result->fetch_array()){
 <td contenteditable="true"><?=$row['Прочность28']?></td>
 <td contenteditable="true"><?=$row['Требуемая_прочность_МПа']?></td>
 <td contenteditable="true"><?=$row['Прочность_7_проценты']?></td>
-<td contenteditable="true"><?=$row['Прочность_28_проценты']?></td>
+<td contenteditable="true" <?if ($row['Прочность_28_проценты']<100) echo "style='color:red'";?>><?=$row['Прочность_28_проценты']?></td>
 <td contenteditable="true"><?=$row['Прирост']?></td>
 <td contenteditable="true"><?=$row['Место_отгрузки_БС']?></td>
 <td contenteditable="true"><?=$row['Добавка']?></td>

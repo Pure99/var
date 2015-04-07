@@ -35,45 +35,42 @@ using(`Дата`, `Класс`, `Прочность7`, `Прочность28`, `
 WHERE `excel2mysql0_tt2`.`ID_TAB` IS NULL"); 
 } else { echo "<div class='alert alert-danger' role='alert'>Таблица в файле не соответствует требуемому формату.</div>";}
 } ?>
-<div class="pole jumbotron"><form name="authForm" method="GET" action="<?=$_SERVER['PHP_SELF']?>">
+<div class="pole jumbotron" style="position:fixed"><form name="authForm" method="GET" action="<?=$_SERVER['PHP_SELF']?>">
 Начало периода:<input type="DATE" name="data1" class="form-control" value="<?=$data1?>">
 Конец периода:<input type="DATE" name="data2" class="form-control" value="<?=$data2?>">
 <input type="hidden" name="viewInfo" value="9"/>
 <br><input type="submit" class="btn btn-primary">
 </form></div>
-<table align=center bgcolor=#eaeae cellpadding="0px" cellspacing="0px">
-<tbody>
-<tr><td>
 <table class="table-autostripe table-rowshade-alternate table-autosort table-autofilter table-stripeclass:alternate table-page-number:t1page table-page-count:t1pages table-filtered-rowcount:t1filtercount table-rowcount:t1allcount" align="center" border="1px" cellpadding="0px" cellspacing="0px" id="table1" style="margin-left:200px" >
-<thead><tr>
-   <td class="table-filterable table-sortable:default table-sortable"align="center" style="width:60px; height:20px;">№</td>
-   <td class="table-filterable table-sortable:default table-sortable" align="center" style="width:94px; height:20px;">Дата <br/>изготовления</td>					
-   <td class="table-filterable table-sortable:default table-sortable" align="center" style="width:122px; height:20px;">Класс <br/>бетона</td>					
-   <td class="table-filterable table-sortable:default table-sortable" align="center" style="width:90px; height:20px;">Прочность <br/>7 суток, МПа</td>							
-   <td class="table-filterable table-sortable:default table-sortable" align="center" style="width:95px; height:20px;">Прочность <br/>28 суток, МПа</td>			
-   <td class="table-filterable table-sortable:default table-sortable" align="center" style="width:110px; height:20px;">Требуемая <br/>Прочность, МПа</td>  
-   <td class="table-filterable table-sortable:default table-sortable" align="center" style="width:80px; height:20px;">Прочность <br/>7 суток, %</td>	
-   <td class="table-filterable table-sortable:default table-sortable" align="center" style="width:80px; height:20px;">Прочность <br/>28 суток, %</td>	
-   <td class="table-filterable table-sortable:default table-sortable" align="center" style="width:80px; height:20px;">Прирост</td>
-   <td class="table-filterable table-sortable:default table-sortable" align="center" style="width:80px; height:20px;">Место <br/>отгрузки <br/>БС</td>
-   <td class="table-filterable table-sortable:default table-sortable" align="center" style="width:80px; height:20px;">Добавка</td>							
-  </tr></thead>
+<thead>
+   <td class="table-filterable table-sortable:numeric" align="center" style="width:60px; height:20px;">№<br></td>
+   <td class="table-filterable table-sortable:default" align="center" style="width:94px; height:20px;">Дата <br/>изготовления</td>					
+   <td class="table-filterable table-sortable:default" align="center" style="width:122px; height:20px;">Класс <br/>бетона</td>					
+   <td class="table-filterable table-sortable:numeric" align="center" style="width:90px; height:20px;">Прочность <br/>7 суток, МПа</td>							
+   <td class="table-filterable table-sortable:numeric" align="center" style="width:95px; height:20px;">Прочность <br/>28 суток, МПа</td>			
+   <td class="table-filterable table-sortable:numeric" align="center" style="width:110px; height:20px;">Требуемая <br/>Прочность, МПа</td>  
+   <td class="table-filterable table-sortable:numeric" align="center" style="width:80px; height:20px;">Прочность <br/>7 суток, %</td>	
+   <td class="table-filterable table-sortable:numeric" align="center" style="width:80px; height:20px;">Прочность <br/>28 суток, %</td>	
+   <td class="table-filterable table-sortable:numeric" align="center" style="width:80px; height:20px;">Прирост<br></td>
+   <td class="table-filterable table-sortable:default" align="center" style="width:80px; height:20px;">Место <br/>отгрузки БС</td>
+   <td class="table-filterable table-sortable:default" align="center" style="width:80px; height:20px;">Добавка<br></td>							
+  </thead>
 <?php $nomer_str=0;
  $result = $connection->query("SELECT * FROM excel2mysql0_tt2 where DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2'");// Запрос исходной таблицы с данными
 while($row = $result->fetch_array()){
  extract ($row);?>
   <tr>
 <td align="center"><?=++$nomer_str?></td>
-<td contenteditable="true" align="center"><?=$row['Дата']?></td>
-<td contenteditable="true" align="left"><?=$row['Класс']?></td>
-<td contenteditable="true" align="center"><?=$row['Прочность7']?></td>
-<td contenteditable="true" align="center"><?=$row['Прочность28']?></td>
-<td contenteditable="true" align="center"><?=$row['Требуемая_прочность_МПа']?></td>
-<td contenteditable="true" align="center"><?=$row['Прочность_7_проценты']?></td>
-<td contenteditable="true" align="center" <?if ($row['Прочность_28_проценты']<100) echo "style='color:red'";?>><?=$row['Прочность_28_проценты']?></td>
-<td contenteditable="true" align="center"><?=$row['Прирост']?></td>
-<td contenteditable="true" align="center"><?=$row['Место_отгрузки_БС']?></td>
-<td contenteditable="true" align="center"><?=$row['Добавка']?></td>
+<td align="center"><?=$row['Дата']?></td>
+<td align="left"><span id="<?=$row['ID_TAB']?>" class="excel2mysql0_tt2 class" data-type="text" data-placement="right" data-title="Класс бетона"><?=$row['Класс']?></span></td>
+<td align="center"><?=$row['Прочность7']?></td>
+<td align="center"><span id="<?=$row['ID_TAB']?>" class="excel2mysql0_tt2 prochnost" data-type="text" data-placement="right" data-title="Прочность 28 суток"><?=$row['Прочность28']?></span></td>
+<td align="center"><span id="<?=$row['ID_TAB']?>" class="excel2mysql0_tt2 tr_prochnost" data-type="text" data-placement="right" data-title="Требуемая прочность"><?=$row['Требуемая_прочность_МПа']?></span></td>
+<td align="center"><?=$row['Прочность_7_проценты']?></td>
+<td align="center" <?if ($row['Прочность_28_проценты']<100) echo "style='color:red'";?>><?=$row['Прочность_28_проценты']?></td>
+<td align="center"><?=$row['Прирост']?></td>
+<td align="center"><?=$row['Место_отгрузки_БС']?></td>
+<td align="center"><?=$row['Добавка']?></td>
 </tr>
   <?php }?>
 </table>

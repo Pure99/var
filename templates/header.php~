@@ -10,13 +10,19 @@
     <title>Starter Template for Bootstrap</title>
     <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="bootstrap/css/bootstrap-theme.css" rel="stylesheet">
-    <link href="bootstrap/bootstrap3-editable-1.5.1/css/bootstrap-editable.css" rel="stylesheet">
+    <link href="bootstrap/bootstrap3-editable-1.5.1/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet">
     <style> body  { padding-top: 50px;}
 .starter-template { text-align: center;}
 .alternate {background-color: #eee;}
 tr:hover {background-color: #eee;}
 select, option { text-align: left; width: inherit; }
 .pole {position:absolute; padding:6px; padding-left:3px !important; padding-right:3px !important;}
+
+[data-behavior="sticky"].bound {
+    position:fixed;
+    max-width:300px;
+    top:0;
+}
 </style>
   </head>
   <body>

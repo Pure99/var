@@ -1,4 +1,4 @@
-<h3>Товарный бетон</h3><div  class="pole jumbotron">
+<h3>Товарный бетон</h3><div  class="pole jumbotron" style="position:fixed">
 <form name="Form" method="GET" action="<?=$_SERVER['PHP_SELF']?>">
 Начало периода:<input type="DATE" name="data1" class="form-control" value="<?=$data1?>">
 Конец периода:<input type="DATE" name="data2" class="form-control" value="<?=$data2?>">

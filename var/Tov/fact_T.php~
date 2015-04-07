@@ -34,7 +34,7 @@ while($row = $result->fetch_array()){
 <td contenteditable="true"><?=$row['Прочность28']?></td>
 <td contenteditable="true"><?=$row['Требуемая_прочность_МПа']?></td>
 <td contenteditable="true"><?=$row['Прочность_7_проценты']?></td>
-<td contenteditable="true" <?if ($row['Прочность_проценты']<100) echo "style='color:red'";?>><?=$row['Прочность_28_проценты']?></td>
+<td contenteditable="true" <?if ($row['Прочность_28_проценты']<100) echo "style='color:red'";?>><?=$row['Прочность_28_проценты']?></td>
 <td contenteditable="true"><?=$row['Прирост']?></td>
 <td contenteditable="true"><?=$row['Место_отгрузки_БС']?></td>
 <td contenteditable="true"><?=$row['Добавка']?></td>
