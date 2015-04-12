@@ -19,12 +19,13 @@ $(function edit() {
 			var z = $(this).closest('td').children('span');
 			if (x == 'prochnost') {
 			alert (c);
-			
 			alert (c/$(this).closest('tr').children('td').children('span.tr_prochnost').text()*100);
 			$(this).closest('tr').children('td.proc').html(Math.round(c/$(this).closest('tr').children('td').children('span.tr_prochnost').text()*100).toFixed(0));
 	}
 			if (x == 'tr_prochnost') {
-			alert (c);}		     
+			alert (c);
+alert ($(this).closest('tr').children('td').children('span.prochnost').text()/c*100);
+}		     
 			$.ajax({
 				url: "../var/process.php?table="+a+"&id="+b+"&"+x+"="+c,
 				type: 'GET',

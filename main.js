@@ -25,6 +25,7 @@ $(function edit() {
 			if (x == 'tr_prochnost') {
 			alert (c);
 alert ($(this).closest('tr').children('td').children('span.prochnost').text()/c*100);
+$(this).closest('tr').children('td.proc').html(Math.round($(this).closest('tr').children('td').children('span.prochnost').text()/c*100).toFixed(0));
 }		     
 			$.ajax({
 				url: "../var/process.php?table="+a+"&id="+b+"&"+x+"="+c,
