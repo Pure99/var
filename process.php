@@ -1,6 +1,6 @@
 <?php
 include("config.php");
-if($_GET['izdelie'])
+if (@$_GET['izdelie'])
 {
 	$id = $_GET['id'];
 	$izdelie = $_GET['izdelie'];
@@ -19,14 +19,14 @@ elseif ($_GET['prochnost']){
         $id = $_GET['id'];
         $prochnost = $_GET['prochnost'];
 	$table = $_GET['table'];
-	if($connection->query("update `$table` set `Прочность_МПа`='$prochnost', `Прочность_проценты`='$prochnost'/`Требуемая_прочность_МПа`*'100' where ID_TAB='$id'") or $connection->query("update `$table` set `Прочность28`='$prochnost' where ID_TAB='$id'"))
+	if($connection->query("update `$table` set `Прочность_МПа`='$prochnost', `Прочность_проценты`='$prochnost'/`Требуемая_прочность_МПа`*'100' where ID_TAB='$id'") or $connection->query("update `$table` set `Прочность28`='$prochnost' `Прочность_28_проценты`='$prochnost'/`Требуемая_прочность_МПа`*'100' where ID_TAB='$id'"))
 	echo 'success';
 }
 elseif ($_GET['tr_prochnost']){
         $id = $_GET['id'];
         $tr_prochnost = $_GET['tr_prochnost'];
 	$table = $_GET['table'];
-	if($connection->query("update `$table` set `Требуемая_прочность_МПа`='$tr_prochnost' where ID_TAB='$id'"))
+	if($connection->query("update `$table` set `Требуемая_прочность_МПа`='$tr_prochnost', `Прочность_проценты`=`Прочность_МПа`/'$tr_prochnost'*'100' where ID_TAB='$id'") or $connection->query("update `$table` set `Требуемая_прочность_МПа`='$tr_prochnost' `Прочность_28_проценты`=`Прочность28`/'$tr_prochnost'*'100' where ID_TAB='$id'"))
 	echo 'success';
 }
 elseif ($_GET['class']){

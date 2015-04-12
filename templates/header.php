@@ -14,7 +14,11 @@
     <style> body  { padding-top: 50px;}
 .starter-template { text-align: center;}
 .alternate {background-color: #eee;}
-tr:hover {background-color: #eee;}
+tr:hover  {background-color: #eee;}
+.delete {visibility: hidden; }
+.delete:hover {background: #c12e2a; }
+tr:hover > .delete {visibility: visible; }
+
 select, option { text-align: left; width: inherit; }
 .pole {position:absolute; padding:6px; padding-left:3px !important; padding-right:3px !important;}
 </style>

@@ -1,42 +1,3 @@
-<script type="text/javascript">
-function replace() {
-x = Math.round(Math.random()*500);
-y = Math.round(Math.random()*500);
-h = Math.round(Math.random()*50)+100;
-w = Math.round(Math.random()*50)+100;
-bg = Math.round(Math.random()*1000000);
-r = Math.round(Math.random()*100);
-document.getElementById('mb').style="position:absolute;\n"+"left:"+x+";\n"+"top:"+y+";\n"+"width:"+w+";\n"+"height:"+h+";\n"+"background-color:"+bg+";\n"+"border-radius:"+r+"px;\n";
-}
-</script>  
-<script type="text/javascript">
-function mouseCoords(e) {
- // создание виртуального образа кнопки
-var btn = document.createElement (('v' == '\v') ? '<input name="myName">' : 'input'); btn.name = 'myName';
-btn.type = 'button'; // или 'submit', или 'reset';
-btn.id = 'myUniqueID';
-btn.value = 'Дави!'; // или 'Отправить', или 'Очистить'...
-btn.style.cssText = 'color: red; margin-left: 100px; position:absolute; left:1000px; top:500px;...';
- 
-// "приживление" кнопки
-// вариант первый: перед закрывающим тегом какого-нить тега-контейнера с id="myPlace"
-//document.getElementById ('myPlace').appendChild (btn);
- 
-// вариант второй: перед открывающим тегом какого-нить тега c id="myElem"
-document.getElementById ('myElem').parentNode.insertBefore (btn, document.getElementById ('myElem'));
-var btnn=document.getElementById ('this.id');
-btnn.style.cssText = '';
-
-
-}
-function mouseout(e) {
-var el = document.getElementById('myUniqueID');
-el.parentNode.removeChild(el);
-var btnn=document.getElementById ('b496');
-btnn.style.cssText = 'display:none';
-
-}
-</script>  
 <h3>Конструкционный бетон</h3>
 	<!-- Тип кодирования данных, enctype, ДОЛЖЕН БЫТЬ указан ИМЕННО так -->
 <div align="left" class="pole jumbotron" style="position:relative"><form enctype="multipart/form-data" action="index.php?viewInfo=3" method="POST">
@@ -98,7 +59,7 @@ WHERE `excel2mysql0_k2`.`ID_TAB` IS NULL"); // синхронизировать 
 $result = $connection->query("SELECT * FROM excel2mysql0_k2 where DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2'");// Запрос исходной таблицы с данными
 while($row = $result->fetch_array()){
  extract ($row);?>
-<tr  onmouseover="mouseCoords(event)" onmouseout="mouseout(event)"> 
+<tr id="<?=$ID_TAB?>" > 
 <td align="center" ><?=++$nomer_str; ?></td>
 <td align="center" ><?=$Дата?></td>
 <td align="left"><span id="<?=$row['ID_TAB']?>" class="excel2mysql0_k2 izdelie" data-type="text" data-placement="right" data-title="Наименование изделия"><?=$row['Наименование_изделия']?></span></td>
@@ -107,9 +68,20 @@ while($row = $result->fetch_array()){
 <td align="center"><span id="<?=$row['ID_TAB']?>" class="excel2mysql0_k2 tr_prochnost" data-type="text" data-placement="right" data-title="Требуемая прочность"><?=$row['Требуемая_прочность_МПа']?></span></td>
 <td align="center" <?if ($row['Прочность_проценты']<100) echo "style='color:red'";?>><?=$row['Прочность_проценты']?></td>
 <td align="center"><?=$row['Добавка']?></td>
-<td style="border:0px; border-right-width:0px !important;"> <input id="b<?=$row['ID_TAB']?>" type=button class="btn btn-primary" style="display:none"> </td>
+<td width="21px"  id="<?=$ID_TAB?>" class="delete" align="center" valign="middle"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></td>
 </tr>
   <?php } ?>
+<tr>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td width="21px" bgcolor="#419641" id="excel2mysql0_k2" class="add" align="center" valign="middle"><span align="center" class="glyphicon glyphicon-plus" aria-hidden="true"></span></td>
+ </tr>
  </table></div><div id="myElem"></div>
 
      
