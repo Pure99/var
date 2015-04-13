@@ -121,7 +121,7 @@ while($row = $result->fetch_array()){
    <td align="center"><?php if ($b>6) {echo number_format(round($Sm=sqrt($sumR/($b-1)),1), 1, '.', '') ;} else {echo number_format(round($Sm=($P_max-$P_min)/alfa($b),1), 1, '.', '');}?></td>  
    <td align="center"><?php echo  number_format(round($Vm=$Sm*100/$mid_s,1), 1, '.', '') ;$Mas_Var[]=$Vm; ?> </td>  
    <td align="center"><?php echo $Kt=number_format(round(interpol($Vm),2), 2, '.', '') ?></td>  
-  <td align="center"><?php echo preg_replace("/В(.*?)(П|С|\s)/",  "\${1}\$", str_replace(',','.',$row['Класс']))  *  $Kt  ?> </td>  
+  <td align="center"><?php echo preg_replace("/(B|В)(.*?)(П|С|\s)/",  "\${2}\$", str_replace(',','.',$row['Класс']))  *  $Kt  ?> </td>  
   </tr>
   </table>
  <br/>
@@ -151,9 +151,9 @@ while($row = $result->fetch_array()){
  	<tr>
    <td align="center"><?=$l+1?></td>
    <td align="center"><?=$Класс?></td>
-   <td align="center"><?=str_replace('.',',',(number_format(round($Mas_Var[$l],1), 1, '.', '')))?> </td>
+   <td align="center"><?=str_replace('.',',',(number_format(round($Mas_Var[$l],1), 1, '.', '')))?></td>
    <td align="center"><?=str_replace('.',',',(number_format(round($Mas_Mid[$l],1), 1, '.', '')))?></td>
-   <td align="center"><?preg_match("/В(.*?)(П|С|\s)/", $Класс, $matches); echo str_replace('.',',',(number_format(round($matches[1]*1.31,1), 1, '.', '')))?></td>
+   <td align="center"><? preg_match("/(B|В)(.*?)(П|С|\s)/", $Класс, $matches); echo str_replace('.',',',(number_format(round($matches[2]*1.31,1), 1, '.', '')))?></td>
  </tr>			
 <?$l=$l+1;	}?>		
 <tr>
