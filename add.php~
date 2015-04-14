@@ -46,13 +46,13 @@ echo "<tr id=\"".$row['ID_TAB']."\">
 <td align=\"center\"></td>
 <td align=\"center\">".$row['Дата']."</td>
 <td><span id=\"".$row['ID_TAB']."\" class=\"".$table." class\" data-type=\"text\" data-placement=\"right\" data-title=\"Класс бетона\">".$row['Класс']."</span></td>
+
 <td align=\"center\"></td>
 <td align=\"center\"><span id=\"".$row['ID_TAB']."\" class=\"".$table." prochnost\" data-type=\"text\" data-placement=\"right\" data-title=\"Прочность 28 суток, МПа\">".$row['Прочность28']."</span></td>
 <td align=\"center\"><span id=\"".$row['ID_TAB']."\" class=\"".$table." tr_prochnost\" data-type=\"text\" data-placement=\"right\" data-title=\"Требуемая прочность\">".$row['Требуемая_прочность_МПа']."</span></td>
 <td align=\"center\"></td>
 <td align=\"center\" class=\"proc\">".$row['Прочность_28_проценты']."</td>
 <td align=\"center\">".$row['Прирост']."</td>
-<td align=\"center\">".$row['Место_отгрузки_БС']."</td>
 <td align=\"center\">".$row['Добавка']."</td>
 <td width=\"21px\" id=\"".$row['ID_TAB']."\" class=\"delete\" align=\"center\" valign=\"middle\"><span class=\"glyphicon glyphicon-remove\" aria-hidden=\"true\"></span></td></tr>";
 

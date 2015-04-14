@@ -8,13 +8,11 @@ $(function edit() {            //функция ввода значений
     $(document).on('click','.editable-submit',function(){
     		var AReplaceText =''; 
     		var VRegExp = new RegExp(/\s.*/);
-    		var a = $(this).closest('td').children('span').attr('class').replace(VRegExp, AReplaceText); // определяется класс-название таблицы
-			var b = $(this).closest('td').children('span').attr('id');  //определяется id строки
-			var c = $('.input-sm').val();          //определяется введенное значение
+    		var a = $(this).closest('td').children('span').attr('class').replace(VRegExp, AReplaceText);
+			var b = $(this).closest('td').children('span').attr('id');
+			var c = $('.input-sm').val();
 			var VRegExp = new RegExp(/\s.*?\s/);
-			var x = $.trim($(this).closest('td').children('span').attr('class').match(VRegExp)); //определяется класс-название столбца 
-			alert (a);
-			alert (x);
+			var x = $.trim($(this).closest('td').children('span').attr('class').match(VRegExp));
 			var z = $(this).closest('td').children('span');
 			if (x == 'prochnost') {
 alert (c);

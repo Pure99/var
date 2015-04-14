@@ -76,6 +76,6 @@ while($row = $result->fetch_array()){
 </tr>
   <?php }?>
 <tfoot><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td>
-<td width="21px" bgcolor="#419641" id="excel2mysql0_tt2" class="add" align="center" valign="middle"><span align="center" class="glyphicon glyphicon-plus" aria-hidden="true"></span></td>
+<td width="21px" bgcolor="#419641" id="excel2mysql0_t2" class="add" align="center" valign="middle"><span align="center" class="glyphicon glyphicon-plus" aria-hidden="true"></span></td>
 </tfoot> </table>
 </table>

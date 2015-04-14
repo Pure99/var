@@ -23,7 +23,7 @@ if ($viewInfo == '1')
 	 elseif ($viewInfo == '2') 
 		require ('var/Konst/ofsl_K.php');
 	 elseif ($viewInfo == '3') {
-		//require  ('auth.php');
+		require  ('auth.php');
 	 require ('var/Konst/xls.php');}
 	 elseif ($viewInfo == '4') 
 		require ('var/Tov/fact_T.php');

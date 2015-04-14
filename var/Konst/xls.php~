@@ -43,7 +43,7 @@ WHERE `excel2mysql0_k2`.`ID_TAB` IS NULL"); // синхронизировать 
 <input type="hidden" name="viewInfo" value="3"/>
 <br><input type="submit" class="btn btn-primary">
 </form></div>
-<div align="center"><table class="table-autostripe table-rowshade-alternate table-autosort table-autofilter table-stripeclass:alternate table-page-number:t1page table-page-count:t1pages table-filtered-rowcount:t1filtercount table-rowcount:t1allcount" align="center" bordercolor="black" border="1px" bgcolor="#eaeae" cellpadding="0px" cellspacing="0px" id="table1" style="border-right-width:0px"      >
+<table class="table-autostripe table-rowshade-alternate table-autosort table-autofilter table-stripeclass:alternate table-page-number:t1page table-page-count:t1pages table-filtered-rowcount:t1filtercount table-rowcount:t1allcount" align="center" bordercolor="black" border="1px" bgcolor="#eaeae" cellpadding="0px" cellspacing="0px" id="table1" style="border-right-width:0px"      >
 <thead>
  
    <td class="table-filterable table-sortable:numeric" align="center" style="width:50px; height:20px;">№<br></td>	
@@ -74,4 +74,8 @@ while($row = $result->fetch_array()){
   <?php } ?>
 <tfoot><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td>
 <td width="21px" bgcolor="#419641" id="excel2mysql0_k2" class="add" align="center" valign="middle"><span align="center" class="glyphicon glyphicon-plus" aria-hidden="true"></span></td>
- </tfoot></table></div>
+ </tfoot></table>
+
+     
+
+
