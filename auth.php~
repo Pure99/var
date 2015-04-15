@@ -4,7 +4,7 @@ if (isset($_POST['auth_name'])) {
   $name=$connection->real_escape_string($_POST['auth_name']);
   $pass=$connection->real_escape_string($_POST['auth_pass']);
   $query = "SELECT * FROM users WHERE name='$name' AND pass='$pass'";
-  $result = $connection->query($query) ;
+  $result = $connection->query($query) or trigger_error(mysql_error().$query);
   if ($row = mysql_fetch_assoc($result)) {
     session_start();
     $_SESSION['user_id'] = $row['id'];

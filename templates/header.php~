@@ -29,7 +29,7 @@ select, option { text-align: left; width: inherit; }
       <div class="container">
         <div class="navbar-header" >
           
-          <a class="navbar-brand" href="../index.php" >Коэффициент <br> вариации</a>
+          <a class="brand" href="../index.php" >Коэффициент <br> вариации</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
