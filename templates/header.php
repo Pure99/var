@@ -11,6 +11,7 @@
     <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="bootstrap/css/bootstrap-theme.css" rel="stylesheet">
     <link href="bootstrap/bootstrap3-editable-1.5.1/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet">
+	
     <style> body  { padding-top: 50px;}
 .starter-template { text-align: center;}
 .alternate {background-color: #eee;}
@@ -62,6 +63,15 @@ select, option { text-align: left; width: inherit; }
               </ul>
             </li>
           </ul>
+		  <form class="navbar-form navbar-right">
+            <div class="form-group">
+              <input type="text" placeholder="Email" class="form-control">
+            </div>
+            <div class="form-group">
+              <input type="password" placeholder="Password" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-success">Sign in</button>
+          </form>
         </div><!--/.nav-collapse -->
       </div>
     </nav>
