@@ -59,13 +59,13 @@ select, option { text-align: left; width: inherit; }
             </li>
           </ul>
 		  <form class="navbar-form navbar-right">
-            <div class="form-group">
+            <div class="form-group form-group-sm">
               <input type="text" placeholder="Email" class="form-control">
             </div>
-            <div class="form-group">
+            <div class="form-group form-group-sm">
               <input type="password" placeholder="Password" class="form-control">
             </div>
-            <button type="submit" class="btn btn-success">Sign in</button>
+            <button type="submit" class="btn btn-sm btn-success">Sign in</button>
           </form>
         </div><!--/.nav-collapse -->
       </div>
