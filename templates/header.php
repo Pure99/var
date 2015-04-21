@@ -11,10 +11,10 @@
     <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="bootstrap/css/bootstrap-theme.css" rel="stylesheet">
     <link href="bootstrap/bootstrap3-editable-1.5.1/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet">
-	
+	<link href="bootstrap/css/signin.css" rel="stylesheet">
     <style> body  { padding-top: 50px;}
 .starter-template { text-align: center;}
-.alternate {background-color: #eee;}
+.alternate {background-color: rgba(238, 238, 238, 0.52);}
 tr:hover  {background-color: #eee;}
 .delete {visibility: hidden; }
 .delete:hover {background: #c12e2a; }
@@ -60,13 +60,15 @@ select, option { text-align: left; width: inherit; }
           </ul>
 		  <form class="navbar-form navbar-right">
             <div class="form-group form-group-sm">
-              <input type="text" placeholder="Email" class="form-control">
+              <input type="text" placeholder="Имя" class="form-control" value="<?php if (isset($_SESSION['user_name'])) echo $_SESSION['user_name']?>">
             </div>
-            <div class="form-group form-group-sm">
-              <input type="password" placeholder="Password" class="form-control">
+            <!--<div class="form-group form-group-sm">
+              <input type="password" placeholder="Пароль" class="form-control" >
             </div>
-            <button type="submit" class="btn btn-sm btn-success">Sign in</button>
+            <button type="submit" class="btn btn-sm btn-success">Sign in</button>-->
+			<button type="submit" name="action" value="logout" class="btn btn-sm btn-success">Выход</button>
           </form>
+		  
         </div><!--/.nav-collapse -->
       </div>
     </nav>

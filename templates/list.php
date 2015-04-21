@@ -13,6 +13,13 @@ elseif (isset($_SESSION['data2']))
 		$data2=$_SESSION['data2'] ;
 else $data2=date("Y-m-d",strtotime("last day of -2 month"));
      $koef_var=isset($_GET['koef_var']) ? $_GET['koef_var'] : 8.7;
+if (isset($_GET['action']) AND $_GET['action']=="logout") {
+//  session_start();
+  session_destroy();
+  header("Location: http://".$_SERVER['HTTP_HOST']."/");
+  echo 'logout';
+  exit ('выход');
+}
 ?>
 <div class="container">
       <div class="starter-template">
@@ -24,7 +31,8 @@ if ($viewInfo == '1')
 		require ('var/Konst/ofsl_K.php');
 	 elseif ($viewInfo == '3') {
 		require  ('auth.php');
-	 require ('var/Konst/xls.php');}
+	 require ('var/Konst/xls.php');
+	 }
 	 elseif ($viewInfo == '4') 
 		require ('var/Tov/fact_T.php');
 	 elseif ($viewInfo == '5') 
