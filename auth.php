@@ -10,9 +10,9 @@ if (isset($_POST['auth_name'])) {
 	$_SESSION['user_name'] = $row['name'];
     $_SESSION['ip'] = $_SERVER['REMOTE_ADDR'];
 	//echo $_SESSION['ip'];
-	
+	return ('вход выполнен');
 	//require ('var/Konst/xls.php');
-	header("Location: http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
+	//header("Location: http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
   }
   else { 
 ?>
