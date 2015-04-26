@@ -1,5 +1,11 @@
 <?php
 session_start();
+if (isset($_GET['action']) AND $_GET['action']=="logout") {
+  session_destroy();
+  header("Location: http://".$_SERVER['HTTP_HOST']."/var");
+  echo 'logout';
+  exit ('выход');
+}
 require ('header.php');
 require ('config.php');
 if (isset($_GET['data1'])) 
@@ -13,38 +19,32 @@ elseif (isset($_SESSION['data2']))
 		$data2=$_SESSION['data2'] ;
 else $data2=date("Y-m-d",strtotime("last day of -2 month"));
      $koef_var=isset($_GET['koef_var']) ? $_GET['koef_var'] : 8.7;
-if (isset($_GET['action']) AND $_GET['action']=="logout") {
-//  session_start();
-  session_destroy();
-  header("Location: http://".$_SERVER['HTTP_HOST']."/");
-  echo 'logout';
-  exit ('выход');
-}
+
 ?>
 <div class="container">
       <div class="starter-template">
 <?php
-@$viewInfo = $_GET['viewInfo'];
-if ($viewInfo == '1') 
+if (isset($_GET['viewInfo']) and $_GET['viewInfo'] == '1') 
 		require ('var/Konst/fact_K.php');
-	 elseif ($viewInfo == '2') 
+	 elseif (isset($_GET['viewInfo']) and$_GET['viewInfo'] == '2') 
 		require ('var/Konst/ofsl_K.php');
-	 elseif ($viewInfo == '3') {
-		require  ('auth.php');
-	 require ('var/Konst/xls.php');
-	 }
-	 elseif ($viewInfo == '4') 
+	 elseif (isset($_GET['viewInfo']) and$_GET['viewInfo'] == '3') {
+	 	require  ('auth.php');
+	 	require ('var/Konst/xls.php');}
+	 elseif (isset($_GET['viewInfo']) and$_GET['viewInfo'] == '4') 
 		require ('var/Tov/fact_T.php');
-	 elseif ($viewInfo == '5') 
+	 elseif (isset($_GET['viewInfo']) and$_GET['viewInfo'] == '5') 
 		require ('var/Tov/ofsl_T.php');
-	 elseif ($viewInfo == '6') 
-		require ('var/Tov/xls.php');
-	 elseif ($viewInfo == '7') 
+	 elseif (isset($_GET['viewInfo']) and$_GET['viewInfo'] == '6') {
+		require  ('auth.php');
+		require ('var/Tov/xls.php');}
+	 elseif (isset($_GET['viewInfo']) and$_GET['viewInfo'] == '7') 
 		require ('var/Tov_T/fact_TT.php');
-	 elseif ($viewInfo == '8') 
+	 elseif (isset($_GET['viewInfo']) and$_GET['viewInfo'] == '8') 
 		require ('var/Tov_T/ofsl_TT.php');
-	 elseif ($viewInfo == '9') 
-		require ('var/Tov_T/xls.php');
+	 elseif (isset($_GET['viewInfo']) and$_GET['viewInfo'] == '9') {
+		require  ('auth.php');
+		require ('var/Tov_T/xls.php');}
 else{
 ?>
 <div class="pole jumbotron " >

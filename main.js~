@@ -71,7 +71,7 @@ if (data) {
     var AReplaceText ='';
     var VRegExp = new RegExp(/\s.*/);
     var table = $(this).closest('tr').children('td').children('span').attr('class').replace(VRegExp, AReplaceText);  
- if (confirm('Вы действительно хотите удалить строку???')){
+ if (confirm('hgfjhgfkhmg')){
 alert (table);              
     var commentContainer = $(this).parent(); 
     var commentId = $(this).attr("id");// получаем значение элемента

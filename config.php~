@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 $db_host = 'localhost'; //имя MySQL-сервера
 $db_user = 'root'; // имя пользователя
 $db_pass = ''; // пароль
