@@ -36,4 +36,12 @@ elseif ($_GET['class']){
 	if($connection->query("update `$table` set `Класс`='$class' where ID_TAB='$id'"))
 	echo 'success';
 }
+elseif ($_GET['data']){
+        $id = $_GET['id'];
+        $data = $_GET['data'];
+	$table = $_GET['table'];
+	if($connection->query("update `$table` set `Дата`='$data' where ID_TAB='$id'"))
+		echo $data;
+	echo 'success';
+}
 ?>

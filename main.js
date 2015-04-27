@@ -1,5 +1,6 @@
 $(function edit() {            //функция ввода значений
     $.fn.editable.defaults.mode = 'popup';   //toggle `popup` / `inline` mode   
+	$('.data').editable();
     $('.izdelie').editable();
     $('.klass_betona').editable();
     $('.prochnost').editable();
@@ -26,6 +27,11 @@ alert (c);
 alert ($(this).closest('tr').children('td').children('span.prochnost').text()/c*100);
 $(this).closest('tr').children('td.proc').html(Math.round($(this).closest('tr').children('td').children('span.prochnost').text()/c*100).toFixed(0));
 }		     
+if (x == 'data'){
+	var c = $('.active').val();
+alert (c);
+
+}
 			$.ajax({
 				url: "../var/process.php?table="+a+"&id="+b+"&"+x+"="+c,
 				type: 'GET',
@@ -55,7 +61,8 @@ if (data) {
            break;
            default:
 			alert(data);
-			$(data).insertBefore($("tr:last"));   
+			$(data).insertBefore($("tr:last"));
+			$('.data').editable();
 			$('.izdelie').editable();
 			$('.klass_betona').editable();
 			$('.prochnost').editable();
