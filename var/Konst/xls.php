@@ -62,7 +62,7 @@ while($row = $result->fetch_array()){
  extract ($row);?>
 <tr id="<?=$ID_TAB?>" > 
 <td align="center" ><?=++$nomer_str; ?></td>
-<td align="center" ><span id="<?=$row['ID_TAB']?>" class="excel2mysql0_k2 data" data-type="date" data-viewformat="yyyy-mm-dd" data-pk="1" data-placement="right" data-title="Дата"><?=$Дата?></span></td>
+<td align="center" ><span id="<?=$row['ID_TAB']?>" class="excel2mysql0_k2 data" data-placement="right" data-title="Дата"><?=$Дата?></span></td>
 <td align="left"><span id="<?=$row['ID_TAB']?>" class="excel2mysql0_k2 izdelie" data-type="text" data-placement="right" data-title="Наименование изделия"><?=$row['Наименование_изделия']?></span></td>
 <td align="center"><span id="<?=$row['ID_TAB']?>" class="excel2mysql0_k2 klass_betona" data-type="text" data-placement="right" data-title="Класс бетона"><?=$row['Класс_бетона']?></span></td>
 <td align="center"><span id="<?=$row['ID_TAB']?>" class="excel2mysql0_k2 prochnost" data-type="text" data-placement="right" data-title="Прочность, МПа"><?=$row['Прочность_МПа']?></span></td>
