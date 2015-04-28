@@ -1,5 +1,6 @@
 $(function edit() {            //функция ввода значений
     $.fn.editable.defaults.mode = 'popup';   //toggle `popup` / `inline` mode   
+    $('.data').editable();
     $('.izdelie').editable();
     $('.klass_betona').editable();
     $('.prochnost').editable();
@@ -26,6 +27,21 @@ alert (c);
 alert ($(this).closest('tr').children('td').children('span.prochnost').text()/c*100);
 $(this).closest('tr').children('td.proc').html(Math.round($(this).closest('tr').children('td').children('span.prochnost').text()/c*100).toFixed(0));
 }		     
+if (x == 'data'){
+	//var c = $(document).on('.editable-unsaved').val();
+$(function() {
+    $('.data').daterangepicker({
+        singleDatePicker: true,
+        showDropdowns: true
+    }, 
+    function(start, end, label) {
+        var years = moment().diff(start, 'years');
+        alert("You are " + years + " years old.");
+    });
+});
+alert (c);
+
+}
 			$.ajax({
 				url: "../var/process.php?table="+a+"&id="+b+"&"+x+"="+c,
 				type: 'GET',
@@ -55,7 +71,8 @@ if (data) {
            break;
            default:
 			alert(data);
-			$(data).insertBefore($("tr:last"));   
+			$(data).insertBefore($("tr:last"));
+			$('.data').editable();
 			$('.izdelie').editable();
 			$('.klass_betona').editable();
 			$('.prochnost').editable();
@@ -71,7 +88,7 @@ if (data) {
     var AReplaceText ='';
     var VRegExp = new RegExp(/\s.*/);
     var table = $(this).closest('tr').children('td').children('span').attr('class').replace(VRegExp, AReplaceText);  
- if (confirm('hgfjhgfkhmg')){
+ if (confirm('Вы действительно хотите удалить строку???')){
 alert (table);              
     var commentContainer = $(this).parent(); 
     var commentId = $(this).attr("id");// получаем значение элемента
@@ -95,3 +112,5 @@ alert (table);
     }
     return false;}
   });
+
+

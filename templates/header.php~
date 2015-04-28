@@ -27,7 +27,12 @@ select, option { text-align: left; width: inherit; }
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header" >
-          
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
           <a class="navbar-brand" href="../index.php" >Коэффициент <br> вариации</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
@@ -57,15 +62,15 @@ select, option { text-align: left; width: inherit; }
               </ul>
             </li>
           </ul>
-		  <form class="navbar-form navbar-right">
-            <div class="form-group form-group-sm">
-              <input type="text" placeholder="Имя" class="form-control" value="<?php if (isset($_SESSION['user_name'])) echo $_SESSION['user_name']?>">
+	    <form class="navbar-form navbar-right">
+            <div class="form-group">
+            <input type="text" placeholder="Имя" class="form-control" id="name" value="<?php if (isset($_SESSION['user_name'])) echo $_SESSION['user_name']?>">
             </div>
             <!-- <div class="form-group form-group-sm">
               <input type="password" placeholder="Пароль" class="form-control" >
             </div>
             <button type="submit" class="btn btn-sm btn-success">Sign in</button>-->
-			<button type="submit" name="action" value="logout" class="btn btn-sm btn-success">Выход</button>
+	    <button type="submit" name="action" value="logout" class="btn btn-success">Выход</button>
           </form>
 		  
         </div><!--/.nav-collapse -->

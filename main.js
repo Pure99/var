@@ -1,6 +1,6 @@
 $(function edit() {            //функция ввода значений
     $.fn.editable.defaults.mode = 'popup';   //toggle `popup` / `inline` mode   
-	$('.data').editable();
+    $('.data').editable();
     $('.izdelie').editable();
     $('.klass_betona').editable();
     $('.prochnost').editable();
@@ -28,9 +28,19 @@ alert ($(this).closest('tr').children('td').children('span.prochnost').text()/c*
 $(this).closest('tr').children('td.proc').html(Math.round($(this).closest('tr').children('td').children('span.prochnost').text()/c*100).toFixed(0));
 }		     
 if (x == 'data'){
-	var c = $('.active').val();
+	//var c = $(document).on('.editable-unsaved').val();
+/*$(function() {
+    $('.data').daterangepicker({
+        singleDatePicker: true,
+        showDropdowns: true
+    }, 
+    function(start, end, label) {
+        var years = moment().diff(start, 'years');
+        alert("You are " + years + " years old.");
+    });
+});
 alert (c);
-
+*/
 }
 			$.ajax({
 				url: "../var/process.php?table="+a+"&id="+b+"&"+x+"="+c,
@@ -102,3 +112,5 @@ alert (table);
     }
     return false;}
   });
+
+
