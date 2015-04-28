@@ -263,6 +263,35 @@ th {
   .table-bordered td {
     border: 1px solid #ddd !important;
   }
+body {
+    padding: 0px;
+  }
+	/* hide every element within the body */
+  article {
+    page-break-before: always;
+  }
+	/*p {
+    page-break-before: always;
+  }*/
+	/* add a friendy reminder not to waste paper after the body */
+  ul, img, .print {
+    page-break-inside: avoid;
+  }
+  .navbar-header { 
+    display: none;
+  }
+  table#table1 {
+    page-break-after: always;
+  }
+  table#table3   {
+    page-break-after: always;
+  }
+  form {
+    display: none; 
+  }
+  .container { 
+    width:auto }
+
 }
 @font-face {
   font-family: 'Glyphicons Halflings';
@@ -1594,7 +1623,7 @@ pre code {
 }
 @media (min-width: 1200px) {
   .container {
-    width: 1170px;
+    width: 1300px;
   }
 }
 .container-fluid {
@@ -4175,11 +4204,11 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   border-width: 1px 0 0;
 }
 .navbar-brand {
-  float: left;
-  height: 50px;
-  padding: 15px 15px;
-  font-size: 18px;
-  line-height: 20px;
+ /* float: left;*/
+ /* height: 50px;*/
+  /*padding: 15px 15px;*/
+  font-size: 17px;
+  line-height: 22px;
 }
 .navbar-brand:hover,
 .navbar-brand:focus {
