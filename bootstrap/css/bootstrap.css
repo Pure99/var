@@ -189,7 +189,7 @@ th {
   padding: 0;
 }
 /*! Source: https://github.com/h5bp/html5-boilerplate/blob/master/src/css/main.css */
-@media only print and (orientation:landscape) {
+@media only print  {
   *,
   *:before,
   *:after {
@@ -264,7 +264,9 @@ th {
     border: 1px solid #ddd !important;
   }
 body {
+margin: 0px;
     padding: 0px;
+margin-left: 0px;
   }
 	/* hide every element within the body */
   article {
@@ -275,18 +277,20 @@ body {
   }*/
 	/* add a friendy reminder not to waste paper after the body */
   ul, img, .print {
+padding: 0px;
+  margin: 0px;
+margin-left: 0px;
     page-break-inside: avoid !important;
   }
   .navbar-header { 
     display: none;
   }
   table#table1 {
-  padding: 0;
-  margin: 0;
+  
     page-break-after: always;
   }
   table#table3   {
-    /*page-break-before: avoid;*/
+    page-break-before: always;
     page-break-after: always;
   }
   table#table2   {
@@ -297,8 +301,10 @@ body {
     display: none; 
   }
   .container { 
-    width:auto }
-
+  padding: 0px;
+  margin: 0px;
+  margin-left: 0px;
+   width:1300px; }
 }
 @font-face {
   font-family: 'Glyphicons Halflings';
