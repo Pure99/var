@@ -6,7 +6,7 @@
 <br><input type="submit" class="btn btn-primary">
 </form></div>
 <div class="print">
-<table class="table-autostripe table-autosort table-autofilter table-stripeclass:alternate table-page-number:t1page table-page-count:t1pages table-filtered-rowcount:t1filtercount table-rowcount:t1allcount sort01" align="center" border="1px" cellpadding="0px" cellspacing="0px" id="table1" style="margin-left:200px">
+<table class="table-autostripe table-autosort table-autofilter table-stripeclass:alternate table-page-number:t1page table-page-count:t1pages table-filtered-rowcount:t1filtercount table-rowcount:t1allcount sort01" align="center" border="1px" cellpadding="0px" cellspacing="0px" id="table1" style="">
     <thead>
 	<tr>
    <td class="table-filterable table-sortable:default table-sortable" align="center" style="width:94px; height:20px;">Дата <br/>изготовления</td>					
@@ -44,7 +44,7 @@ while($row = $result->fetch_array()){
  </div>
 <br/>
 <p>Фактический коэффициент вариации</p>
-  
+  <div class="print">
   <?php // Выводим таблицу для расчета коэффициента вариации для каждого изделия
   $result = $connection->query("SELECT  `Класс`,`Дата` FROM `excel2mysql0_t2` where DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2' GROUP BY `Класс` ASC");
   while($row = $result->fetch_array()){           // Список всех наименований изделий
@@ -70,7 +70,7 @@ while($row = $result->fetch_array()){
    $sumR=$sumR +  ($Прочность28-$mid_s)*($Прочность28-$mid_s);
   
    } ?>
- <div class="print">
+ 
   <table border="1px" align=center bgcolor=#eaeae cellpadding="0px" cellspacing="0px" id="table2">
 	<caption><?php echo ' Класс ';  echo$row['Класс'] ;  ?></caption>
   <tr>	
@@ -131,8 +131,9 @@ Rmin = <br/>
 В˂Rmini≥Rmin <br/>
 </p>
 <p align=center >------------------------------------------------------------------------------------------------------------------------</p>
-</div>
+
    <?php }?>
+  </div> 
   <div class="print">
   <!-- выводим сводную таблицу-->
  <table border="1px" align=center bgcolor=#eaeaea cellpadding="4px" cellspacing="0px" id="table3">

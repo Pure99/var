@@ -189,7 +189,7 @@ th {
   padding: 0;
 }
 /*! Source: https://github.com/h5bp/html5-boilerplate/blob/master/src/css/main.css */
-@media print {
+@media only print and (orientation:landscape) {
   *,
   *:before,
   *:after {
@@ -275,16 +275,23 @@ body {
   }*/
 	/* add a friendy reminder not to waste paper after the body */
   ul, img, .print {
-    page-break-inside: avoid;
+    page-break-inside: avoid !important;
   }
   .navbar-header { 
     display: none;
   }
   table#table1 {
+  padding: 0;
+  margin: 0;
     page-break-after: always;
   }
   table#table3   {
+    /*page-break-before: avoid;*/
     page-break-after: always;
+  }
+  table#table2   {
+    page-break-inside: avoid;
+    /*page-break-after: always;*/
   }
   form {
     display: none; 
@@ -1623,7 +1630,7 @@ pre code {
 }
 @media (min-width: 1200px) {
   .container {
-    width: 1300px;
+    width: auto;
   }
 }
 .container-fluid {
