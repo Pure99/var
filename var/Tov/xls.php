@@ -41,12 +41,12 @@ WHERE `excel2mysql0_t2`.`ID_TAB` IS NULL");
 <input type="hidden" name="viewInfo" value="6"/>
 <br><input type="submit" class="btn btn-primary">
 </form></div>
-<div align="center"><table class="table-autostripe table-rowshade-alternate table-autosort table-autofilter table-stripeclass:alternate table-page-number:t1page table-page-count:t1pages table-filtered-rowcount:t1filtercount table-rowcount:t1allcount" align="center" border="1px" cellpadding="0px" cellspacing="0px" id="table1" style="margin-left:200px" >
+<div align="center"><table class="table-autostripe table-rowshade-alternate table-autosort table-autofilter table-stripeclass:alternate table-page-number:t1page table-page-count:t1pages table-filtered-rowcount:t1filtercount table-rowcount:t1allcount" align="center" border="1px" cellpadding="0px" cellspacing="0px" id="table1">
 <thead>
    <td class="table-filterable table-sortable:numeric" align="center" style="width:60px; height:20px;">№<br></td>
    <td class="table-filterable table-sortable:default" align="center" style="width:94px; height:20px;">Дата <br/>изготовления</td>
    <td class="table-filterable table-sortable:default" align="center" style="width:122px; height:20px;">Класс <br/>бетона</td>
-   <td class="table-filterable table-sortable:default" align="center" style="width:60px; height:20px;">БСЦ/РБУ</td>
+   <td class="table-filterable table-sortable:default" align="center" style="width:60px; height:20px;">БСЦ/РБУ<br></td>
    <td class="table-filterable table-sortable:numeric" align="center" style="width:90px; height:20px;">Прочность <br/>7 суток, МПа</td>
    <td class="table-filterable table-sortable:numeric" align="center" style="width:95px; height:20px;">Прочность <br/>28 суток, МПа</td>
    <td class="table-filterable table-sortable:numeric" align="center" style="width:110px; height:20px;">Требуемая <br/>Прочность, МПа</td>

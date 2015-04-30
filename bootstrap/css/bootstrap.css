@@ -297,7 +297,7 @@ margin-left: 0px;
     page-break-inside: avoid;
     /*page-break-after: always;*/
   }
-  form {
+  form, .pole {
     display: none; 
   }
  /* .container { 
