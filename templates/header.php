@@ -20,8 +20,9 @@ tr:hover  {background-color: #eee;}
 .delete:hover {background: #c12e2a; }
 tr:hover > .delete {visibility: visible; }
 select, option { text-align: left; width: inherit; }
-/*#table1 {margin-left:200px}*/
-.pole {position:absolute; padding:6px; padding-left:3px !important; padding-right:3px !important;}
+#table1 {overfflow: hidden;}
+.pole {position:fixed; padding:6px; padding-left:3px !important; padding-right:3px !important; z-index:100; display:block; float: left ;overflow: hidden; }
+.print { display:block; z-index:10; position:relative;}
 </style>
   </head>
   <body>

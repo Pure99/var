@@ -278,15 +278,17 @@ margin-left: 0px;
 	/* add a friendy reminder not to waste paper after the body */
   ul, img, .print {
 padding: 0px;
+width:auto;
   margin: 0px;
 margin-left: 0px;
     page-break-inside: avoid !important;
   }
+
   .navbar-header { 
     display: none;
   }
   table#table1 {
-  
+  float: none;
     page-break-after: always;
   }
   table#table3   {
@@ -297,8 +299,9 @@ margin-left: 0px;
     page-break-inside: avoid;
     /*page-break-after: always;*/
   }
-  form, .pole {
-    display: none; 
+  form, .pole, .fix {
+position:relative;
+    displfay: none; 
   }
  /* .container { 
   padding: 0px;
