@@ -300,11 +300,11 @@ margin-left: 0px;
   form {
     display: none; 
   }
-  .container { 
+ /* .container { 
   padding: 0px;
   margin: 0px;
   margin-left: 0px;
-   width:1300px; }
+   width:1300px; }*/
 }
 @font-face {
   font-family: 'Glyphicons Halflings';
