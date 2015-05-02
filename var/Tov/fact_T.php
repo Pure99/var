@@ -10,7 +10,7 @@
     <thead>
    <td class="table-filterable table-sortable:default table-sortable" align="center" style="width:94px; height:20px;">Дата <br/>изготовления</td>					
    <td class="table-filterable table-sortable:default table-sortable" align="center" style="width:122px; height:20px;">Класс <br/>бетона</td>				
-   <td class="table-filterable table-sortable:default table-sortable" align="center" style="width:61px; height:20px;">БСЦ/РБУ<br></td>						
+   <td class="table-filterable table-sortable:default table-sortable" align="center" style="width:60px; height:20px;">БСЦ/РБУ<br></td>						
    <td class="table-filterable table-sortable:default table-sortable" align="center" style="width:90px; height:20px;">Прочность <br/>7 суток, МПа</td>							
    <td class="table-filterable table-sortable:default table-sortable" align="center" style="width:95px; height:20px;">Прочность <br/>28 суток, МПа</td>			
    <td class="table-filterable table-sortable:default table-sortable" align="center" style="width:110px; height:20px;">Требуемая <br/>Прочность, МПа</td>  
