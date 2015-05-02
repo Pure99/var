@@ -6,9 +6,8 @@
 <br><input type="submit" class="btn btn-primary">
 </form></div></div>
 <div class="print">
-<table class="table-autostripe table-autosort table-autofilter table-stripeclass:alternate table-page-number:t1page table-page-count:t1pages table-filtered-rowcount:t1filtercount table-rowcount:t1allcount sort01" align="center" border="1px" bgcolor=#eaeae cellpadding="0px" cellspacing="0px" id="table1" >
+<table class="table-autostripe table-autosort table-autofilter table-stripeclass:alternate table-page-number:t1page table-page-count:t1pages table-filtered-rowcount:t1filtercount table-rowcount:t1allcount sort01" align="center" border="1px" cellpadding="0px" cellspacing="0px" id="table1" >
     <thead>
-	<tr>
    <td class="table-filterable table-sortable:numeric table-sortable table-sorted-desc" align="center" style="width:104px; height:20px;">Дата <br>изготовления</td>			
    <td class="table-filterable table-sortable:default table-sortable" align="center" style="width:122px; height:20px;">Наименование <br>изделия</td>		
    <td class="table-filterable table-sortable:default table-sortable" align="center" style="width:104px; height:20px;">Класс <br>бетона</td>			
@@ -16,19 +15,18 @@
    <td class="table-filterable table-sortable:default table-sortable" align="center" style="width:114px; height:20px;">Требуемая прочность, МПа</td>
    <td class="table-filterable table-sortable:default table-sortable" align="center" style="width:104px; height:20px;">Прочность, %<br></td> 					
    <td class="table-filterable table-sortable:default table-sortable" align="center" style="width:104px; height:20px;">Добавка<br></td>  						
-   </tr>
   </thead>
 <?php
 $result = $connection->query("SELECT * FROM excel2mysql0_k2 where DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2'");// Запрос исходной таблицы с данными
 while($row = $result->fetch_array()){
  extract ($row);?>
   <tr>
-<td type="date"><?php echo $row['Дата']?></td>
+<td><?php echo $row['Дата']?></td>
 <td align="left"><?=$row['Наименование_изделия']?></td>
 <td ><?=$row['Класс_бетона']?></td>
 <td ><?=$row['Прочность_МПа']?></td>
 <td ><?=$row['Требуемая_прочность_МПа']?></td>
-<td  align="center" <?if ($row['Прочность_проценты']<100) echo "style='color:red'";?>><?=$row['Прочность_проценты']?></td>
+<td <?if ($row['Прочность_проценты']<100) echo "style='color:red'";?>><?=$row['Прочность_проценты']?></td>
 <td ><?=$row['Добавка']?></td>
 </tr>
   <?php }?>
@@ -64,7 +62,7 @@ while($row = $result->fetch_array()){
   
    } ?>
  <div class="print">
-  <table border="1px" align=center bgcolor=#eaeae cellpadding="0px" cellspacing="0px" id="table2">
+  <table border="1px" align="center" cellpadding="0px" cellspacing="0px" id="table2">
 	<caption><?php echo $row['Наименование_изделия'] ; echo ' Класс B'; echo rtrim(rtrim($Класс_бетона,'0'), '.')	;?></caption>
   <tr>	
    <td align="center">№п/п</td>
@@ -117,7 +115,6 @@ while($row = $result->fetch_array()){
    <td align="center"><?php echo  number_format(round($Rt=$row['Класс_бетона'] *  $Kt,1), 1, '.', '');  ?> </td>  
   </tr>
   </table>
-
  <br/>
  <p>
  Rm ≥ Rт				<br/>		
@@ -131,8 +128,8 @@ Rmin = 		<?echo $Rt-4?>			<br/>
    <?php } ?>
  
 <div class="print">
- <table border="1px" align=center bgcolor=#eaeaea cellpadding="4px" cellspacing="0px" id="table3">
-	<caption contenteditable="true">Результаты статистического метода контроля прочности конструкционного бетона на 28 суток по ГОСТ 18105-2010 фактический	</caption>
+ <table border="1px" align="center" cellpadding="4px" cellspacing="0px" id="table3">
+	<caption>Результаты статистического метода контроля прочности конструкционного бетона на 28 суток по ГОСТ 18105-2010. Фактический. Период с <?=$data1?> по <?=$data2?>.	</caption>
   <tr>
    <td align="center">N</td>
    <td align="center">Наименование изделия</td>

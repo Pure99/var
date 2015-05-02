@@ -24,16 +24,16 @@
 while($row = $result->fetch_array()){
  extract ($row);?>
   <tr >
-<td contenteditable="true"><?php echo $row['Дата']?></td>
-<td contenteditable="true" align="left"><?=$row['Класс']?></td>
-<td contenteditable="true"><?=$row['Прочность7']?></td>
-<td contenteditable="true"><?=$row['Прочность28']?></td>
-<td contenteditable="true"><?=$row['Требуемая_прочность_МПа']?></td>
-<td contenteditable="true"><?=$row['Прочность_7_проценты']?></td>
-<td contenteditable="true" <?if ($row['Прочность_28_проценты']<100) echo "style='color:red'";?>><?=$row['Прочность_28_проценты']?></td>
-<td contenteditable="true"><?=$row['Прирост']?></td>
-<td contenteditable="true"><?=$row['Место_отгрузки_БС']?></td>
-<td contenteditable="true"><?=$row['Добавка']?></td>
+<td><?php echo $row['Дата']?></td>
+<td align="left"><?=$row['Класс']?></td>
+<td><?=$row['Прочность7']?></td>
+<td><?=$row['Прочность28']?></td>
+<td><?=$row['Требуемая_прочность_МПа']?></td>
+<td><?=$row['Прочность_7_проценты']?></td>
+<td <?if ($row['Прочность_28_проценты']<100) echo "style='color:red'";?>><?=$row['Прочность_28_проценты']?></td>
+<td><?=$row['Прирост']?></td>
+<td><?=$row['Место_отгрузки_БС']?></td>
+<td><?=$row['Добавка']?></td>
 </tr>
   <?php }?>
   </table>
@@ -67,7 +67,7 @@ while($row = $result->fetch_array()){
   
    } ?>
   <div class="print">
-  <table border="1px" align=center bgcolor=#eaeae cellpadding="0px" cellspacing="0px" id="table2">
+  <table border="1px" align="center" cellpadding="0px" cellspacing="0px" id="table2">
 	<caption><?php echo ' Класс ';  echo$row['Класс'] ;  ?></caption>
   <tr>	
    <td align="center">№п/п</td>
@@ -132,7 +132,7 @@ Rmin = <br/>
    <div class="print">
  <!-- выводим сводную таблицу-->
  <table border="1px" align=center bgcolor=#eaeaea cellpadding="4px" cellspacing="0px" id="table3">
-	<caption contenteditable="true">Результаты статистического метода контроля прочности товарного бетона "ТЕКА" по ГОСТ 18105-2010  фактический</caption>
+	<caption contenteditable="true">Результаты статистического метода контроля прочности товарного бетона "ТЕКА" по ГОСТ 18105-2010. Фактический. Период с <?=$data1?> по <?=$data2?>.</caption>
   <tr>
    <td align="center">N</td>
    <td align="center">Класс бетона</td>
@@ -160,4 +160,4 @@ while($row = $result->fetch_array()){
 <td align="center"> </td>
 		</tr>
 </table>	
-  </div>
+  </div><?php unset($Mas_Var); unset($Mas_Mid); ?>

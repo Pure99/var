@@ -27,16 +27,16 @@ $connection->query("update `base`.`excel2mysql0_tt2` set `KOEF` = 0 WHERE DATE(`
 while($row = $result->fetch_array()){
  extract ($row);?>
   <tr >
-<td contenteditable="true"><?php echo $row['Дата']?></td>
-<td contenteditable="true" align="left"><?=$row['Класс']?></td>
-<td contenteditable="true"><?=$row['Прочность7']?></td>
-<td contenteditable="true"><?=$row['Прочность28']?></td>
-<td contenteditable="true"><?=$row['Требуемая_прочность_МПа']?></td>
-<td contenteditable="true"><?=$row['Прочность_7_проценты']?></td>
-<td contenteditable="true" <?if ($row['Прочность_28_проценты']<100) echo "style='color:red'";?>><?=$row['Прочность_28_проценты']?></td>
-<td contenteditable="true"><?=$row['Прирост']?></td>
-<td contenteditable="true"><?=$row['Место_отгрузки_БС']?></td>
-<td contenteditable="true"><?=$row['Добавка']?></td>
+<td><?php echo $row['Дата']?></td>
+<td align="left"><?=$row['Класс']?></td>
+<td><?=$row['Прочность7']?></td>
+<td><?=$row['Прочность28']?></td>
+<td><?=$row['Требуемая_прочность_МПа']?></td>
+<td><?=$row['Прочность_7_проценты']?></td>
+<td <?if ($row['Прочность_28_проценты']<100) echo "style='color:red'";?>><?=$row['Прочность_28_проценты']?></td>
+<td><?=$row['Прирост']?></td>
+<td><?=$row['Место_отгрузки_БС']?></td>
+<td><?=$row['Добавка']?></td>
 </tr>
   <?php }?>
   </table>
@@ -80,7 +80,7 @@ while($row = $result->fetch_array()){
   }
   } while ($Vm > $koef_var);?>
     <div class="print">
-  <table border="1px" align=center bgcolor=#eaeae cellpadding="0px" cellspacing="0px" id="table2">
+  <table border="1px" align="center" cellpadding="0px" cellspacing="0px" id="table2">
 	<caption><?php echo ' Класс ';  echo$row['Класс'] ;  ?></caption>
   <tr>	
    <td align="center">№п/п</td>
@@ -157,7 +157,7 @@ Rmin = <?=$Rt-4?> МПа<br/>
 <?php } ?>
  <div class="print">
  <table border="1px" align=center bgcolor=#eaeaea cellpadding="4px" cellspacing="0px" id="table3">
-	<caption>Результаты статистического метода контроля прочности товарного бетона "Teka" по ГОСТ 18105-2010  </caption>
+	<caption>Результаты статистического метода контроля прочности товарного бетона "Teka" по ГОСТ 18105-2010. Период с <?=$data1?> по <?=$data2?>.  </caption>
   <tr>
    <td align="center">N</td>
    <td align="center">Класс бетона</td>
