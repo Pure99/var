@@ -35,13 +35,13 @@ using(`Дата`, `Класс`, `Прочность7`, `Прочность28`, `
 WHERE `excel2mysql0_tt2`.`ID_TAB` IS NULL"); 
 } else { echo "<div class='alert alert-danger' role='alert'>Таблица в файле не соответствует требуемому формату.</div>";}
 } ?>
-<div class="pole jumbotron" style="position:fixed"><form name="authForm" method="GET" action="<?=$_SERVER['PHP_SELF']?>">
+<div style="float:left; width:177px; height:177px;"><div class="pole jumbotron"><form name="authForm" method="GET" action="<?=$_SERVER['PHP_SELF']?>">
 Начало периода:<input type="DATE" name="data1" class="form-control" value="<?=$data1?>">
 Конец периода:<input type="DATE" name="data2" class="form-control" value="<?=$data2?>">
 <input type="hidden" name="viewInfo" value="9"/>
 <br><input type="submit" class="btn btn-primary">
-</form></div>
-<table class="table-autostripe table-rowshade-alternate table-autosort table-autofilter table-stripeclass:alternate table-page-number:t1page table-page-count:t1pages table-filtered-rowcount:t1filtercount table-rowcount:t1allcount" align="center" border="1px" cellpadding="0px" cellspacing="0px" id="table1" style="margin-left:200px" >
+</form></div></div>
+<div class="print"><table class="table-autostripe table-rowshade-alternate table-autosort table-autofilter table-stripeclass:alternate table-page-number:t1page table-page-count:t1pages table-filtered-rowcount:t1filtercount table-rowcount:t1allcount" align="center" border="1px" cellpadding="0px" cellspacing="0px" id="table1">
 <thead>
    <td class="table-filterable table-sortable:numeric" align="center" style="width:60px; height:20px;">№<br></td>
    <td class="table-filterable table-sortable:default" align="center" style="width:94px; height:20px;">Дата <br/>изготовления</td>					
@@ -55,14 +55,13 @@ WHERE `excel2mysql0_tt2`.`ID_TAB` IS NULL");
    <td class="table-filterable table-sortable:default" align="center" style="width:80px; height:20px;">Место <br/>отгрузки БС</td>
    <td class="table-filterable table-sortable:default" align="center" style="width:80px; height:20px;">Добавка<br></td>							
   </thead>
-
 <?php $nomer_str=0;
  $result = $connection->query("SELECT * FROM excel2mysql0_tt2 where DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2'");// Запрос исходной таблицы с данными
 while($row = $result->fetch_array()){
  extract ($row);?>
   <tr id="<?=$ID_TAB?>">
 <td align="center"><?=++$nomer_str?></td>
-<td align="center"><?=$row['Дата']?></td>
+<td align="center"><span id="<?=$row['ID_TAB']?>" class="excel2mysql0_tt2 data" data-placement="right" data-title="Дата"><?=$Дата?></span></td>
 <td align="left"><span id="<?=$row['ID_TAB']?>" class="excel2mysql0_tt2 class" data-type="text" data-placement="right" data-title="Класс бетона"><?=$row['Класс']?></span></td>
 <td align="center"><?=$row['Прочность7']?></td>
 <td align="center"><span id="<?=$row['ID_TAB']?>" class="excel2mysql0_tt2 prochnost" data-type="text" data-placement="right" data-title="Прочность 28 суток"><?=$row['Прочность28']?></span></td>
@@ -77,5 +76,4 @@ while($row = $result->fetch_array()){
   <?php }?>
 <tfoot><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td>
 <td width="21px" bgcolor="#419641" id="excel2mysql0_tt2" class="add" align="center" valign="middle"><span align="center" class="glyphicon glyphicon-plus" aria-hidden="true"></span></td>
-</tfoot> </table>
-</table>
+</tfoot> </table></div>

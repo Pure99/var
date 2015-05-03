@@ -35,18 +35,18 @@ using(`Дата`, `Класс`, `БСЦ_РБУ`, `Прочность7`, `Про�
 WHERE `excel2mysql0_t2`.`ID_TAB` IS NULL");
 }  else { echo "<div class='alert alert-danger' role='alert'>Таблица в файле не соответствует требуемому формату.</div>";}
 } ?>
-<div class="pole jumbotron" style="position:fixed"><form name="Form" method="GET" action="<?=$_SERVER['PHP_SELF']?>">
+<div style="float:left; width:177px; height:177px;"><div class="pole jumbotron"><form name="Form" method="GET" action="<?=$_SERVER['PHP_SELF']?>">
 Начало периода:<input type="DATE" name="data1" class="form-control" value="<?=$data1?>">
 Конец периода:<input type="DATE" name="data2" class="form-control" value="<?=$data2?>">
 <input type="hidden" name="viewInfo" value="6"/>
 <br><input type="submit" class="btn btn-primary">
-</form></div>
-<div align="center"><table class="table-autostripe table-rowshade-alternate table-autosort table-autofilter table-stripeclass:alternate table-page-number:t1page table-page-count:t1pages table-filtered-rowcount:t1filtercount table-rowcount:t1allcount" align="center" border="1px" cellpadding="0px" cellspacing="0px" id="table1">
+</form></div></div>
+<div class="print"><table class="table-autostripe table-rowshade-alternate table-autosort table-autofilter table-stripeclass:alternate table-page-number:t1page table-page-count:t1pages table-filtered-rowcount:t1filtercount table-rowcount:t1allcount" align="center" border="1px" cellpadding="0px" cellspacing="0px" id="table1">
 <thead>
    <td class="table-filterable table-sortable:numeric" align="center" style="width:60px; height:20px;">№<br></td>
    <td class="table-filterable table-sortable:default" align="center" style="width:94px; height:20px;">Дата <br/>изготовления</td>
    <td class="table-filterable table-sortable:default" align="center" style="width:122px; height:20px;">Класс <br/>бетона</td>
-   <td class="table-filterable table-sortable:default" align="center" style="width:60px; height:20px;">БСЦ/РБУ<br></td>
+   <td class="table-filterable table-sortable:default" align="center" style="width:60px; height:20px;">БСЦ/РБУ</td>
    <td class="table-filterable table-sortable:numeric" align="center" style="width:90px; height:20px;">Прочность <br/>7 суток, МПа</td>
    <td class="table-filterable table-sortable:numeric" align="center" style="width:95px; height:20px;">Прочность <br/>28 суток, МПа</td>
    <td class="table-filterable table-sortable:numeric" align="center" style="width:110px; height:20px;">Требуемая <br/>Прочность, МПа</td>
@@ -62,7 +62,7 @@ while($row = $result->fetch_array()){
  extract ($row);?>
   <tr id="<?=$ID_TAB?>">
 <td align="center"><?=++$nomer_str?></td>
-<td align="center"><?=$row['Дата']?></td>
+<td align="center"><span id="<?=$row['ID_TAB']?>" class="excel2mysql0_t2 data" data-placement="right" data-title="Дата"><?=$Дата?></span></td>
 <td align="left"><span id="<?=$row['ID_TAB']?>" class="excel2mysql0_t2 class" data-type="text" data-placement="right" data-title="Класс бетона"><?=$row['Класс']?></span></td>
 <td align="center"><?=$row['БСЦ_РБУ']?></td>
 <td align="center"><?=$row['Прочность7']?></td>

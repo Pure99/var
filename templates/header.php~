@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
-    <title>Starter Template for Bootstrap</title>
+    <title>Коэффициент <br> вариации</title>
     <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="bootstrap/css/bootstrap-theme.css" rel="stylesheet">
     <link href="bootstrap/bootstrap3-editable-1.5.1/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet">
@@ -20,9 +20,7 @@ tr:hover  {background-color: #eee;}
 .delete:hover {background: #c12e2a; }
 tr:hover > .delete {visibility: visible; }
 select, option { text-align: left; width: inherit; }
-#table1 {overfflow: hidden;}
-.pole {position:fixed; padding:6px; padding-left:3px !important; padding-right:3px !important; z-index:100; display:block; float: left ;overflow: hidden; }
-.print { display:block; overflow: hidden; z-index:10; position:relative;}
+.pole {position:fixed; padding:6px; padding-left:3px !important; padding-right:3px !important; }
 </style>
   </head>
   <body>

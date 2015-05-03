@@ -1,15 +1,14 @@
-<h3>Товарный бетон</h3><div class="pole jumbotron" style="position:fixed">
+<h3>Товарный бетон</h3><div style="float:left; width:177px; height:177px;"><div class="pole jumbotron">
 <form name="Form" method="GET" action="<?=$_SERVER['PHP_SELF']?>">
 Начало периода:<input type="DATE" name="data1" class="form-control" value="<?=$data1?>">
 Конец периода:<input type="DATE" name="data2" class="form-control" value="<?=$data2?>">
 Коэффициет вариации:<input style="width:172px" type="text" name="koef_var" class="form-control" value="<?=$koef_var?>">
 <input type="hidden" name="viewInfo" value="8"/>
 <br><input type="submit" class="btn btn-primary">
-</form></div>
+</form></div></div>
 <div class="print">
 <table class="table-autostripe table-autosort table-autofilter table-stripeclass:alternate table-page-number:t1page table-page-count:t1pages table-filtered-rowcount:t1filtercount table-rowcount:t1allcount sort01" align="center" border="1px" cellpadding="0px" cellspacing="0px" id="table1" >
     <thead>
-    <tr>
    <td class="table-filterable table-sortable:default table-sortable" align="center" style="width:94px; height:20px;">Дата <br/>изготовления</td>					
    <td class="table-filterable table-sortable:default table-sortable" align="center" style="width:122px; height:20px;">Класс <br/>бетона</td>					
    <td class="table-filterable table-sortable:default table-sortable" align="center" style="width:90px; height:20px;">Прочность <br/>7 суток, МПа</td>							
@@ -20,7 +19,6 @@
    <td class="table-filterable table-sortable:default table-sortable" align="center" style="width:80px; height:20px;">Прирост<br></td>
    <td class="table-filterable table-sortable:default table-sortable" align="center" style="width:80px; height:20px;">Место <br/>отгрузки БС</td>
    <td class="table-filterable table-sortable:default table-sortable" align="center" style="width:80px; height:20px;">Добавка<br></td>							
-  </tr>
 </thead>
 <?php
 $connection->query("update `base`.`excel2mysql0_tt2` set `KOEF` = 0 WHERE DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2' and `excel2mysql0_tt2`.`Прочность_28_проценты` < 100"); 

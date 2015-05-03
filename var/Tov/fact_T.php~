@@ -1,4 +1,4 @@
-<h3>Товарный бетон</h3><div style="position:relative; float:left; display:block; width:177px;hight:177px;"><div class="pole jumbotron">
+<h3>Товарный бетон</h3><div style="float:left; width:177px; height:177px;"><div class="pole jumbotron">
 <form name="Form" method="GET" action="<?=$_SERVER['PHP_SELF']?>">
 Начало периода:<input type="DATE" name="data1" class="form-control" value="<?=$data1?>">
 Конец периода:<input type="DATE" name="data2" class="form-control" value="<?=$data2?>">
@@ -43,9 +43,9 @@ while($row = $result->fetch_array()){
   </table>
  </div>
 <br/>
-<div style=" width:100%; height:1px; clear:both;">.</div>
+<!--<div style=" width:100%; height:1px; clear:both;">.</div>-->
 <p>Фактический коэффициент вариации</p>
-  <div class="print">
+  
   <?php // Выводим таблицу для расчета коэффициента вариации для каждого изделия
   $result = $connection->query("SELECT  `Класс`,`Дата` FROM `excel2mysql0_t2` where DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2' GROUP BY `Класс` ASC");
   while($row = $result->fetch_array()){           // Список всех наименований изделий
@@ -71,7 +71,7 @@ while($row = $result->fetch_array()){
    $sumR=$sumR +  ($Прочность28-$mid_s)*($Прочность28-$mid_s);
   
    } ?>
- 
+ <div class="print">
   <table border="1px" align=center bgcolor=#eaeae cellpadding="0px" cellspacing="0px" id="table2">
 	<caption><?php echo ' Класс ';  echo$row['Класс'] ;  ?></caption>
   <tr>	
@@ -132,9 +132,8 @@ Rmin = <br/>
 В˂Rmini≥Rmin <br/>
 </p>
 <p align=center >------------------------------------------------------------------------------------------------------------------------</p>
-
+</div>
    <?php }?>
-  </div> 
   <div class="print">
   <!-- выводим сводную таблицу-->
  <table border="1px" align=center bgcolor=#eaeaea cellpadding="4px" cellspacing="0px" id="table3">

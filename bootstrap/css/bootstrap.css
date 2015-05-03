@@ -277,6 +277,7 @@ margin-left: 0px;
   }*/
 	/* add a friendy reminder not to waste paper after the body */
   ul, img, .print {
+top:0px;
 padding: 0px;
 width:auto;
   margin: 0px;
@@ -288,6 +289,7 @@ margin-left: 0px;
     display: none;
   }
   table#table1 {
+top:0px;
   float: none;
     page-break-after: always;
   }
@@ -300,8 +302,9 @@ margin-left: 0px;
     /*page-break-after: always;*/
   }
   form, .pole, .fix {
-position:relative;
-    displfay: none; 
+position:absolute;
+clear: both;
+    display: none; 
   }
  /* .container { 
   padding: 0px;
@@ -1634,7 +1637,7 @@ pre code {
 }
 @media (min-width: 992px) {
   .container {
-    width: 970px;
+    width:  auto;
   }
 }
 @media (min-width: 1200px) {

@@ -37,15 +37,14 @@ using(`Дата`, `Наименование_изделия`, `Класс_бет�
 WHERE `excel2mysql0_k2`.`ID_TAB` IS NULL"); // синхронизировать таблицы
 } else { echo "<div class='alert alert-danger' role='alert'>Таблица в файле не соответствует требуемому формату.</div>";}
 }  ?>
-<div class="pole jumbotron" style="position:fixed"><form  name="Form" method="GET" action="<?=$_SERVER['PHP_SELF']?>">
+<div style="float:left; width:177px; height:177px;"><div class="pole jumbotron"><form  name="Form" method="GET" action="<?=$_SERVER['PHP_SELF']?>">
 Начало периода:<input type="DATE" name="data1" class="form-control" value="<?=$data1?>">
 Конец периода:<input type="DATE" name="data2" class="form-control" value="<?=$data2?>">
 <input type="hidden" name="viewInfo" value="3"/>
 <br><input type="submit" class="btn btn-primary">
-</form></div>
-<div align="center"><table class="table-autostripe table-rowshade-alternate table-autosort table-autofilter table-stripeclass:alternate table-page-number:t1page table-page-count:t1pages table-filtered-rowcount:t1filtercount table-rowcount:t1allcount" align="center" bordercolor="black" border="1px" bgcolor="#eaeae" cellpadding="0px" cellspacing="0px" id="table1" style="border-right-width:0px"      >
+</form></div></div>
+<div class="print"><table class="table-autostripe table-rowshade-alternate table-autosort table-autofilter table-stripeclass:alternate table-page-number:t1page table-page-count:t1pages table-filtered-rowcount:t1filtercount table-rowcount:t1allcount" align="center" bordercolor="black" border="1px" bgcolor="#eaeae" cellpadding="0px" cellspacing="0px" id="table1" style="border-right-width:0px">
 <thead>
- 
    <td class="table-filterable table-sortable:numeric" align="center" style="width:50px; height:20px;">№<br></td>	
    <td class="table-filterable table-sortable:default" align="center" style="width:104px; height:20px;">Дата <br>изготовления</td>					
    <td class="table-filterable table-sortable:default" align="center" style="width:122px; height:20px;">Наименование <br>изделия</td>				
@@ -54,7 +53,6 @@ WHERE `excel2mysql0_k2`.`ID_TAB` IS NULL"); // синхронизировать 
    <td class="table-filterable table-sortable:numeric" align="center" style="width:114px; height:20px;">Требуемая прочность, МПа</td>			
    <td class="table-filterable table-sortable:numeric" align="center" style="width:104px; height:20px;">Прочность, %<br></td>   							
    <td class="table-filterable table-sortable:default" align="center" style="width:104px; height:20px;">Добавка<br></td>  								
-  
   </thead>
 <?php  $nomer_str=0;
 $result = $connection->query("SELECT * FROM excel2mysql0_k2 where DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2'");// Запрос исходной таблицы с данными

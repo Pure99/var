@@ -1,4 +1,4 @@
-<h3>Товарный бетон</h3><div class="fix" style="position:relative; float:left; display:block; width:177px;height:177px;"><div class="pole jumbotron" style="position:fixed">
+<h3>Товарный бетон</h3><div style="float:left; width:177px; height:177px;"><div class="pole jumbotron">
 <form name="Form" method="GET" action="<?=$_SERVER['PHP_SELF']?>">
 Начало периода:<input type="DATE" name="data1" class="form-control" value="<?=$data1?>">
 Конец периода:<input type="DATE" name="data2" class="form-control" value="<?=$data2?>">
@@ -47,7 +47,7 @@ while($row = $result->fetch_array()){
  </div>
 <br/>
 <p>Официальный коэффициент вариации</p>
-  
+
   <?php // Выводим таблицу для расчета коэффициента вариации для каждого изделия
   $result = $connection->query("SELECT  `Класс`,`Дата` FROM `excel2mysql0_t2` where DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2' and `KOEF` like '1' GROUP BY `Класс` ASC");
   while($row = $result->fetch_array()){           // Список всех наименований изделий
@@ -83,7 +83,7 @@ while($row = $result->fetch_array()){
   $connection->query ("update `base`.`excel2mysql0_t2` set `KOEF` = 0  WHERE DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2' and `excel2mysql0_t2`.`Прочность28` = $DFP and `Класс` like '$Класс' ");
   }
   } while ($Vm > $koef_var);?>
-   <div class="print">
+  <div class="print"> 
   <table border="1px" align=center bgcolor=#eaeae cellpadding="0px" cellspacing="0px" id="table2">
 	<caption><?php echo ' Класс ';  echo$row['Класс'] ;  ?></caption>
   <tr>	
@@ -177,7 +177,7 @@ while($row = $result->fetch_array()){
    <td align="center"><?echo str_replace('.',',',(rtrim(rtrim($Класс,'0'), '.')))?></td>
    <td align="center"><?=str_replace('.',',',(number_format(round($Mas_Var[$l],1), 1, '.', '')))?> </td>
    <td align="center"><?=str_replace('.',',',(number_format(round($Mas_Rt[$l],1), 1, '.', '')))?></td>
- </tr>			
+ </tr>
 <?$l=$l+1;	}?>
 <?php 
 $connection->query ("UPDATE `excel2mysql0_t2` SET `KOEF`=1");                      // записать единицу в KOEF   
