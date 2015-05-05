@@ -29,19 +29,19 @@ $connection->query("update `base`.`excel2mysql0_t2` set `KOEF` = 0 WHERE DATE(`�
  $result = $connection->query("SELECT * FROM excel2mysql0_t2 WHERE DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2' and `excel2mysql0_t2`.`KOEF` = 1");				// Запрос основной таблицы
 while($row = $result->fetch_array()){
  extract ($row);?>
-  <tr >
+  <tr>
 <td><?php echo $row['Дата']?></td>
 <td align="left"><?=$row['Класс']?></td>
 <td><?=$row['БСЦ_РБУ']?></td>
-<td><?=$row['Прочность7']?></td>
-<td><?=$row['Прочность28']?></td>
-<td><?=$row['Требуемая_прочность_МПа']?></td>
+<td><?=str_replace('.',',',$row['Прочность7'])?></td>
+<td><?=str_replace('.',',',$row['Прочность28'])?></td>
+<td><?=str_replace('.',',',$row['Требуемая_прочность_МПа'])?></td>
 <td><?=$row['Прочность_7_проценты']?></td>
 <td <?if ($row['Прочность_28_проценты']<100) echo "style='color:red'";?>><?=$row['Прочность_28_проценты']?></td>
 <td><?=$row['Прирост']?></td>
 <td><?=$row['Место_отгрузки_БС']?></td>
 <td><?=$row['Добавка']?></td>
-</tr>
+  </tr>
   <?php }?>
   </table>
  </div>

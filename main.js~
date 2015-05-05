@@ -11,7 +11,7 @@ $(function edit() {            //функция ввода значений
     		var VRegExp = new RegExp(/\s.*/);
     		var a = $(this).closest('td').children('span').attr('class').replace(VRegExp, AReplaceText); // определяется класс-название таблицы
 			var b = $(this).closest('td').children('span').attr('id');  //определяется id строки
-			var c = $('.input-sm').val();          //определяется введенное значение
+			var c = $('.input-sm').val().replace(',','.');          //определяется введенное значение, замена запятой на точку
 			var VRegExp = new RegExp(/\s.*?\s/);
 			var x = $.trim($(this).closest('td').children('span').attr('class').match(VRegExp)); //определяется класс-название столбца 
 			alert (a);
@@ -19,8 +19,8 @@ $(function edit() {            //функция ввода значений
 			var z = $(this).closest('td').children('span');
 			if (x == 'prochnost') {
 alert (c);
-alert (c/$(this).closest('tr').children('td').children('span.tr_prochnost').text()*100);
-$(this).closest('tr').children('td.proc').html(Math.round(c/$(this).closest('tr').children('td').children('span.tr_prochnost').text()*100).toFixed(0));
+alert (c/$(this).closest('tr').children('td').children('span.tr_prochnost').text().replace(',','.')*100);
+$(this).closest('tr').children('td.proc').html(Math.round(c/$(this).closest('tr').children('td').children('span.tr_prochnost').text().replace(',','.')*100).toFixed(0));
 			}
 			if (x == 'tr_prochnost') {
 alert (c);
@@ -29,7 +29,7 @@ $(this).closest('tr').children('td.proc').html(Math.round($(this).closest('tr').
 }		     
 if (x == 'data'){
 	//var c = $(document).on('.editable-unsaved').val();
-$(function() {
+/*$(function() {
     $('.data').daterangepicker({
         singleDatePicker: true,
         showDropdowns: true
@@ -40,7 +40,7 @@ $(function() {
     });
 });
 alert (c);
-
+*/
 }
 			$.ajax({
 				url: "../var/process.php?table="+a+"&id="+b+"&"+x+"="+c,

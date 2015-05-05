@@ -65,15 +65,15 @@ while($row = $result->fetch_array()){
 <td align="center"><span id="<?=$row['ID_TAB']?>" class="excel2mysql0_t2 data" data-placement="right" data-title="Дата"><?=$Дата?></span></td>
 <td align="left"><span id="<?=$row['ID_TAB']?>" class="excel2mysql0_t2 class" data-type="text" data-placement="right" data-title="Класс бетона"><?=$row['Класс']?></span></td>
 <td align="center"><?=$row['БСЦ_РБУ']?></td>
-<td align="center"><?=$row['Прочность7']?></td>
-<td align="center"><span id="<?=$row['ID_TAB']?>" class="excel2mysql0_t2 prochnost" data-type="text" data-placement="right" data-title="Прочность 28 суток"><?=$row['Прочность28']?></span></td>
-<td align="center"><span id="<?=$row['ID_TAB']?>" class="excel2mysql0_t2 tr_prochnost" data-type="text" data-placement="right" data-title="Требуемая прочность"><?=$row['Требуемая_прочность_МПа']?></span></td>
+<td align="center"><?=str_replace('.',',',$row['Прочность7'])?></td>
+<td align="center"><span id="<?=$row['ID_TAB']?>" class="excel2mysql0_t2 prochnost" data-type="text" data-placement="right" data-title="Прочность 28 суток"><?=str_replace('.',',',$row['Прочность28'])?></span></td>
+<td align="center"><span id="<?=$row['ID_TAB']?>" class="excel2mysql0_t2 tr_prochnost" data-type="text" data-placement="right" data-title="Требуемая прочность"><?=str_replace('.',',',$row['Требуемая_прочность_МПа'])?></span></td>
 <td align="center"><?=$row['Прочность_7_проценты']?></td>
 <td align="center" class="proc" <?if ($row['Прочность_28_проценты']<100) echo "style='color:red'";?>><?=$row['Прочность_28_проценты']?></td>
 <td align="center"><?=$row['Прирост']?></td>
 <td align="center"><?=$row['Место_отгрузки_БС']?></td>
 <td align="center"><?=$row['Добавка']?></td>
-<td width="21px"  id="<?=$ID_TAB?>" class="delete" align="center" valign="middle"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></td>
+<td width="21px" id="<?=$ID_TAB?>" class="delete" align="center" valign="middle"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></td>
 </tr>
   <?php }?>
 <tfoot><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td>

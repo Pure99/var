@@ -29,19 +29,19 @@ $connection->query("update `base`.`excel2mysql0_t2` set `KOEF` = 0 WHERE DATE(`�
  $result = $connection->query("SELECT * FROM excel2mysql0_t2 WHERE DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2' and `excel2mysql0_t2`.`KOEF` = 1");				// Запрос основной таблицы
 while($row = $result->fetch_array()){
  extract ($row);?>
-  <tr >
-<td contenteditable="true"><?php echo $row['Дата']?></td>
-<td contenteditable="true" align="left"><?=$row['Класс']?></td>
-<td contenteditable="true"><?=$row['БСЦ_РБУ']?></td>
-<td contenteditable="true"><?=$row['Прочность7']?></td>
-<td contenteditable="true"><?=$row['Прочность28']?></td>
-<td contenteditable="true"><?=$row['Требуемая_прочность_МПа']?></td>
-<td contenteditable="true"><?=$row['Прочность_7_проценты']?></td>
-<td contenteditable="true" <?if ($row['Прочность_28_проценты']<100) echo "style='color:red'";?>><?=$row['Прочность_28_проценты']?></td>
-<td contenteditable="true"><?=$row['Прирост']?></td>
-<td contenteditable="true"><?=$row['Место_отгрузки_БС']?></td>
-<td contenteditable="true"><?=$row['Добавка']?></td>
-</tr>
+  <tr>
+<td><?php echo $row['Дата']?></td>
+<td align="left"><?=$row['Класс']?></td>
+<td><?=$row['БСЦ_РБУ']?></td>
+<td><?=str_replace('.',',',$row['Прочность7'])?></td>
+<td><?=str_replace('.',',',$row['Прочность28'])?></td>
+<td><?=str_replace('.',',',$row['Требуемая_прочность_МПа'])?></td>
+<td><?=$row['Прочность_7_проценты']?></td>
+<td <?if ($row['Прочность_28_проценты']<100) echo "style='color:red'";?>><?=$row['Прочность_28_проценты']?></td>
+<td><?=$row['Прирост']?></td>
+<td><?=$row['Место_отгрузки_БС']?></td>
+<td><?=$row['Добавка']?></td>
+  </tr>
   <?php }?>
   </table>
  </div>
@@ -84,7 +84,7 @@ while($row = $result->fetch_array()){
   }
   } while ($Vm > $koef_var);?>
   <div class="print"> 
-  <table border="1px" align=center bgcolor=#eaeae cellpadding="0px" cellspacing="0px" id="table2">
+  <table border="1px" align="center" cellpadding="0px" cellspacing="0px" id="table2">
 	<caption><?php echo ' Класс ';  echo$row['Класс'] ;  ?></caption>
   <tr>	
    <td align="center">№п/п</td>
@@ -138,7 +138,7 @@ while($row = $result->fetch_array()){
   </tr>
   </table>
   <br/>
-  <table border="1px" align=center bgcolor=#eaeae cellpadding="0px" cellspacing="0px" id="table2">
+  <table border="1px" align="center" cellpadding="0px" cellspacing="0px" id="table2">
  <?php $result_4 = $connection->query("SELECT `Дата`,  `Прочность28` FROM `excel2mysql0_t2` WHERE DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2' and `Класс` like '$Класс' and `KOEF` like '0'"); 
   while($row_4 = $result_4->fetch_array()){ 
   extract ($row_4);?>
@@ -161,7 +161,7 @@ Rmin = <?=$Rt-4?> МПа<br/>
    <?php }?>
   <div class="print">
  <table border="1px" align=center bgcolor=#eaeaea cellpadding="4px" cellspacing="0px" id="table3">
-	<caption>Результаты статистического метода контроля прочности товарного бетона по ГОСТ 18105-2010    </caption>
+	<caption>Результаты статистического метода контроля прочности товарного бетона по ГОСТ 18105-2010. Период с <?=$data1?> по <?=$data2?>.    </caption>
   <tr>
    <td align="center">N</td>
    <td align="center">Класс бетона</td>
@@ -177,10 +177,10 @@ while($row = $result->fetch_array()){
    <td align="center"><?echo str_replace('.',',',(rtrim(rtrim($Класс,'0'), '.')))?></td>
    <td align="center"><?=str_replace('.',',',(number_format(round($Mas_Var[$l],1), 1, '.', '')))?> </td>
    <td align="center"><?=str_replace('.',',',(number_format(round($Mas_Rt[$l],1), 1, '.', '')))?></td>
- </tr>			
+ </tr>
 <?$l=$l+1;	}?>
 <?php 
 $connection->query ("UPDATE `excel2mysql0_t2` SET `KOEF`=1");                      // записать единицу в KOEF   
 ?>
 </table>
- </div><?php unset($Mas_Var); unset($Mas_Mid); ?>
+</div><?php unset($Mas_Var); unset($Mas_Mid); ?>
