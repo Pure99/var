@@ -25,7 +25,7 @@ while($row = $result->fetch_array()){
 <td align="left"><?=$row['Наименование_изделия']?></td>
 <td ><?echo str_replace('.',',',(rtrim(rtrim($Класс_бетона,'0'), '.')))?></td>
 <td ><?=str_replace('.',',',$row['Прочность_МПа'])?></td>
-<td ><?=$row['Требуемая_прочность_МПа']?></td>
+<td ><?=str_replace('.',',',$row['Требуемая_прочность_МПа'])?></td>
 <td <?if ($row['Прочность_проценты']<100) echo "style='color:red'";?>><?=$row['Прочность_проценты']?></td>
 <td ><?=$row['Добавка']?></td>
 </tr>
@@ -88,10 +88,10 @@ while($row = $result->fetch_array()){
   <tr>	
    <td align="center"><?php echo $n?></td>
    <td align="center"><?php echo $Дата?></td>
-   <td align="center"><?php echo $Прочность_МПа?></td>
+   <td align="center"><?php echo str_replace('.',',',$Прочность_МПа)?></td>
    <td align="center"></td>
-   <td align="center"><?php  echo round($Прочность_МПа-$mid_s,1) ?></td>
-   <td align="center"><?php  echo round(($Прочность_МПа-$mid_s)*($Прочность_МПа-$mid_s),1)?> </td>   
+   <td align="center"><?php  echo str_replace('.',',',round($Прочность_МПа-$mid_s,1)) ?></td>
+   <td align="center"><?php  echo str_replace('.',',',round(($Прочность_МПа-$mid_s)*($Прочность_МПа-$mid_s),1))?> </td>   
    <td align="center"></td>  
    <td align="center"></td>  
    <td align="center"></td>  
@@ -104,15 +104,15 @@ while($row = $result->fetch_array()){
   <tr>
    <td align="center">Итоги</td>
    <td align="center"></td>
-   <td align="center"><?php echo $sum ?></td>
-   <td align="center"><?php echo round($mid_s,1); $Mas_Mid[]=$mid_s; ?></td>
+   <td align="center"><?php echo str_replace('.',',',$sum) ?></td>
+   <td align="center"><?php echo str_replace('.',',',round($mid_s,1)); $Mas_Mid[]=$mid_s; ?></td>
    <td align="center"></td>
-   <td align="center"><?php echo round($sumR,1)  ?> </td>
-   <td align="center"><?php echo $P_max-$P_min     ?></td>   
-   <td align="center"><?php if ($b>6) {echo number_format(round($Sm=sqrt($sumR/($b-1)),1), 1, '.', '') ;} else {echo number_format(round($Sm=($P_max-$P_min)/alfa($b),1), 1, '.', '');}?></td>  
-   <td align="center"><?php  echo  number_format(round($Vm=$Sm*100/$mid_s,1), 1, '.', '') ; $Mas_Var[]=$Vm;?></td>  
-   <td align="center"><?php echo $Kt=number_format(round(interpol($Vm),2), 2, '.', '') ?></td>  
-   <td align="center"><?php echo  number_format(round($Rt=$row['Класс_бетона'] *  $Kt,1), 1, '.', '');  ?> </td>  
+   <td align="center"><?php echo str_replace('.',',',round($sumR,1))?> </td>
+   <td align="center"><?php echo str_replace('.',',',$P_max-$P_min)?></td>   
+   <td align="center"><?php if ($b>6) {echo str_replace('.',',',number_format(round($Sm=sqrt($sumR/($b-1)),1), 1, '.', '')) ;} else {echo str_replace('.',',',number_format(round($Sm=($P_max-$P_min)/alfa($b),1), 1, '.', ''));}?></td>  
+   <td align="center"><?php  echo  str_replace('.',',',number_format(round($Vm=$Sm*100/$mid_s,1), 1, '.', '')) ; $Mas_Var[]=$Vm;?></td>  
+   <td align="center"><?php echo str_replace('.',',',$Kt=number_format(round(interpol($Vm),2), 2, '.', '')) ?></td>  
+   <td align="center"><?php echo  str_replace('.',',',number_format(round($Rt=$row['Класс_бетона'] *  $Kt,1), 1, '.', ''));  ?> </td>  
   </tr>
   </table>
  <br/>

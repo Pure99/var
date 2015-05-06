@@ -106,10 +106,10 @@ while($row = $result->fetch_array()){
   <tr>	
    <td align="center"><?php echo$n?></td>
    <td align="center"><?php echo$Дата?></td>
-   <td align="center"><?php echo$Прочность28?></td>
+   <td align="center"><?php echo str_replace('.',',',$Прочность28)?></td>
    <td align="center"></td>
-   <td align="center"><?php  echo round($Прочность28-$mid_s,1) ?></td>
-   <td align="center"><?php  echo round(($Прочность28-$mid_s)*($Прочность28-$mid_s),1)?> </td>   
+   <td align="center"><?php echo str_replace('.',',',round($Прочность28-$mid_s,1))?></td>
+   <td align="center"><?php echo str_replace('.',',',round(($Прочность28-$mid_s)*($Прочность28-$mid_s),1))?> </td>   
    <td align="center"></td>  
    <td align="center"></td>  
    <td align="center"></td>  
@@ -122,15 +122,15 @@ while($row = $result->fetch_array()){
   <tr>
    <td align="center">Итоги</td>
    <td align="center"></td>
-   <td align="center"><?php echo $sum ?></td>
-   <td align="center"><?php echo round($mid_s,1)?></td>
+   <td align="center"><?php echo str_replace('.',',',$sum) ?></td>
+   <td align="center"><?php echo str_replace('.',',',round($mid_s,1))?></td>
    <td align="center"></td>
-   <td align="center"><?php echo round($sumR,1)  ?> </td>
-   <td align="center"><?php echo $P_max-$P_min     ?></td>   
-   <td align="center"><?php if ($b>6) {echo number_format(round($Sm=sqrt($sumR/($b-1)),1), 1, '.', '') ;} else {echo number_format(round($Sm=($P_max-$P_min)/alfa($b),1), 1, '.', '');}?></td>  
-   <td align="center"><?php  echo  number_format(round($Vm=$Sm*100/$mid_s,1), 1, '.', '') ;$Mas_Var[]=$Vm ?> </td>  
-   <td align="center"><?php echo $Kt=number_format(round(interpol($Vm),2), 2, '.', '') ?></td>  
-   <td align="center"><?php  preg_match("/(B|В)(.*?)(П|С|\s)/", str_replace(',','.',$Класс), $matches);  echo $Rt=$matches[2]*$Kt; $Mas_Rt[]=$Rt ?> </td>  
+   <td align="center"><?php echo str_replace('.',',',round($sumR,1))?> </td>
+   <td align="center"><?php echo str_replace('.',',',$P_max-$P_min)?></td>   
+   <td align="center"><?php if ($b>6) {echo str_replace('.',',',number_format(round($Sm=sqrt($sumR/($b-1)),1), 1, '.', '')) ;} else {echo str_replace('.',',',number_format(round($Sm=($P_max-$P_min)/alfa($b),1), 1, '.', ''));}?></td>  
+   <td align="center"><?php  echo  str_replace('.',',',number_format(round($Vm=$Sm*100/$mid_s,1), 1, '.', '')) ;$Mas_Var[]=$Vm ?> </td>  
+   <td align="center"><?php echo str_replace('.',',',$Kt=number_format(round(interpol($Vm),2), 2, '.', '')) ?></td>  
+   <td align="center"><?php  preg_match("/(B|В)(.*?)(П|С|\s)/", str_replace(',','.',$Класс), $matches);  echo str_replace('.',',',$Rt=$matches[2]*$Kt); $Mas_Rt[]=$Rt ?> </td>  
   </tr>
   </table>
   <br/>
@@ -140,7 +140,7 @@ while($row = $result->fetch_array()){
   extract ($row_4);?>
  <tr>
    <td align="center"><?echo$Дата?></td>
-   <td align="center"><?echo$Прочность28?></td>
+   <td align="center"><?echo str_replace('.',',',$Прочность28)?></td>
   </tr>
    <?php } ?>
   </table>
@@ -148,7 +148,7 @@ while($row = $result->fetch_array()){
  <p>
  Rm ≥ Rт		<?=$mid_s;?> МПа > <?=$Rt;?><br/>		
 Rmin = <?=$Rt-4?> МПа<br/>
-В˂Rmini≥Rmin			<?=$matches[1]?>˂<?=$P_min?>˃<?=$Rt-4?><br/>
+В&#60Rmini≥Rmin			<?=$matches[2]?>&lt<?=$P_min?>&gt<?=$Rt-4?><br/>
 Заключение: Партия бетона подлежит приемке в соответствии с требованиями<br/>				
 ГОСТ 18105-2010<br/>
 </p>
