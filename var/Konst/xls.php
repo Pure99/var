@@ -30,11 +30,11 @@ $connection->query("DELETE FROM `base`.`excel2mysql0_k` WHERE `excel2mysql0_k`.`
 $connection->query("ALTER TABLE `excel2mysql0_k` CHANGE `Класс_бетона` `Класс_бетона` DECIMAL(10,1) NOT NULL");         // класс бетона из текста в дробное число
 $connection->query("ALTER TABLE `excel2mysql0_k` CHANGE `Дата` `Дата` DATE NOT NULL"); //преобразуем текст в дату       
 $connection->query( "CREATE TABLE excel2mysql0_k2 LIKE excel2mysql0_k"); //создать вторую таблицу
-$connection->query("insert into `excel2mysql0_k2` (`Дата`, `Наименование_изделия`, `Класс_бетона`, `Прочность_МПа`, `Требуемая_прочность_МПа`, `Прочность_проценты`, `Добавка`, `KOEF`) 
+if (!$connection->query("insert into `excel2mysql0_k2` (`Дата`, `Наименование_изделия`, `Класс_бетона`, `Прочность_МПа`, `Требуемая_прочность_МПа`, `Прочность_проценты`, `Добавка`, `KOEF`) 
 SELECT `Дата`, `Наименование_изделия`, `Класс_бетона`, `Прочность_МПа`, `Требуемая_прочность_МПа`, `Прочность_проценты`, `Добавка`, `KOEF` FROM `excel2mysql0_k`
 LEFT JOIN `excel2mysql0_k2`
 using(`Дата`, `Наименование_изделия`, `Класс_бетона`, `Прочность_МПа`, `Требуемая_прочность_МПа`, `Прочность_проценты`, `Добавка`, `KOEF`)
-WHERE `excel2mysql0_k2`.`ID_TAB` IS NULL"); // синхронизировать таблицы
+WHERE `excel2mysql0_k2`.`ID_TAB` IS NULL")) echo "<div class='alert alert-danger' role='alert'>Таблица в файле не соответствует требуемому формату.</div>"; // синхронизировать таблицы
 } else { echo "<div class='alert alert-danger' role='alert'>Таблица в файле не соответствует требуемому формату.</div>";}
 }  ?>
 <div style="float:left; width:177px; height:177px;"><div class="pole jumbotron"><form  name="Form" method="GET" action="<?=$_SERVER['PHP_SELF']?>">
