@@ -71,9 +71,9 @@ while($row = $result->fetch_array()){
 <td align="center"><?=$row['Прирост']?></td>
 <td align="center"><?=$row['Место_отгрузки_БС']?></td>
 <td align="center"><?=$row['Добавка']?></td>
-<td width="21px"  id="<?=$ID_TAB?>" class="delete" align="center" valign="middle"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></td>
+<td width="21px"  id="<?=$ID_TAB?>" class="delete" align="center" valign="middle" title="Удалить строку"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></td>
 </tr>
   <?php }?>
 <tfoot><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td>
-<td width="21px" bgcolor="#419641" id="excel2mysql0_tt2" class="add" align="center" valign="middle"><span align="center" class="glyphicon glyphicon-plus" aria-hidden="true"></span></td>
+<td width="21px" bgcolor="#419641" id="excel2mysql0_tt2" class="add" align="center" valign="middle" title="Добавить новую строку"><span align="center" class="glyphicon glyphicon-plus" aria-hidden="true"></span></td>
 </tfoot> </table></div>
