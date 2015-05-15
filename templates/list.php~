@@ -1,5 +1,11 @@
 <?php
 session_start();
+if (isset($_GET['action']) AND $_GET['action']=="logout") {
+  session_destroy();
+  header("Location: http://".$_SERVER['HTTP_HOST']."/var");
+  echo 'logout';
+  exit ('выход');
+}
 require ('header.php');
 require ('config.php');
 if (isset($_GET['data1'])) 
@@ -13,28 +19,23 @@ elseif (isset($_SESSION['data2']))
 		$data2=$_SESSION['data2'] ;
 else $data2=date("Y-m-d",strtotime("last day of -2 month"));
      $koef_var=isset($_GET['koef_var']) ? $_GET['koef_var'] : 8.7;
-if (isset($_GET['action']) AND $_GET['action']=="logout") {
-  session_destroy();
-  header("Location: http://".$_SERVER['HTTP_HOST']."/var");
-  echo 'logout';
-  exit ('выход');
-}
+
 ?>
 <div class="container">
       <div class="starter-template">
 <?php
-if (isset($_GET['viewInfo']) and $_GET['viewInfo'] == '1') 
+if (isset($_GET['viewInfo']) and $_GET['viewInfo'] == 'Конструкционный_Фактический') 
 		require ('var/Konst/fact_K.php');
-	 elseif (isset($_GET['viewInfo']) and$_GET['viewInfo'] == '2') 
+	 elseif (isset($_GET['viewInfo']) and$_GET['viewInfo'] == 'Конструкционный_Официальный') 
 		require ('var/Konst/ofsl_K.php');
-	 elseif (isset($_GET['viewInfo']) and$_GET['viewInfo'] == '3') {
+	 elseif (isset($_GET['viewInfo']) and$_GET['viewInfo'] == 'Конструкционный_Ввести_данные') {
 	 	require  ('auth.php');
 	 	require ('var/Konst/xls.php');}
-	 elseif (isset($_GET['viewInfo']) and$_GET['viewInfo'] == '4') 
+	 elseif (isset($_GET['viewInfo']) and$_GET['viewInfo'] == 'Товарный_Фактический') 
 		require ('var/Tov/fact_T.php');
-	 elseif (isset($_GET['viewInfo']) and$_GET['viewInfo'] == '5') 
+	 elseif (isset($_GET['viewInfo']) and$_GET['viewInfo'] == 'Товарный_Официальный') 
 		require ('var/Tov/ofsl_T.php');
-	 elseif (isset($_GET['viewInfo']) and$_GET['viewInfo'] == '6') {
+	 elseif (isset($_GET['viewInfo']) and$_GET['viewInfo'] == 'Товарный_Ввести_данные') {
 		require  ('auth.php');
 		require ('var/Tov/xls.php');}
 	 elseif (isset($_GET['viewInfo']) and$_GET['viewInfo'] == '7') 

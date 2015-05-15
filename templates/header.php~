@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
-    <title>Коэффициент <br> вариации</title>
+    <title>Коэффициент вариации</title>
     <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="bootstrap/css/bootstrap-theme.css" rel="stylesheet">
     <link href="bootstrap/bootstrap3-editable-1.5.1/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet">
@@ -40,25 +40,25 @@ select, option { text-align: left; width: inherit; }
             <li class="dropdown">
 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Конструкционный бетон<span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
-                <li><a href="index.php?viewInfo=1">Фактический</a></li>
-                <li><a href="index.php?viewInfo=2">Официальный</a></li>
-                <li><a href="index.php?viewInfo=3">Ввести данные</a></li>               
+                <li><a href="./Конструкционный_Фактический">Фактический</a></li>
+                <li><a href="./Конструкционный_Официальный">Официальный</a></li>
+                <li><a href="./Конструкционный_Ввести_данные">Ввести данные</a></li>               
               </ul>
             </li>
             <li class="dropdown">
 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Товарный бетон<span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
-                <li><a href="index.php?viewInfo=4">Фактический</a></li>
-                <li><a href="index.php?viewInfo=5">Официальный</a></li>
-                <li><a href="index.php?viewInfo=6">Ввести данные</a></li>               
+                <li><a href="./Товарный_Фактический">Фактический</a></li>
+                <li><a href="./Товарный_Официальный">Официальный</a></li>
+                <li><a href="./Товарный_Ввести_данные">Ввести данные</a></li>               
               </ul>
             </li>
             <li class="dropdown">
 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Товарный бетон "ТЕКА" (БОРОК)<span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
-                <li><a href="index.php?viewInfo=7">Фактический</a></li>
-                <li><a href="index.php?viewInfo=8">Официальный</a></li>
-                <li><a href="index.php?viewInfo=9">Ввести данные</a></li>             
+                <li><a href="Тека_Фактический">Фактический</a></li>
+                <li><a href="Тека_Официальный">Официальный</a></li>
+                <li><a href="Тека_Ввести_данные">Ввести данные</a></li>             
               </ul>
             </li>
           </ul>

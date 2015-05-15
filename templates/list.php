@@ -24,25 +24,25 @@ else $data2=date("Y-m-d",strtotime("last day of -2 month"));
 <div class="container">
       <div class="starter-template">
 <?php
-if (isset($_GET['viewInfo']) and $_GET['viewInfo'] == '1') 
+if (isset($_GET['viewInfo']) and $_GET['viewInfo'] == 'Конструкционный_Фактический') 
 		require ('var/Konst/fact_K.php');
-	 elseif (isset($_GET['viewInfo']) and$_GET['viewInfo'] == '2') 
+	 elseif (isset($_GET['viewInfo']) and$_GET['viewInfo'] == 'Конструкционный_Официальный') 
 		require ('var/Konst/ofsl_K.php');
-	 elseif (isset($_GET['viewInfo']) and$_GET['viewInfo'] == '3') {
+	 elseif (isset($_GET['viewInfo']) and$_GET['viewInfo'] == 'Конструкционный_Ввести_данные') {
 	 	require  ('auth.php');
 	 	require ('var/Konst/xls.php');}
-	 elseif (isset($_GET['viewInfo']) and$_GET['viewInfo'] == '4') 
+	 elseif (isset($_GET['viewInfo']) and$_GET['viewInfo'] == 'Товарный_Фактический') 
 		require ('var/Tov/fact_T.php');
-	 elseif (isset($_GET['viewInfo']) and$_GET['viewInfo'] == '5') 
+	 elseif (isset($_GET['viewInfo']) and$_GET['viewInfo'] == 'Товарный_Официальный') 
 		require ('var/Tov/ofsl_T.php');
-	 elseif (isset($_GET['viewInfo']) and$_GET['viewInfo'] == '6') {
+	 elseif (isset($_GET['viewInfo']) and$_GET['viewInfo'] == 'Товарный_Ввести_данные') {
 		require  ('auth.php');
 		require ('var/Tov/xls.php');}
-	 elseif (isset($_GET['viewInfo']) and$_GET['viewInfo'] == '7') 
+	 elseif (isset($_GET['viewInfo']) and$_GET['viewInfo'] == 'Тека_Фактический') 
 		require ('var/Tov_T/fact_TT.php');
-	 elseif (isset($_GET['viewInfo']) and$_GET['viewInfo'] == '8') 
+	 elseif (isset($_GET['viewInfo']) and$_GET['viewInfo'] == 'Тека_Официальный') 
 		require ('var/Tov_T/ofsl_TT.php');
-	 elseif (isset($_GET['viewInfo']) and$_GET['viewInfo'] == '9') {
+	 elseif (isset($_GET['viewInfo']) and$_GET['viewInfo'] == 'Тека_Ввести_данные') {
 		require  ('auth.php');
 		require ('var/Tov_T/xls.php');}
 else{
