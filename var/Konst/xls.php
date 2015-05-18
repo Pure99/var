@@ -40,7 +40,7 @@ WHERE `excel2mysql0_k2`.`ID_TAB` IS NULL")) echo "<div class='alert alert-danger
 <div style="float:left; width:177px; height:177px;"><div class="pole jumbotron"><form  name="Form" method="GET" action="<?=$_SERVER['PHP_SELF']?>">
 Начало периода:<input type="DATE" name="data1" class="form-control" value="<?=$data1?>">
 Конец периода:<input type="DATE" name="data2" class="form-control" value="<?=$data2?>">
-<input type="hidden" name="viewInfo" value="3"/>
+<input type="hidden" name="viewInfo" value="Конструкционный_Ввести_данные"/>
 <br><input type="submit" class="btn btn-primary">
 </form></div></div>
 <div class="print"><table class="table-autostripe table-rowshade-alternate table-autosort table-autofilter table-stripeclass:alternate table-page-number:t1page table-page-count:t1pages table-filtered-rowcount:t1filtercount table-rowcount:t1allcount" align="center" bordercolor="black" border="1px" bgcolor="#eaeae" cellpadding="0px" cellspacing="0px" id="table1" style="border-right-width:0px">
