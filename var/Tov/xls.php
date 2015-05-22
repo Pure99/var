@@ -1,6 +1,6 @@
 <h3>Товарный бетон</h3>
 	<!-- Тип кодирования данных, enctype, ДОЛЖЕН БЫТЬ указан ИМЕННО так -->
-<div align="left" class="pole jumbotron" style="position:relative"><form enctype="multipart/form-data" action="index.php?viewInfo=6" method="POST">
+<div align="left" class="pole jumbotron" style="position:relative"><form enctype="multipart/form-data" action="index.php?viewInfo=Товарный_Ввести_данные" method="POST">
     <input type="hidden" name="MAX_FILE_SIZE" value="300000" /><!-- Поле MAX_FILE_SIZE должно быть указано до поля загрузки файла -->
     <!-- Название элемента input определяет имя в массиве $_FILES -->
  Отправить этот файл:<input name="userfile" type="file" style="display:inline"/><input type="submit" class="btn btn-primary" value="Отправить файл"/></form></div>
@@ -38,7 +38,7 @@ WHERE `excel2mysql0_t2`.`ID_TAB` IS NULL");
 <div style="float:left; width:177px; height:177px;"><div class="pole jumbotron"><form name="Form" method="GET" action="<?=$_SERVER['PHP_SELF']?>">
 Начало периода:<input type="DATE" name="data1" class="form-control" value="<?=$data1?>">
 Конец периода:<input type="DATE" name="data2" class="form-control" value="<?=$data2?>">
-<input type="hidden" name="viewInfo" value="6"/>
+<input type="hidden" name="viewInfo" value="Товарный_Ввести_данные"/>
 <br><input type="submit" class="btn btn-primary">
 </form></div></div>
 <div class="print"><table class="table-autostripe table-rowshade-alternate table-autosort table-autofilter table-stripeclass:alternate table-page-number:t1page table-page-count:t1pages table-filtered-rowcount:t1filtercount table-rowcount:t1allcount" align="center" border="1px" cellpadding="0px" cellspacing="0px" id="table1">

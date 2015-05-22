@@ -11,9 +11,9 @@ $(function edit() {            //функция ввода значений
     		var VRegExp = new RegExp(/\s.*/);
     		var a = $(this).closest('td').children('span').attr('class').replace(VRegExp, AReplaceText); // определяется класс-название таблицы
 			var b = $(this).closest('td').children('span').attr('id');  //определяется id строки
-			var c = $('.input-sm').val().replace(',','.');          //определяется введенное значение, замена запятой на точку
 			var VRegExp = new RegExp(/\s.*?\s/);
 			var x = $.trim($(this).closest('td').children('span').attr('class').match(VRegExp)); //определяется класс-название столбца 
+			var c = $('.input-sm').val().replace(',','.');          //определяется введенное значение, замена запятой на точку
 			alert (a);
 			alert (x);
 			var z = $(this).closest('td').children('span');
@@ -27,6 +27,9 @@ alert (c);
 alert ($(this).closest('tr').children('td').children('span.prochnost').text().replace(',','.')/c*100);
 $(this).closest('tr').children('td.proc').html(Math.round($(this).closest('tr').children('td').children('span.prochnost').text().replace(',','.')/c*100).toFixed(0));
 }		     
+if (x == 'class') {
+	var c = $('.input-sm').val();      // если вводится наименование класс то менять запятую на точку не нужно
+}
 if (x == 'data'){
 	//var c = $(document).on('.editable-unsaved').val();
 /*$(function() {

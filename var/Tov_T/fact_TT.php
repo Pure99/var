@@ -2,7 +2,7 @@
 <form name="Form" method="GET" action="<?=$_SERVER['PHP_SELF']?>">
 Начало периода:<input type="DATE" name="data1" class="form-control" value="<?=$data1?>">
 Конец периода:<input type="DATE" name="data2" class="form-control" value="<?=$data2?>">
-<input type="hidden" name="viewInfo" value="7"/>
+<input type="hidden" name="viewInfo" value="Тека_Фактический"/>
 <br><input type="submit" class="btn btn-primary">
 </form></div></div>
 <div class="print">

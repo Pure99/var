@@ -1,6 +1,6 @@
 <h3>Конструкционный бетон</h3>
 	<!-- Тип кодирования данных, enctype, ДОЛЖЕН БЫТЬ указан ИМЕННО так -->
-<div align="left" class="pole jumbotron" style="position:relative"><form enctype="multipart/form-data" action="index.php?viewInfo=3" method="POST">
+<div align="left" class="pole jumbotron" style="position:relative"><form enctype="multipart/form-data" action="index.php?viewInfo=Конструкционный_Ввести_данные" method="POST">
     <input type="hidden" name="MAX_FILE_SIZE" value="300000" /> <!-- Поле MAX_FILE_SIZE должно быть указано до поля загрузки файла -->
     <!-- Название элемента input определяет имя в массиве $_FILES -->
 Отправить этот файл:<input name="userfile" type="file" style="display:inline"/><input type="submit" class="btn btn-primary" value="Отправить файл"/></form></div>

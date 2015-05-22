@@ -3,7 +3,7 @@
 Начало периода:<input type="DATE" name="data1" class="form-control" value="<?=$data1?>">
 Конец периода:<input type="DATE" name="data2" class="form-control" value="<?=$data2?>">
 Коэффициент вариации:<input style="width:172px" type="text" name="koef_var" class="form-control" value="<?=$koef_var?>">
-<input type="hidden" name="viewInfo" value="2"/>
+<input type="hidden" name="viewInfo" value="Конструкционный_Официальный"/>
 <br><input type="submit" class="btn btn-primary">
 </form></div></div>
 <div class="print">
