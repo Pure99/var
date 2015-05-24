@@ -27,7 +27,8 @@ $connection->query("ALTER TABLE `excel2mysql0_t` ADD `KOEF` INT(2) NOT NULL "); 
 $connection->query("UPDATE `excel2mysql0_t` SET `KOEF`=1");                      // записать единицу в KOEF
 $connection->query("DELETE FROM `base`.`excel2mysql0_t` WHERE `excel2mysql0_t`.`Класс` = ''");   //удалить строки с пустыми полями
 $connection->query("ALTER TABLE `excel2mysql0_t` CHANGE `Дата` `Дата` DATE NOT NULL");  //преобразуем текст в дату
-$connection->query( "CREATE TABLE excel2mysql0_t2 LIKE excel2mysql0_t");
+$connection->query("update `excel2mysql0_t` set `Класс`=replace(`Класс`, Left(`Класс`,1), 'В')");
+$connection->query("CREATE TABLE excel2mysql0_t2 LIKE excel2mysql0_t");
 $connection->query("insert into `excel2mysql0_t2` (`Дата`, `Класс`, `БСЦ_РБУ`, `Прочность7`, `Прочность28`, `Требуемая_прочность_МПа`, `Прочность_7_проценты`, `Прочность_28_проценты`, `Прирост`, `Место_отгрузки_БС`, `Добавка`, `KOEF`)
  SELECT `Дата`, `Класс`, `БСЦ_РБУ`, `Прочность7`, `Прочность28`, `Требуемая_прочность_МПа`, `Прочность_7_проценты`, `Прочность_28_проценты`, `Прирост`, `Место_отгрузки_БС`, `Добавка`, `KOEF` FROM `excel2mysql0_t`
 LEFT JOIN `excel2mysql0_t2`
