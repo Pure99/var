@@ -35,6 +35,7 @@ echo "<table>";
 	while($row = $result->fetch_object()){
 echo "<tr><td>".$row->id."</td><td>".$row->script_name."</td><td>".$row->start_time."</td><td>".$row->end_time."</td><td>".$row->result."</td></tr>";
 }
+echo "</table>";
 }
 	}
 	$test = new init;
@@ -45,15 +46,38 @@ echo "<tr><td>".$row->id."</td><td>".$row->script_name."</td><td>".$row->start_t
 <?php
 
 
-if ($handle = opendir('/var/www/html/var')) {
-    echo "Дескриптор каталога: $handle\n";
-    echo "Файлы:\n";
+if ($handle = opendir('./datafiles/')) {
+    echo "Дескриптор каталога: $handle<br>";
+    echo "Файлы:<br>";
 
     /* Именно этот способ чтения элементов каталога является правильным. */
     while (false !== ($file = readdir($handle))) { 
+	if ($file != "." && $file != ".." &&  preg_match("/\.(:?ixt)$/i", $file, $matches) && ! preg_match("/[^a-z0-9\.]+/", $file, $matches)) {
         echo "$file<br>";
+	}
     }
-
+//[a-zA-Z\d]+.+[ixt]
 closedir($handle); 
 }
+?>
+<?php
+$homepage = file_get_contents('http://www.bills.ru/');
+//print $homepage;
+
+$doc = new DOMDocument();
+$doc->preserveWhiteSpace = FALSE;
+$doc->loadHTMLFile('http://www.bills.ru/');
+
+$tags = $doc->getElementsByTagName('a');
+
+foreach ($tags as $tag) {
+       echo $tag->getAttribute('href').' | '.$tag->nodeValue."\n";
+}
+echo $doc->saveHTML();
+
+   // 
+   // @$doc->loadHTMLFile('http://www.bills.ru/');
+    //echo $doc->saveHTML();
+
+
 ?>
