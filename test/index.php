@@ -56,9 +56,18 @@ closedir($handle);
 }
 ?>
 <?php
-$homepage = file_get_contents('http://www.bills.ru/');
+function str_to_month ($str) {
+	preg_match ("/янв|фев|мар|апр|мая|июн|июл|авг|сен|окт|ноя|(дек)/",$str, $matches);
+		foreach ($matches as $value) {echo $value;}
+		
+}
+
+str_to_month ('10 дек мая дек');
+
+//$homepage = file_get_contents('http://www.bills.ru/');
 //print $homepage;
 //$connection->set_charset("windows-1251");
+$connection->set_charset("utf8");
 $connection->query( "CREATE TABLE `bills_ru_events` (
   `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `date` datetime  NOT NULL,
@@ -69,12 +78,18 @@ $doc = new DOMDocument();
 $doc->preserveWhiteSpace = FALSE;
 //$doc->encoding = "windows-1251";
 $doc->loadHTMLFile('http://www.bills.ru/');
+//echo iconv ( 'windows-1251' , 'UTF-8' ,$doc->saveHTML());
 $tags = $doc->getElementById('bizon_api_news_list')->getElementsByTagName('a');
 echo "<table>";
 foreach ($tags as $tag) {
-       echo "<tr><td>".$url=$tag->getAttribute('href')."</td><td> | ".$title=iconv ( 'windows-1251' , 'utf8' ,$tag->nodeValue)."</td></tr>";
+       echo "<tr><td>".$url=$tag->getAttribute('href')."</td><td>".$title=$tag->nodeValue."</td></tr>";
 $connection->query("INSERT INTO `bills_ru_events` (`title`, `url`) VALUES ('$title', '$url');");
 }
 echo "</table>";
-echo $doc->saveHTML();
+$tags = $doc->getElementById('bizon_api_news_list')->getElementsByTagName('span');
+echo "<table>";
+foreach ($tags as $tag) {
+       echo "<tr><td>".$url=$tag->getAttribute('href')."</td><td>".$title=date("Y-m-d H-i-s",strtotime($tag->nodeValue))."</td></tr>";
+}
+echo "</table>";
 ?>
