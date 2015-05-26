@@ -40,12 +40,8 @@ echo "</table>";
 	}
 	$test = new init;
         $test->get();
-
 ?>
-
 <?php
-
-
 if ($handle = opendir('./datafiles/')) {
     echo "Дескриптор каталога: $handle<br>";
     echo "Файлы:<br>";
@@ -56,28 +52,29 @@ if ($handle = opendir('./datafiles/')) {
         echo "$file<br>";
 	}
     }
-//[a-zA-Z\d]+.+[ixt]
 closedir($handle); 
 }
 ?>
 <?php
 $homepage = file_get_contents('http://www.bills.ru/');
 //print $homepage;
-
+//$connection->set_charset("windows-1251");
+$connection->query( "CREATE TABLE `bills_ru_events` (
+  `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `date` datetime  NOT NULL,
+  `title` char(230) COLLATE 'utf8_unicode_ci' NOT NULL,
+  `url` char(240) COLLATE 'utf8_unicode_ci' NOT NULL UNIQUE)
+ ENGINE=MyISAM DEFAULT COLLATE 'utf8_unicode_ci';"); //создать таблицу
 $doc = new DOMDocument();
 $doc->preserveWhiteSpace = FALSE;
+//$doc->encoding = "windows-1251";
 $doc->loadHTMLFile('http://www.bills.ru/');
-
-$tags = $doc->getElementsByTagName('a');
-
+$tags = $doc->getElementById('bizon_api_news_list')->getElementsByTagName('a');
+echo "<table>";
 foreach ($tags as $tag) {
-       echo $tag->getAttribute('href').' | '.$tag->nodeValue."\n";
+       echo "<tr><td>".$url=$tag->getAttribute('href')."</td><td> | ".$title=iconv ( 'windows-1251' , 'utf8' ,$tag->nodeValue)."</td></tr>";
+$connection->query("INSERT INTO `bills_ru_events` (`title`, `url`) VALUES ('$title', '$url');");
 }
+echo "</table>";
 echo $doc->saveHTML();
-
-   // 
-   // @$doc->loadHTMLFile('http://www.bills.ru/');
-    //echo $doc->saveHTML();
-
-
 ?>

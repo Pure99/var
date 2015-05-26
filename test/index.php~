@@ -35,25 +35,46 @@ echo "<table>";
 	while($row = $result->fetch_object()){
 echo "<tr><td>".$row->id."</td><td>".$row->script_name."</td><td>".$row->start_time."</td><td>".$row->end_time."</td><td>".$row->result."</td></tr>";
 }
+echo "</table>";
 }
 	}
 	$test = new init;
         $test->get();
-
 ?>
-
 <?php
-
-
-if ($handle = opendir('/var/www/html/var')) {
-    echo "Дескриптор каталога: $handle\n";
-    echo "Файлы:\n";
+if ($handle = opendir('./datafiles/')) {
+    echo "Дескриптор каталога: $handle<br>";
+    echo "Файлы:<br>";
 
     /* Именно этот способ чтения элементов каталога является правильным. */
     while (false !== ($file = readdir($handle))) { 
-        echo "$file<\br>";
+	if ($file != "." && $file != ".." &&  preg_match("/\.(:?ixt)$/i", $file, $matches) && ! preg_match("/[^a-z0-9\.]+/", $file, $matches)) {
+        echo "$file<br>";
+	}
     }
-
 closedir($handle); 
 }
+?>
+<?php
+$homepage = file_get_contents('http://www.bills.ru/');
+//print $homepage;
+//$connection->set_charset("windows-1251");
+$connection->query( "CREATE TABLE `bills_ru_events` (
+  `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `date` datetime  NOT NULL,
+  `title` char(230) COLLATE 'utf8' NOT NULL,
+  `url` char(240) COLLATE 'utf8_unicode_ci' NOT NULL UNIQUE)
+ ENGINE=MyISAM DEFAULT COLLATE 'utf8_unicode_ci';"); //создать таблицу
+$doc = new DOMDocument();
+$doc->preserveWhiteSpace = FALSE;
+//$doc->encoding = "windows-1251";
+$doc->loadHTMLFile('http://www.bills.ru/');
+$tags = $doc->getElementById('bizon_api_news_list')->getElementsByTagName('a');
+echo "<table>";
+foreach ($tags as $tag) {
+       echo "<tr><td>".$url=$tag->getAttribute('href')."</td><td> | ".$title=iconv ( 'windows-1251' , 'utf8' ,$tag->nodeValue)."</td></tr>";
+$connection->query("INSERT INTO `bills_ru_events` (`title`, `url`) VALUES ('$title', '$url');");
+}
+echo "</table>";
+echo $doc->saveHTML();
 ?>
