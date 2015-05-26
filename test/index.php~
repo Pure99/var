@@ -51,7 +51,7 @@ if ($handle = opendir('/var/www/html/var')) {
 
     /* Именно этот способ чтения элементов каталога является правильным. */
     while (false !== ($file = readdir($handle))) { 
-        echo "$file<br>";
+        echo "$file<\br>";
     }
 
 closedir($handle); 
