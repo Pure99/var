@@ -57,16 +57,21 @@ closedir($handle);
 ?>
 <?php
 function str_to_month ($str) {
-	preg_match ("/янв|фев|мар|апр|мая|июн|июл|авг|сен|окт|ноя|(дек)/",$str, $matches);
-		foreach ($matches as $value) {echo $value;}
-		
+	preg_match ("/янв|фев|мар|апр|ма|июн|июл|авг|сен|окт|ноя|дек/",$str, $matches);
+		foreach ($matches as $value) {echo $value;}	
 }
-
-str_to_month ('10 дек мая дек');
-
-//$homepage = file_get_contents('http://www.bills.ru/');
-//print $homepage;
-//$connection->set_charset("windows-1251");
+str_to_month ("20 ноя");
+echo "<br>";
+function newFormatDate($date) {
+    $date = str_replace(array('янв', 'Фев', 'мар', 'апр', 'мая', 'июн', 'июл', 'авг', 'сен', 'окт', 'ноя', 'дек'),
+                        array('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'),
+                        $date);
+return date("Y-m-d", strtotime($date));
+}
+$date = '29 апр';
+echo newFormatDate($date);
+echo "<br>";
+echo "<br>";
 $connection->set_charset("utf8");
 $connection->query( "CREATE TABLE `bills_ru_events` (
   `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -76,20 +81,26 @@ $connection->query( "CREATE TABLE `bills_ru_events` (
  ENGINE=MyISAM DEFAULT COLLATE 'utf8_unicode_ci';"); //создать таблицу
 $doc = new DOMDocument();
 $doc->preserveWhiteSpace = FALSE;
-//$doc->encoding = "windows-1251";
 $doc->loadHTMLFile('http://www.bills.ru/');
-//echo iconv ( 'windows-1251' , 'UTF-8' ,$doc->saveHTML());
-$tags = $doc->getElementById('bizon_api_news_list')->getElementsByTagName('a');
+$tags_a = $doc->getElementById('bizon_api_news_list')->getElementsByTagName('a');
+$tags_span = $doc->getElementById('bizon_api_news_list')->getElementsByTagName('span');
+//echo $tags_span->nodeValue;
 echo "<table>";
-foreach ($tags as $tag) {
-       echo "<tr><td>".$url=$tag->getAttribute('href')."</td><td>".$title=$tag->nodeValue."</td></tr>";
+foreach ($tags_a as $tag ) {
+       echo "<tr><td>".$url=$tag->getAttribute('href')."</td><td>".$title=$tag->nodeValue."</td><td>".$data=$tag->nextSibling->nodeValue."</td></tr>";
 $connection->query("INSERT INTO `bills_ru_events` (`title`, `url`) VALUES ('$title', '$url');");
 }
 echo "</table>";
-$tags = $doc->getElementById('bizon_api_news_list')->getElementsByTagName('span');
+
 echo "<table>";
-foreach ($tags as $tag) {
-       echo "<tr><td>".$url=$tag->getAttribute('href')."</td><td>".$title=date("Y-m-d H-i-s",strtotime($tag->nodeValue))."</td></tr>";
+foreach ($tags_span as $tag) {
+       echo "<tr><td>"."</td><td>".$title=newFormatDate(str_replace(')','',str_replace('(от ', '', $tag->nodeValue)))."</td></tr>";
+	   $connection->query("update `bills_ru_events` set `date`='$title';");
 }
 echo "</table>";
+$node = $doc->getElementById('bizon_api_news_list')->getElementsByTagName('a');           
+   for($c = 0; $c<$node->length; $c++){ 
+     $text[$c] =$doc->savehtml($node->item($c)); 
+     echo $text[$c]; 
+   }
 ?>
