@@ -56,22 +56,12 @@ closedir($handle);
 }
 ?>
 <?php
-function str_to_month ($str) {
-	preg_match ("/янв|фев|мар|апр|ма|июн|июл|авг|сен|окт|ноя|дек/",$str, $matches);
-		foreach ($matches as $value) {echo $value;}	
-}
-str_to_month ("20 ноя");
-echo "<br>";
 function newFormatDate($date) {
     $date = str_replace(array('янв', 'Фев', 'мар', 'апр', 'мая', 'июн', 'июл', 'авг', 'сен', 'окт', 'ноя', 'дек'),
                         array('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'),
                         $date);
 return date("Y-m-d", strtotime($date));
 }
-$date = '29 апр';
-echo newFormatDate($date);
-echo "<br>";
-echo "<br>";
 $connection->set_charset("utf8");
 $connection->query( "CREATE TABLE `bills_ru_events` (
   `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -80,27 +70,27 @@ $connection->query( "CREATE TABLE `bills_ru_events` (
   `url` char(240) COLLATE 'utf8_unicode_ci' NOT NULL UNIQUE)
  ENGINE=MyISAM DEFAULT COLLATE 'utf8_unicode_ci';"); //создать таблицу
 $doc = new DOMDocument();
-$doc->preserveWhiteSpace = FALSE;
-$doc->loadHTMLFile('http://www.bills.ru/');
+@$doc->loadHTMLFile('http://www.bills.ru/');
 $tags_a = $doc->getElementById('bizon_api_news_list')->getElementsByTagName('a');
 $tags_span = $doc->getElementById('bizon_api_news_list')->getElementsByTagName('span');
-//echo $tags_span->nodeValue;
 echo "<table>";
-foreach ($tags_a as $tag ) {
-       echo "<tr><td>".$url=$tag->getAttribute('href')."</td><td>".$title=$tag->nodeValue."</td><td>".$data=$tag->nextSibling->nodeValue."</td></tr>";
-$connection->query("INSERT INTO `bills_ru_events` (`title`, `url`) VALUES ('$title', '$url');");
+for ($c = 0; $c<$tags_a->length; $c++  ) {
+        echo "<tr><td>"; echo $url = $tags_a->item($c)->getAttribute('href'); echo "</td><td>"; echo $title = $tags_a->item($c)->nodeValue; echo "</td><td>"; echo $data = newFormatDate(str_replace(')','',str_replace('(от ', '', $tags_span->item($c)->nodeValue))); echo "</td></tr>";
+	$connection->query("INSERT INTO `bills_ru_events` (`title`, `url`, `date`) VALUES ('$title', '$url', '$data');");
 }
-echo "</table>";
-
-echo "<table>";
-foreach ($tags_span as $tag) {
-       echo "<tr><td>"."</td><td>".$title=newFormatDate(str_replace(')','',str_replace('(от ', '', $tag->nodeValue)))."</td></tr>";
-	   $connection->query("update `bills_ru_events` set `date`='$title';");
-}
-echo "</table>";
-$node = $doc->getElementById('bizon_api_news_list')->getElementsByTagName('a');           
-   for($c = 0; $c<$node->length; $c++){ 
-     $text[$c] =$doc->savehtml($node->item($c)); 
-     echo $text[$c]; 
-   }
+echo "</table aligne>";
 ?>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<table>
+<tr><td id='11'><button id='1' style="text-align: center">1</button></td></tr>
+<tr><td id='22'><button id='2' style="text-align: center">2</button></td></tr>
+<tr><td id='33'><button id='3' style="text-align: center">3</button></td></tr>
+</table>
+<script>
+    $('#1, #2, #3').click(function(){ var b1 = $('#1').detach(); var b2 = $('#2').detach(); var b3 = $('#3').detach();
+  
+b1.appendTo('#11');
+b2.appendTo('#22');
+b3.appendTo('#33');
+    });
+</script>

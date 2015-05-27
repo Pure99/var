@@ -2,7 +2,7 @@
 <form  name="Form" method="GET" action="<?=$_SERVER['PHP_SELF']?>">
 Начало периода:<input type="DATE" name="data1" class="form-control" value="<?=$data1?>">
 Конец периода:<input type="DATE" name="data2" class="form-control" value="<?=$data2?>">
-<input type="hidden" name="viewInfo" value="1"/>
+<input type="hidden" name="viewInfo" value="Конструкционный_Фактический"/>
 <br><input type="submit" class="btn btn-primary">
 </form></div></div>
 <div class="print">
@@ -119,7 +119,7 @@ while($row = $result->fetch_array()){
  <p>
  Rm ≥ Rт				<br/>		
 Rmin = 		<?echo $Rt-4?>			<br/>
-В˂Rmini≥Rmin						<br/>
+В&ltRmini≥Rmin						<br/>
 					<br/>
 </p>
 
@@ -162,3 +162,6 @@ while($row = $result->fetch_array()){ // Сводная таблица
 		</tr>
 </table>	
  </div><?php unset($Mas_Var); unset($Mas_Mid); ?>
+<script>
+    $("button").button();
+  </script>
