@@ -10,7 +10,7 @@ if (mysqli_connect_errno()) {
 /**
 * Указываем кодировку подключения
 */
-$connection->set_charset("utf8");
+//$connection->set_charset("utf8");
 /**
 * Задача №1
 *
@@ -74,14 +74,20 @@ echo "</table>";
 <?php
 /**
 * Задача №2
-*
+* Создаем начальные условия
 */
 $connection->query( "CREATE TABLE `info` ( `id` int(11) NOT NULL auto_increment, `name` varchar(255) default NULL, `desc` text default NULL, PRIMARY KEY (`id`)) ENGINE=MyISAM DEFAULT CHARSET=cp1251;"); 
 $connection->query( "CREATE TABLE `data` (`id` int(11) NOT NULL auto_increment, `date` date default NULL, `value` INT(11) default NULL, PRIMARY KEY (`id`)) ENGINE=MyISAM DEFAULT CHARSET=cp1251;"); 
 $connection->query( "CREATE TABLE `link` (`data_id` int(11) NOT NULL,`info_id` int(11) NOT NULL) ENGINE=MyISAM DEFAULT CHARSET=cp1251;");
 $connection->query( "select * from data,link,info where link.info_id = info.id and link.data_id = data.id;");
-$connection->query( "INSERT INTO `test`.`info` (`data_id`,) SELECT `data_id` FROM `test`.`link` ;");
-$connection->query( "INSERT INTO `test`.`data` (`info_id`,) SELECT `info_id` FROM `test`.`link` ;");
+/** копируем столбец data_id из link в info*/
+$connection->query( "ALTER TABLE `info` ADD `data_id` INT NOT NULL;");
+$connection->query( "INSERT INTO `test`.`info` (`data_id`) SELECT `data_id` FROM `test`.`link`;");
+/** удаляем таблицу link */
+$connection->query( "DROP TABLE `link`");
+/** создаем новый запрос*/
+$connection->query( "select * from data,info where info.data_id = data.id;");
+
 
 ?>
 <?php
