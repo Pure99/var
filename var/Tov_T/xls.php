@@ -41,9 +41,6 @@ WHERE `excel2mysql0_tt2`.`ID_TAB` IS NULL");
 Конец периода:<input type="DATE" name="data2" class="form-control" value="<?=$data2?>">
 <input type="hidden" name="viewInfo" value="Тека_Ввести_данные"/>
 <br><input type="submit" class="btn btn-primary">
-</form><br> поменять букву В
-<form name="B" method="GET" action="<? ?>">
-<input type="submit" class="btn btn-primary">
 </form>
 </div></div>
 <div class="print"><table class="table-autostripe table-rowshade-alternate table-autosort table-autofilter table-stripeclass:alternate table-page-number:t1page table-page-count:t1pages table-filtered-rowcount:t1filtercount table-rowcount:t1allcount" align="center" border="1px" cellpadding="0px" cellspacing="0px" id="table1">
