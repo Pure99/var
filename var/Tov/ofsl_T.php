@@ -174,7 +174,7 @@ while($row = $result->fetch_array()){
  extract ($row);?>
 <tr>
    <td align="center"><?=$l+1?></td>
-   <td align="center"><?echo str_replace('.',',',(rtrim(rtrim($Класс,'0'), '.')))?></td>
+   <td align="center"><?=$Класс?></td>
    <td align="center"><?=str_replace('.',',',(number_format(round($Mas_Var[$l],1), 1, '.', '')))?> </td>
    <td align="center"><?=str_replace('.',',',(number_format(round($Mas_Rt[$l],1), 1, '.', '')))?></td>
  </tr>
