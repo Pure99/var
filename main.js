@@ -14,17 +14,17 @@ $(function edit() {            //функция ввода значений
 			var VRegExp = new RegExp(/\s.*?\s/);
 			var x = $.trim($(this).closest('td').children('span').attr('class').match(VRegExp)); //определяется класс-название столбца 
 			var c = $('.input-sm').val().replace(',','.');          //определяется введенное значение, замена запятой на точку
-			alert (a);
-			alert (x);
+			//alert (a);
+			//alert (x);
 			var z = $(this).closest('td').children('span');
 			if (x == 'prochnost') {
-alert (c);
-alert (c/$(this).closest('tr').children('td').children('span.tr_prochnost').text().replace(',','.')*100);
+//alert (c);
+//alert (c/$(this).closest('tr').children('td').children('span.tr_prochnost').text().replace(',','.')*100);
 $(this).closest('tr').children('td.proc').html(Math.round(c/$(this).closest('tr').children('td').children('span.tr_prochnost').text().replace(',','.')*100).toFixed(0));
 			}
 			if (x == 'tr_prochnost') {
-alert (c);
-alert ($(this).closest('tr').children('td').children('span.prochnost').text().replace(',','.')/c*100);
+//alert (c);
+//alert ($(this).closest('tr').children('td').children('span.prochnost').text().replace(',','.')/c*100);
 $(this).closest('tr').children('td.proc').html(Math.round($(this).closest('tr').children('td').children('span.prochnost').text().replace(',','.')/c*100).toFixed(0));
 }		     
 if (x == 'class') {
@@ -73,7 +73,7 @@ if (data) {
             alert('Не добавлено!');
            break;
            default:
-			alert(data);
+			//alert(data);
 			$(data).insertBefore($("tr:last"));
 			$('.data').editable();
 			$('.izdelie').editable();
@@ -92,7 +92,7 @@ if (data) {
     var VRegExp = new RegExp(/\s.*/);
     var table = $(this).closest('tr').children('td').children('span').attr('class').replace(VRegExp, AReplaceText);  
  if (confirm('Вы действительно хотите удалить строку???')){
-alert (table);              
+//alert (table);              
     var commentContainer = $(this).parent(); 
     var commentId = $(this).attr("id");// получаем значение элемента
    $.post("delete.php",{id : commentId, table : table},AjaxSuccess);// Отправляем Ajax запрос методом POST, переменную id со значением commentId
@@ -107,7 +107,7 @@ alert (table);
             alert('Не удалено!');
            break;
            default:
-	   alert(data);
+	   //alert(data);
            commentContainer.remove();
           }
          }
