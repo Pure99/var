@@ -124,6 +124,9 @@ function newFormatDate($date) {
                         $date);
 return date("Y-m-d", strtotime($date));
 }
+
+					
+
 /**
 * Создаем табдицу 'bills_ru_events'
 */
@@ -146,6 +149,10 @@ for ($c = 0; $c<$tags_a->length; $c++  ) {
 	$connection->query("INSERT INTO `bills_ru_events` (`title`, `url`, `date`) VALUES ('$title', '$url', '$data');");
 }
 echo "</table aligne>";
+setlocale(LC_ALL, 'ru_RU.UTF-8');
+						
+											
+							echo strftime('%b %B %h %m', strtotime("июнь"));
 ?>
 
 <!-- Задача №5      -->
