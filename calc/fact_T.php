@@ -41,7 +41,7 @@
    <td align="center">Средняя прочность Rm, МПа</td>
    <td align="center">Прочность по ГОСТ, МПа</td>
  </tr>			
- <? $l=0;
+ <?php $l=0;
  $result = $connection->query("SELECT `Класс` FROM `excel2mysql0_t2` where DATE(`Дата`) >= '$data1' AND DATE(`Дата`) <= '$data2' GROUP BY `Класс`");				// Запрос основной таблицы
 while($row = $result->fetch_array()){
  extract ($row); ?>
@@ -52,7 +52,9 @@ while($row = $result->fetch_array()){
    <td align="center"><?=str_replace('.',',',(number_format(round($Mas_Mid[$l],1), 1, '.', '')))?></td>
     <td align="center"><?preg_match("/(B|В)(.*?)(П|С|\s)/", $Класс, $matches); echo str_replace('.',',',(number_format(round($matches[2]*1.31,1), 1, '.', '')))?></td>
  </tr>			
-<?php $l=$l+1; }?>	
+<?php $l=$l+1; 
+
+ }?>	
 <tr>
 <td align="center"> </td>
 <td align="center"> </td>
