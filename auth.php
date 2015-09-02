@@ -41,8 +41,7 @@ else {
 <input type="password" id="inputPassword" class="form-control" placeholder="Пароль" required="" name="auth_pass">
 <button class="btn btn-lg btn-primary btn-block" type="submit">Войти</button>
 </form></div>
-<? 
+<?php 
 }
 require ('templates/footer.php');
-exit ;
-?>
+exit;
