@@ -1,4 +1,4 @@
-<?
+<?php
 if (isset($_POST['auth_name'])) {
   $name=$connection->real_escape_string($_POST['auth_name']);
   $pass=$connection->real_escape_string($_POST['auth_pass']);
@@ -21,7 +21,7 @@ if (isset($_POST['auth_name'])) {
 <input type="password" id="inputPassword" class="form-control" placeholder="Пароль" required="" name="auth_pass">
 <button class="btn btn-lg btn-primary btn-block" type="submit">Войти</button>
 </form></div>
-  <? }
+  <?php }
   exit ('Неверный логин или пароль');
 }
 if (isset($_REQUEST[session_name()])) {
