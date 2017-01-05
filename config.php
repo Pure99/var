@@ -22,13 +22,14 @@ function interpol($x) {    // функция интерполяции коэфф
     endif;
     return $z;
 }
+
 function alfa($a) {
-    if ($a == 2):       $k = 1.13;    // определение коэффициента альфа
-    elseif ($a == 3):   $k = 1.69;
-    elseif ($a == 4):   $k = 2.06;
-    elseif ($a == 5):   $k = 2.33;
-    elseif ($a == 6):   $k = 2.5;
-    else:               $k = 1;
+    if ($a == 2): $k = 1.13;    // определение коэффициента альфа
+    elseif ($a == 3): $k = 1.69;
+    elseif ($a == 4): $k = 2.06;
+    elseif ($a == 5): $k = 2.33;
+    elseif ($a == 6): $k = 2.5;
+    else: $k = 1;
     endif;
     return $k;
 }
@@ -81,5 +82,4 @@ function excel2mysql($worksheet, $connection, $table_name, $columns_name_line = 
     }
     return true;
 }
-
 ?>
